@@ -1,5 +1,3 @@
-import { createTrailCard } from "./createTrailCard.js";
-
 export function renderApp(trailsData) {
   const app = document.querySelector("#app");
   if (!app) return;
@@ -25,6 +23,13 @@ export function renderApp(trailsData) {
 
         <section id="caminatas" class="content">
           <h2>Caminatas destacadas</h2>
+          <div class="trails__search">
+            <input
+              id="trailSearch"
+              type="text"
+              placeholder="Buscar caminata..."
+            />
+          </div>
           <div id="trailsGrid" class="trails__grid"></div>
         </section>
       </main>
@@ -40,14 +45,4 @@ export function renderApp(trailsData) {
       </footer>
     </div>
   `;
-
-  const grid = document.getElementById("trailsGrid");
-  if (!grid) return;
-
-  grid.innerHTML = "";
-
-  trailsData.forEach(function (trail) {
-    const card = createTrailCard(trail);
-    grid.appendChild(card);
-  });
 }
