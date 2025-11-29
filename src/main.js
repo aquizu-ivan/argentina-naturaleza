@@ -1,6 +1,7 @@
 import "./styles.css";
 import { trailsData } from "./data/trailsData.js";
-import { renderApp, renderTrailCards } from "./ui/renderApp.js";
+import { renderApp } from "./ui/renderApp.js";
+import { renderTrailCards } from "./ui/renderTrailCards.js";
 import { filterTrails } from "./ui/filterTrails.js";
 
 renderApp(trailsData);

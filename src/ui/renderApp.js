@@ -1,5 +1,3 @@
-import { createTrailCard } from "./createTrailCard.js";
-
 export function renderApp(trailsData) {
   const app = document.querySelector("#app");
   if (!app) return;
@@ -47,16 +45,4 @@ export function renderApp(trailsData) {
       </footer>
     </div>
   `;
-}
-
-export function renderTrailCards(trails) {
-  const grid = document.getElementById("trailsGrid");
-  if (!grid) return;
-
-  grid.innerHTML = "";
-
-  trails.forEach(function (trail) {
-    const card = createTrailCard(trail);
-    grid.appendChild(card);
-  });
 }
