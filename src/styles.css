@@ -1,8 +1,14 @@
 :root {
   color: #0f172a;
-  background-color: #f8fafc;
+  background-color: #f1f5f9;
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
+  --forest-1: #0b3b2e;
+  --forest-2: #0e5b3a;
+  --forest-3: #155d27;
+  --mist: #e2f3ed;
+  --light: #f8fafc;
+  --border: #dce7e2;
 }
 
 * {
@@ -12,7 +18,11 @@
 }
 
 body {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.12), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(14, 91, 58, 0.14), transparent 34%),
+    radial-gradient(circle at 30% 80%, rgba(11, 59, 46, 0.18), transparent 36%),
+    linear-gradient(140deg, #f4f9f7 0%, #d9efe5 45%, #c8e2d6 100%);
   min-height: 100vh;
   color: #0f172a;
 }
@@ -33,6 +43,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  position: relative;
 }
 
 .topbar {
@@ -95,11 +106,12 @@ main {
 }
 
 .content {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.92);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 22px 22px 24px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 40px rgba(11, 59, 46, 0.08);
+  backdrop-filter: blur(6px);
 }
 
 h1 {
@@ -128,9 +140,41 @@ h3 {
   margin-top: 8px;
 }
 
+.trails__search {
+  margin: 6px 0 12px;
+  display: flex;
+}
+
+.trails__search input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #c0d6c9;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f9fefb 0%, #eef6f0 100%);
+  color: #0f172a;
+  font-size: 15px;
+  transition: box-shadow 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.trails__search input::placeholder {
+  color: #94a3b8;
+}
+
+.trails__search input:hover {
+  background: #ffffff;
+  border-color: #7ea189;
+}
+
+.trails__search input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--forest-2);
+  box-shadow: 0 10px 26px rgba(11, 59, 46, 0.14), 0 0 0 4px rgba(11, 59, 46, 0.14);
+}
+
 .trail-card {
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #d7e6dd;
   border-radius: 12px;
   padding: 14px;
   display: flex;
