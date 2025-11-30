@@ -28,6 +28,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 body {
@@ -101,7 +102,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-title);
-  color: var(--color-text-main);
+  color: #ead307;
 }
 
 h1 {
@@ -200,7 +201,7 @@ h3 {
   padding: 9px 14px;
   border-radius: 12px;
   font-weight: 600;
-  color: var(--color-text-main);
+  color: #ead307;
   background: transparent;
   transition: background-color 200ms ease, color 200ms ease, transform 160ms ease, box-shadow 200ms ease;
 }
@@ -247,8 +248,7 @@ h3 {
 }
 
 .nav__link--active {
-  background: var(--color-primary);
-  color: #f7fbf8;
+ color: #ead307;
   box-shadow: 0 10px 22px rgba(11, 59, 46, 0.2);
 }
 
@@ -257,7 +257,7 @@ h3 {
   outline-offset: 2px;
 }
 
-/* Home (hero) */
+/* Home (_) */
 .hero {
   position: relative;
   overflow: hidden;
@@ -281,12 +281,13 @@ h3 {
 
 .hero__content {
   position: relative;
-  max-width: 560px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
   color: #f5f3ea;
   z-index: 1;
+
 }
 
 .hero__eyebrow {
@@ -300,19 +301,22 @@ h3 {
   font-weight: 700;
   font-size: 13px;
   color: rgba(217, 240, 226, 0.92);
+  text-align: center;
+  width: fit-content;
 }
 
 .hero__title {
   font-family: var(--font-title);
-  font-size: 32px;
+  font-size: 55px;
   line-height: 1.15;
   letter-spacing: -0.4px;
-  color: #f6f2e8;
+  color: #ead307;
 }
 
 .hero__subtitle {
   font-size: 15px;
   color: rgba(232, 242, 236, 0.92);
+  text-align:justify;
 }
 
 .hero__chips {
@@ -460,14 +464,11 @@ h3 {
   color: #6b7d71;
 }
 
-.trails__search input:hover {
-  background: #ffffff;
-  border-color: #9bb9a8;
-}
+
+
 
 .trails__search input:focus {
   outline: none;
-  background: #ffffff;
   border-color: var(--color-primary);
   box-shadow: 0 12px 28px rgba(11, 59, 46, 0.14), 0 0 0 4px rgba(11, 59, 46, 0.18);
 }
@@ -566,8 +567,9 @@ h3 {
 
 .profile__fields {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 14px 16px;
+  margin-top: 15px;
 }
 
 .profile__field {
@@ -1052,10 +1054,12 @@ h3 {
 
   .hero__title {
     font-size: 24px;
+    color: #ead307;
   }
 
   h1 {
     font-size: 30px;
+    color: #ead307;
   }
 
   .detail {
