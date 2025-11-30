@@ -21,6 +21,7 @@ export function renderActivitiesPage() {
           <h1>Actividades al aire libre</h1>
           <p>Yoga, meditaci\u00f3n y movimiento para reconectar con la naturaleza.</p>
           <div class="trails__search">
+            <label class="sr-only" for="activitySearch">Buscar actividad</label>
             <input
               id="activitySearch"
               type="text"

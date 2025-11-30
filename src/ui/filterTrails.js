@@ -1,11 +1,16 @@
-export function filterTrails(trailsData, text) {
-  const query = text.toLowerCase().trim();
+/**
+ * Filtra una lista de elementos por nombre o t\u00edtulo (propiedad `name` o `title`),
+ * sin distinguir may\u00fasculas y min\u00fasculas.
+ */
+export function filterTrails(items, text) {
+  const query = (text || "").toLowerCase().trim();
 
   if (!query) {
-    return trailsData;
+    return items;
   }
 
-  return trailsData.filter(function (trail) {
-    return trail.name.toLowerCase().includes(query);
+  return items.filter(function (item) {
+    const candidate = (item.name || item.title || "").toLowerCase();
+    return candidate.includes(query);
   });
 }

@@ -21,6 +21,7 @@ export function renderTrailsPage() {
           <h1>Caminatas destacadas</h1>
           <p>Busc\u00e1 y explor\u00e1 senderos para planear tu pr\u00f3xima salida.</p>
           <div class="trails__search">
+            <label class="sr-only" for="trailSearch">Buscar caminata</label>
             <input
               id="trailSearch"
               type="text"

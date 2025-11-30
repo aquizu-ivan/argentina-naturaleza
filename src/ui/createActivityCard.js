@@ -9,7 +9,7 @@ export function createActivityCard(activity) {
   location.textContent = activity.location;
 
   const details = document.createElement("p");
-  details.textContent = `${activity.style} • Duración: ${activity.duration}`;
+  details.textContent = `${activity.style} \u00b7 Duraci\u00f3n: ${activity.duration}`;
 
   const description = document.createElement("p");
   description.textContent = activity.description;

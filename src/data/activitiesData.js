@@ -3,23 +3,23 @@ export const activitiesData = [
     id: 1,
     name: "Yoga al amanecer",
     style: "Vinyasa suave",
-    location: "Bariloche, Río Negro",
+    location: "Bariloche, R\u00edo Negro",
     duration: "60 minutos",
-    description: "Secuencia fluida frente al lago Nahuel Huapi para empezar el día con energía."
+    description: "Secuencia fluida frente al lago Nahuel Huapi para empezar el d\u00eda con energ\u00eda."
   },
   {
     id: 2,
-    name: "Meditación en bosque de arrayanes",
+    name: "Meditaci\u00f3n en bosque de arrayanes",
     style: "Mindfulness guiado",
-    location: "Villa La Angostura, Neuquén",
+    location: "Villa La Angostura, Neuqu\u00e9n",
     duration: "45 minutos",
-    description: "Práctica de atención plena rodeada de arrayanes, con respiración consciente y silencio."
+    description: "Pr\u00e1ctica de atenci\u00f3n plena rodeada de arrayanes, con respiraci\u00f3n consciente y silencio."
   },
   {
     id: 3,
     name: "Entrenamiento funcional al aire libre",
     style: "Circuito de fuerza y movilidad",
-    location: "Parque Sarmiento, Córdoba",
+    location: "Parque Sarmiento, C\u00f3rdoba",
     duration: "50 minutos",
     description: "Circuito con peso corporal y movilidad para ganar resistencia en plena naturaleza urbana."
   },
@@ -29,14 +29,14 @@ export const activitiesData = [
     style: "Walking meditation",
     location: "Delta del Tigre, Buenos Aires",
     duration: "40 minutos",
-    description: "Paseo lento y consciente entre canales y humedales, enfocando respiración y pisada."
+    description: "Paseo lento y consciente entre canales y humedales, enfocando respiraci\u00f3n y pisada."
   },
   {
     id: 5,
-    name: "Respiración y estiramientos al atardecer",
+    name: "Respiraci\u00f3n y estiramientos al atardecer",
     style: "Movilidad + breathwork",
     location: "Salinas Grandes, Jujuy",
     duration: "35 minutos",
-    description: "Rutina breve de estiramientos y respiración frente al horizonte salino al caer el sol."
+    description: "Rutina breve de estiramientos y respiraci\u00f3n frente al horizonte salino al caer el sol."
   }
 ];
