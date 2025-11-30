@@ -487,13 +487,13 @@ h3 {
 }
 
 .trail-card p {
-  color: #475569;
+  color: #ead307;
   font-family: var(--font-body);
 }
 
 .trail-card p:nth-of-type(2) {
   font-weight: 600;
-  color: var(--color-text-main);
+  color: #ea6d07;
 }
 
 .trail-card:hover {
@@ -509,7 +509,7 @@ h3 {
 .trail-card:hover h3,
 .trail-card:hover p,
 .trail-card:hover .card-meta__item {
-  color: #f5f2ea;
+  color: #4ba3d6;
 }
 
 .card-meta {
@@ -745,6 +745,7 @@ h3 {
 
 .detail__body p {
   line-height: 1.7;
+  color: #f5f2ea;
 }
 
 .detail__meta {
