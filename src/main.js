@@ -1,5 +1,7 @@
 import "./styles.css";
+import { updateCartBadge } from "./cart/cartBadge.js";
 import { renderApp } from "./ui/renderApp.js";
+import { updateHeaderUserState } from "./ui/header.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -27,3 +29,5 @@ function setupFadeInAnimations() {
 renderApp();
 const observeFadeIn = setupFadeInAnimations();
 observeFadeIn();
+updateCartBadge();
+updateHeaderUserState();

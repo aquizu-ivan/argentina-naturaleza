@@ -1,42 +1,30 @@
+import { renderHeader } from "./header.js";
+
 export function renderApp() {
   const app = document.querySelector("#app");
   if (!app) return;
 
   app.innerHTML = `
     <div class="page">
-      <header class="topbar fade-in">
-        <div class="brand">
-          <span class="brand__dot"></span>
-          <span class="brand__text">Naturaleza Argentina</span>
-        </div>
-        <nav class="nav">
-          <a class="nav__link nav__link--active" href="/">Inicio</a>
-          <a class="nav__link" href="/caminatas.html">Caminatas</a>
-          <a class="nav__link" href="/activities.html">Actividades</a>
-        </nav>
-      </header>
-
+      ${renderHeader("home")}
       <main>
-        <section id="inicio" class="content hero hero--home fade-in">
-          <div class="hero__text">
-            <div class="hero__badge">Naturaleza viva</div>
-            <h1>Explor\u00e1 Argentina a tu ritmo</h1>
-            <p>
+        <section id="inicio" class="hero fade-in">
+          <div class="hero__image-layer"></div>
+          <div class="hero__content">
+            <span class="hero__eyebrow">Explor\u00e1 la naturaleza argentina</span>
+            <h1 class="hero__title">Caminatas y actividades al aire libre</h1>
+            <p class="hero__subtitle">
               Bosques patag\u00f3nicos, yungas h\u00famedas, lagunas turquesa y cielos abiertos.
               Planific\u00e1 tu pr\u00f3xima salida y dejate llevar por los paisajes.
             </p>
+            <div class="hero__chips">
+              <span class="chip">🌲 Bosques</span>
+              <span class="chip">🏔️ Monta\u00f1as</span>
+              <span class="chip">💧 Lagunas</span>
+            </div>
             <div class="hero__actions">
               <a class="button button--primary" href="/caminatas.html">Ver caminatas</a>
-              <a class="button button--ghost" href="/activities.html">Ver actividades</a>
-            </div>
-          </div>
-          <div class="hero__visual">
-            <div class="hero__scene">
-              <span class="hero__sun"></span>
-              <span class="hero__mountain hero__mountain--back"></span>
-              <span class="hero__mountain hero__mountain--front"></span>
-              <span class="hero__trees"></span>
-              <span class="hero__ground"></span>
+              <a class="button button--primary" href="/activities.html">Ver actividades</a>
             </div>
           </div>
         </section>
@@ -51,12 +39,9 @@ export function renderApp() {
       </main>
 
       <footer class="footer">
-        <div class="brand brand--small">
-          <span class="brand__dot"></span>
-          <span class="brand__text">Naturaleza Argentina</span>
-        </div>
+        <span>Naturaleza Argentina \u2013 Proyecto personal de Iv\u00e1n Aquizu</span>
         <div class="footer__links">
-          <span>Simulaci\u00f3n de flujo de trabajo</span>
+          <span>\u00a9 2025 \u2013 Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

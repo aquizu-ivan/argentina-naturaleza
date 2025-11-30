@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Ilustracion de copas de arboles">
+  <defs>
+    <linearGradient id="canopyGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b5a3c" />
+      <stop offset="40%" stop-color="#0f3b2d" />
+      <stop offset="100%" stop-color="#0a2a20" />
+    </linearGradient>
+    <radialGradient id="leafLight" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0%" stop-color="#7fcf9d" stop-opacity="0.85" />
+      <stop offset="60%" stop-color="#4ba974" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#1f5c3f" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="leafDark" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#3a7a59" stop-opacity="0.9" />
+      <stop offset="65%" stop-color="#1f4c37" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#0d2d21" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#canopyGradient)" />
+  <g transform="translate(0,-60)">
+    <ellipse cx="200" cy="220" rx="420" ry="190" fill="url(#leafLight)" />
+    <ellipse cx="520" cy="190" rx="360" ry="180" fill="url(#leafDark)" />
+    <ellipse cx="870" cy="230" rx="420" ry="200" fill="url(#leafLight)" />
+    <ellipse cx="1260" cy="210" rx="360" ry="180" fill="url(#leafDark)" />
+    <ellipse cx="1490" cy="260" rx="260" ry="150" fill="url(#leafLight)" />
+  </g>
+  <g opacity="0.32" fill="#8fd6aa">
+    <path d="M180 220c140-60 200-40 260-10s80 110-20 130-240-60-240-60z" />
+    <path d="M760 160c120-70 240-60 310 10s10 150-180 120-160-130-130-130z" />
+    <path d="M1240 180c110-60 210-30 270 30s20 120-150 120-200-120-120-150z" />
+  </g>
+  <g opacity="0.25" fill="#0a2f21">
+    <circle cx="200" cy="240" r="120" />
+    <circle cx="520" cy="200" r="140" />
+    <circle cx="880" cy="250" r="150" />
+    <circle cx="1260" cy="210" r="150" />
+  </g>
+  <g opacity="0.18" fill="#0b3b2e">
+    <circle cx="340" cy="260" r="70" />
+    <circle cx="640" cy="230" r="90" />
+    <circle cx="1000" cy="240" r="80" />
+    <circle cx="1400" cy="260" r="70" />
+  </g>
+  <g opacity="0.28" fill="#e4f3e9">
+    <path d="M220 260c60-14 80 10 70 40s-60 66-120 60-90-58-50-84 60 0 100-16z" />
+    <path d="M740 240c70-12 100 30 90 60s-50 46-120 38-90-76-30-84 40-2 60-14z" />
+    <path d="M1210 250c50-10 80 6 80 40s-40 52-100 46-120-68-40-82 30 6 60-4z" />
+  </g>
+</svg>

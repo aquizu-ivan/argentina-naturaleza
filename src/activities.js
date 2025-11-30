@@ -1,8 +1,10 @@
 import "./styles.css";
+import { updateCartBadge } from "./cart/cartBadge.js";
 import { activitiesData } from "./data/activitiesData.js";
 import { renderActivitiesPage } from "./ui/renderActivitiesPage.js";
 import { renderActivityCards } from "./ui/renderActivityCards.js";
 import { filterTrails } from "./ui/filterTrails.js";
+import { updateHeaderUserState } from "./ui/header.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -30,6 +32,8 @@ function setupFadeInAnimations() {
 renderActivitiesPage();
 renderActivityCards(activitiesData);
 const observeFadeIn = setupFadeInAnimations();
+updateCartBadge();
+updateHeaderUserState();
 
 const searchInput = document.getElementById("activitySearch");
 
@@ -38,6 +42,7 @@ if (searchInput) {
     const text = event.target.value;
     const filtered = filterTrails(activitiesData, text);
     renderActivityCards(filtered);
+    updateCartBadge();
     observeFadeIn();
   });
 }

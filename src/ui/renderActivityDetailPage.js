@@ -1,4 +1,36 @@
+import { addToCart } from "../cart/cartStorage.js";
+import { updateCartBadge } from "../cart/cartBadge.js";
 import { activitiesData } from "../data/activitiesData.js";
+import { formatPrice } from "../utils/formatters.js";
+import { renderHeader } from "./header.js";
+
+function upsertMeta(title, description, image) {
+  if (title) {
+    document.title = title;
+  }
+  if (description) {
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", description);
+  }
+  const ensureOg = function (property, content) {
+    if (!content) return;
+    let og = document.querySelector(`meta[property="${property}"]`);
+    if (!og) {
+      og = document.createElement("meta");
+      og.setAttribute("property", property);
+      document.head.appendChild(og);
+    }
+    og.setAttribute("content", content);
+  };
+  ensureOg("og:title", title);
+  ensureOg("og:description", description);
+  ensureOg("og:image", image || "/assets/og/og-hero.png");
+}
 
 export function renderActivityDetailPage(activityId) {
   const app = document.querySelector("#app");
@@ -9,50 +41,54 @@ export function renderActivityDetailPage(activityId) {
   });
 
   if (!activity) {
+    upsertMeta(
+      "Actividad no encontrada | Naturaleza Argentina",
+      "No encontramos la actividad que buscás. Volvé a la lista para seguir explorando.",
+      "/assets/og/og-hero.png"
+    );
     app.innerHTML = `
       <div class="page">
-        <header class="topbar fade-in">
-          <div class="brand">
-            <span class="brand__dot"></span>
-            <span class="brand__text">Naturaleza Argentina</span>
-          </div>
-          <nav class="nav">
-            <a class="nav__link" href="/">Inicio</a>
-            <a class="nav__link" href="/caminatas.html">Caminatas</a>
-            <a class="nav__link nav__link--active" href="/activities.html">Actividades</a>
-          </nav>
-        </header>
-
+        ${renderHeader("activities")}
         <main>
           <section class="content fade-in">
             <h1>Actividad no encontrada</h1>
-            <p>La actividad que buscás no existe. Volvé a la lista para seguir explorando.</p>
+            <p>No encontramos esta actividad. Volvé a la lista para seguir explorando.</p>
             <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
           </section>
         </main>
+
+        <footer class="footer">
+          <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+          <div class="footer__links">
+            <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          </div>
+        </footer>
       </div>
     `;
+    updateCartBadge();
     return;
   }
 
+  upsertMeta(
+    `${activity.name} — Actividad al aire libre | Naturaleza Argentina`,
+    `${activity.name} en ${activity.region}. Duración ${activity.duration}. Descubrí más detalles y beneficios.`,
+    activity.imageUrl
+  );
+
   app.innerHTML = `
     <div class="page">
-      <header class="topbar fade-in">
-        <div class="brand">
-          <span class="brand__dot"></span>
-          <span class="brand__text">Naturaleza Argentina</span>
-        </div>
-        <nav class="nav">
-          <a class="nav__link" href="/">Inicio</a>
-          <a class="nav__link" href="/caminatas.html">Caminatas</a>
-          <a class="nav__link nav__link--active" href="/activities.html">Actividades</a>
-        </nav>
-      </header>
-
+      ${renderHeader("activities")}
       <main>
         <section class="content detail fade-in">
+          <div class="detail__body" style="grid-column: 1 / -1;">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="/activities.html">Actividades</a>
+              <span aria-hidden="true">›</span>
+              <span>${activity.name}</span>
+            </nav>
+          </div>
           <div class="detail__media">
-            <img src="${activity.imageUrl}" alt="${activity.name}" loading="lazy" />
+            <img src="${activity.imageUrl}" alt="${activity.name} en ${activity.region}, imagen destacada de la actividad" loading="lazy" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">
@@ -63,22 +99,67 @@ export function renderActivityDetailPage(activityId) {
             <h1>${activity.name}</h1>
             <p>${activity.description}</p>
             <p>${activity.longDescription}</p>
-            <p class="pill" aria-label="Ubicación">${activity.location}</p>
+            <h2>Información clave</h2>
+            <div class="info-keys">
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⛰️</span><span>Dificultad: ${activity.difficulty}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⏱️</span><span>Duración: ${activity.duration}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">📍</span><span>${activity.region} – ${activity.location}</span></div>
+            </div>
+            <div class="price-line">
+              <span>Precio por persona</span>
+              <strong>${formatPrice(activity.price)}</strong>
+            </div>
             <div class="hero__actions">
-              <a class="button button--primary" href="/activities.html">Volver a actividades</a>
+              <button class="button button--primary" type="button" data-add-cart aria-label="Añadir actividad al carrito"> Añadir al carrito</button>
+              <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
             </div>
           </div>
         </section>
 
         <section class="content detail__section fade-in">
-          <h2>Beneficios</h2>
+          <h2>Beneficios para tu cuerpo y mente</h2>
           <ul class="benefits">
-            ${activity.benefits.map(function (benefit) {
-              return `<li>${benefit}</li>`;
-            }).join("")}
+            ${activity.benefits
+              .map(function (benefit) {
+                return `<li>🌿 ${benefit}</li>`;
+              })
+              .join("")}
           </ul>
         </section>
       </main>
+
+      <footer class="footer">
+        <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+        <div class="footer__links">
+          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+        </div>
+      </footer>
     </div>
   `;
+
+  const addButton = document.querySelector("[data-add-cart]");
+  if (addButton) {
+    addButton.addEventListener("click", function () {
+      addToCart({
+        id: activity.id,
+        type: activity.type,
+        name: activity.name,
+        price: activity.price,
+        region: activity.region,
+        location: activity.location,
+        difficulty: activity.difficulty,
+        duration: activity.duration,
+        style: activity.style
+      });
+      updateCartBadge();
+      addButton.textContent = "Añadido ✓";
+      addButton.classList.add("button--added");
+      window.setTimeout(function () {
+        addButton.textContent = "Añadir al carrito";
+        addButton.classList.remove("button--added");
+      }, 1600);
+    });
+  }
+
+  updateCartBadge();
 }

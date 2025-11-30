@@ -1,21 +1,12 @@
+import { renderHeader } from "./header.js";
+
 export function renderTrailsPage() {
   const app = document.querySelector("#app");
   if (!app) return;
 
   app.innerHTML = `
-    <div class="page">
-      <header class="topbar fade-in">
-        <div class="brand">
-          <span class="brand__dot"></span>
-          <span class="brand__text">Naturaleza Argentina</span>
-        </div>
-        <nav class="nav">
-          <a class="nav__link" href="/">Inicio</a>
-          <a class="nav__link nav__link--active" href="/caminatas.html">Caminatas</a>
-          <a class="nav__link" href="/activities.html">Actividades</a>
-        </nav>
-      </header>
-
+    <div class="page page--list">
+      ${renderHeader("trails")}
       <main>
         <section id="caminatas" class="content fade-in">
           <h1>Caminatas destacadas</h1>
@@ -33,12 +24,9 @@ export function renderTrailsPage() {
       </main>
 
       <footer class="footer">
-        <div class="brand brand--small">
-          <span class="brand__dot"></span>
-          <span class="brand__text">Naturaleza Argentina</span>
-        </div>
+        <span>Naturaleza Argentina \u2013 Proyecto personal de Iv\u00e1n Aquizu</span>
         <div class="footer__links">
-          <span>Simulaci\u00f3n de flujo de trabajo</span>
+          <span>\u00a9 2025 \u2013 Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

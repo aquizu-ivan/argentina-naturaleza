@@ -1,4 +1,36 @@
+import { addToCart } from "../cart/cartStorage.js";
+import { updateCartBadge } from "../cart/cartBadge.js";
 import { trailsData } from "../data/trailsData.js";
+import { formatPrice } from "../utils/formatters.js";
+import { renderHeader } from "./header.js";
+
+function upsertMeta(title, description, image) {
+  if (title) {
+    document.title = title;
+  }
+  if (description) {
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", description);
+  }
+  const ensureOg = function (property, content) {
+    if (!content) return;
+    let og = document.querySelector(`meta[property="${property}"]`);
+    if (!og) {
+      og = document.createElement("meta");
+      og.setAttribute("property", property);
+      document.head.appendChild(og);
+    }
+    og.setAttribute("content", content);
+  };
+  ensureOg("og:title", title);
+  ensureOg("og:description", description);
+  ensureOg("og:image", image || "/assets/og/og-hero.png");
+}
 
 export function renderTrailDetailPage(trailId) {
   const app = document.querySelector("#app");
@@ -9,50 +41,54 @@ export function renderTrailDetailPage(trailId) {
   });
 
   if (!trail) {
+    upsertMeta(
+      "Caminata no encontrada | Naturaleza Argentina",
+      "No encontramos la caminata que buscás. Volvé a la lista para seguir explorando.",
+      "/assets/og/og-hero.png"
+    );
+
     app.innerHTML = `
       <div class="page">
-        <header class="topbar fade-in">
-          <div class="brand">
-            <span class="brand__dot"></span>
-            <span class="brand__text">Naturaleza Argentina</span>
-          </div>
-          <nav class="nav">
-            <a class="nav__link" href="/">Inicio</a>
-            <a class="nav__link nav__link--active" href="/caminatas.html">Caminatas</a>
-            <a class="nav__link" href="/activities.html">Actividades</a>
-          </nav>
-        </header>
-
+        ${renderHeader("trails")}
         <main>
           <section class="content fade-in">
             <h1>Caminata no encontrada</h1>
-            <p>La caminata que buscás no existe. Volvé a la lista para explorar todas las opciones.</p>
+            <p>No encontramos esta caminata. Volvé a la lista para seguir explorando.</p>
             <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
           </section>
         </main>
+        <footer class="footer">
+          <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+          <div class="footer__links">
+            <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          </div>
+        </footer>
       </div>
     `;
+    updateCartBadge();
     return;
   }
 
+  upsertMeta(
+    `${trail.name} — Caminata en ${trail.region} | Naturaleza Argentina`,
+    `${trail.name} en ${trail.region}. Dificultad ${trail.difficulty}, ${trail.duration}. Descubrí más detalles y beneficios.`,
+    trail.imageUrl
+  );
+
   app.innerHTML = `
     <div class="page">
-      <header class="topbar fade-in">
-        <div class="brand">
-          <span class="brand__dot"></span>
-          <span class="brand__text">Naturaleza Argentina</span>
-        </div>
-        <nav class="nav">
-          <a class="nav__link" href="/">Inicio</a>
-          <a class="nav__link nav__link--active" href="/caminatas.html">Caminatas</a>
-          <a class="nav__link" href="/activities.html">Actividades</a>
-        </nav>
-      </header>
-
+      ${renderHeader("trails")}
       <main>
         <section class="content detail fade-in">
+          <div class="detail__body" style="grid-column: 1 / -1;">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="/caminatas.html">Caminatas</a>
+              <span aria-hidden="true">›</span>
+              <span>${trail.name}</span>
+            </nav>
+          </div>
           <div class="detail__media">
-            <img src="${trail.imageUrl}" alt="${trail.name}" loading="lazy" />
+            <img src="${trail.imageUrl}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">
@@ -63,22 +99,66 @@ export function renderTrailDetailPage(trailId) {
             <h1>${trail.name}</h1>
             <p>${trail.description}</p>
             <p>${trail.longDescription}</p>
-            <p class="pill" aria-label="Ubicación">${trail.province} · ${trail.region}</p>
+            <h2>Información clave</h2>
+            <div class="info-keys">
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⛰️</span><span>Dificultad: ${trail.difficulty}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⏱️</span><span>Duración: ${trail.duration}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">📍</span><span>${trail.province} – ${trail.region}</span></div>
+            </div>
+            <div class="price-line">
+              <span>Precio por persona</span>
+              <strong>${formatPrice(trail.price)}</strong>
+            </div>
             <div class="hero__actions">
-              <a class="button button--primary" href="/caminatas.html">Volver a caminatas</a>
+              <button class="button button--primary" type="button" data-add-cart> Añadir al carrito</button>
+              <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
             </div>
           </div>
         </section>
 
         <section class="content detail__section fade-in">
-          <h2>Beneficios</h2>
+          <h2>Qué vas a vivir</h2>
           <ul class="benefits">
-            ${trail.benefits.map(function (benefit) {
-              return `<li>${benefit}</li>`;
-            }).join("")}
+            ${trail.benefits
+              .map(function (benefit) {
+                return `<li>🌿 ${benefit}</li>`;
+              })
+              .join("")}
           </ul>
         </section>
       </main>
+
+      <footer class="footer">
+        <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+        <div class="footer__links">
+          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+        </div>
+      </footer>
     </div>
   `;
+
+  const addButton = document.querySelector("[data-add-cart]");
+  if (addButton) {
+    addButton.addEventListener("click", function () {
+      addToCart({
+        id: trail.id,
+        type: trail.type,
+        name: trail.name,
+        price: trail.price,
+        province: trail.province,
+        region: trail.region,
+        difficulty: trail.difficulty,
+        duration: trail.duration
+      });
+      updateCartBadge();
+      addButton.textContent = "Añadido ✓";
+      addButton.classList.add("button--added");
+      window.setTimeout(function () {
+        addButton.textContent = "Añadir al carrito";
+        addButton.classList.remove("button--added");
+      }, 1600);
+    });
+  }
+
+  updateCartBadge();
 }

@@ -1,4 +1,5 @@
 import "./styles.css";
+import { updateHeaderUserState } from "./ui/header.js";
 import { renderTrailDetailPage } from "./ui/renderTrailDetailPage.js";
 
 function setupFadeInAnimations() {
@@ -30,3 +31,4 @@ const trailId = params.get("id");
 renderTrailDetailPage(trailId);
 const observeFadeIn = setupFadeInAnimations();
 observeFadeIn();
+updateHeaderUserState();

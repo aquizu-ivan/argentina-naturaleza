@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" role="img" aria-label="Textura de suelo de bosque">
+  <defs>
+    <linearGradient id="groundGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4c3a27" />
+      <stop offset="45%" stop-color="#3b2c1f" />
+      <stop offset="100%" stop-color="#271d15" />
+    </linearGradient>
+    <radialGradient id="woodFleck" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#d4b38a" stop-opacity="0.7" />
+      <stop offset="60%" stop-color="#a57c52" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#6b4e35" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="500" fill="url(#groundGradient)" />
+  <g opacity="0.3" fill="#815f3c">
+    <path d="M0 260c120-40 280-70 420-46s260 94 420 86 340-102 500-114 220 42 260 74v240H0Z" />
+  </g>
+  <g opacity="0.4" fill="#5a412d">
+    <path d="M0 320c140-26 260-10 360 12s220 50 360 34 310-92 470-104 270 22 410 58v180H0Z" />
+  </g>
+  <g>
+    <ellipse cx="220" cy="340" rx="160" ry="70" fill="url(#woodFleck)" />
+    <ellipse cx="620" cy="380" rx="200" ry="80" fill="url(#woodFleck)" />
+    <ellipse cx="1040" cy="360" rx="180" ry="70" fill="url(#woodFleck)" />
+    <ellipse cx="1380" cy="400" rx="200" ry="90" fill="url(#woodFleck)" />
+    <ellipse cx="320" cy="430" rx="120" ry="50" fill="url(#woodFleck)" />
+    <ellipse cx="860" cy="440" rx="160" ry="60" fill="url(#woodFleck)" />
+  </g>
+  <g opacity="0.2" stroke="#c49a6c" stroke-width="6" stroke-linecap="round">
+    <path d="M120 360c50-18 70-18 120 0" />
+    <path d="M540 380c40-16 80-16 130 6" />
+    <path d="M980 360c60-24 110-12 150 10" />
+    <path d="M1320 390c60-22 100-6 140 12" />
+  </g>
+  <g opacity="0.18" fill="#1d140f">
+    <circle cx="200" cy="310" r="6" />
+    <circle cx="260" cy="330" r="5" />
+    <circle cx="340" cy="350" r="7" />
+    <circle cx="540" cy="360" r="6" />
+    <circle cx="600" cy="340" r="5" />
+    <circle cx="720" cy="370" r="6" />
+    <circle cx="860" cy="330" r="5" />
+    <circle cx="940" cy="350" r="6" />
+    <circle cx="1100" cy="340" r="7" />
+    <circle cx="1240" cy="360" r="5" />
+    <circle cx="1380" cy="330" r="7" />
+    <circle cx="1500" cy="350" r="6" />
+  </g>
+</svg>

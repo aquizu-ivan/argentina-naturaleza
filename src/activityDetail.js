@@ -1,4 +1,5 @@
 import "./styles.css";
+import { updateHeaderUserState } from "./ui/header.js";
 import { renderActivityDetailPage } from "./ui/renderActivityDetailPage.js";
 
 function setupFadeInAnimations() {
@@ -30,3 +31,4 @@ const activityId = params.get("id");
 renderActivityDetailPage(activityId);
 const observeFadeIn = setupFadeInAnimations();
 observeFadeIn();
+updateHeaderUserState();

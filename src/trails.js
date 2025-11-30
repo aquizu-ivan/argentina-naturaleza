@@ -1,8 +1,10 @@
 import "./styles.css";
+import { updateCartBadge } from "./cart/cartBadge.js";
 import { trailsData } from "./data/trailsData.js";
 import { renderTrailsPage } from "./ui/renderTrailsPage.js";
 import { renderTrailCards } from "./ui/renderTrailCards.js";
 import { filterTrails } from "./ui/filterTrails.js";
+import { updateHeaderUserState } from "./ui/header.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -30,6 +32,8 @@ function setupFadeInAnimations() {
 renderTrailsPage(trailsData);
 renderTrailCards(trailsData);
 const observeFadeIn = setupFadeInAnimations();
+updateCartBadge();
+updateHeaderUserState();
 
 const searchInput = document.getElementById("trailSearch");
 
@@ -38,6 +42,7 @@ if (searchInput) {
     const text = event.target.value;
     const filtered = filterTrails(trailsData, text);
     renderTrailCards(filtered);
+    updateCartBadge();
     observeFadeIn();
   });
 }
