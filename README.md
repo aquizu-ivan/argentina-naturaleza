@@ -150,3 +150,40 @@ Todo está desarrollado con **Vite + JavaScript vanilla**, sin frameworks, para 
    │  └─ cartBadge.js
    └─ profile/
       └─ profileStorage.js
+
+      Cómo correr el proyecto
+# 1. Clonar el repositorio
+git clone https://github.com/aquizu-ivan/argentina-naturaleza.git
+cd argentina-naturaleza
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Entorno de desarrollo
+npm run dev
+
+# 4. Build de producción
+npm run build
+
+Mejoras futuras
+
+Agregar filtro por región/dificultad además del buscador de texto.
+
+Añadir paginación o carga progresiva para listas largas.
+
+Integrar un backend real para:
+
+Autenticación.
+
+Reservas de actividades.
+
+Historial de compras.
+
+Sistema de reseñas y valoraciones de caminatas/actividades.
+
+Internacionalización (ES / EN).
+
+Autor
+
+Desarrollado por Iván Aquizu como proyecto de porfolio front-end.
+Centrado en diseño, experiencia de usuario y manejo de estado en el cliente con JavaScript vanilla.
