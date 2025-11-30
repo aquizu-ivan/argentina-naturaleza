@@ -114,6 +114,10 @@ main {
   backdrop-filter: blur(6px);
 }
 
+.content--light {
+  background: rgba(248, 250, 252, 0.88);
+}
+
 h1 {
   font-size: 28px;
   margin-bottom: 10px;
@@ -131,6 +135,146 @@ h3 {
 
 .content p {
   color: #334155;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
+  gap: 18px;
+}
+
+.hero__text h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.hero__text p {
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.hero__badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(11, 59, 46, 0.1);
+  color: #0b3b2e;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero__visual {
+  min-height: 260px;
+}
+
+.hero__scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #e7f4ef 0%, #c6e3d6 60%, #b1d4c3 100%);
+  box-shadow: 0 14px 36px rgba(11, 59, 46, 0.18);
+}
+
+.hero__sun {
+  position: absolute;
+  top: 14%;
+  right: 18%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe9b0 0%, #ffd479 55%, #f3b663 100%);
+  box-shadow: 0 0 60px rgba(255, 202, 120, 0.4);
+}
+
+.hero__mountain {
+  position: absolute;
+  bottom: 22%;
+  width: 110%;
+  height: 60%;
+  background: linear-gradient(135deg, #1f6a4b 0%, #134b36 55%, #0d382a 100%);
+  border-radius: 50% 50% 10% 10%;
+  transform: rotate(-2deg);
+}
+
+.hero__mountain--back {
+  height: 50%;
+  bottom: 30%;
+  background: linear-gradient(135deg, #2b7a57 0%, #1c5b3f 60%, #13402f 100%);
+  filter: blur(1px);
+}
+
+.hero__mountain--front {
+  left: -5%;
+}
+
+.hero__trees {
+  position: absolute;
+  bottom: 20%;
+  left: 6%;
+  right: 6%;
+  height: 24%;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(9, 51, 39, 0.9) 0px,
+    rgba(9, 51, 39, 0.9) 10px,
+    rgba(9, 51, 39, 0.3) 22px
+  );
+  filter: drop-shadow(0 6px 4px rgba(0, 0, 0, 0.15));
+}
+
+.hero__ground {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 110%;
+  height: 28%;
+  background: linear-gradient(180deg, #6dbf8a 0%, #5ba678 40%, #3f7b56 100%);
+  border-radius: 40% 40% 0 0;
+  box-shadow: inset 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.button--primary {
+  background: linear-gradient(135deg, #0f5f3f 0%, #0b3b2e 100%);
+  color: #f8fafc;
+  box-shadow: 0 10px 24px rgba(11, 59, 46, 0.18);
+}
+
+.button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(11, 59, 46, 0.24);
+}
+
+.button--ghost {
+  background: transparent;
+  border-color: #0b3b2e;
+  color: #0b3b2e;
+}
+
+.button--ghost:hover {
+  background: rgba(11, 59, 46, 0.06);
 }
 
 .trails__grid {
