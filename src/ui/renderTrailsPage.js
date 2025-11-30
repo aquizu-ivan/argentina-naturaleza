@@ -4,7 +4,7 @@ export function renderTrailsPage() {
 
   app.innerHTML = `
     <div class="page">
-      <header class="topbar">
+      <header class="topbar fade-in">
         <div class="brand">
           <span class="brand__dot"></span>
           <span class="brand__text">Naturaleza Argentina</span>
@@ -17,7 +17,7 @@ export function renderTrailsPage() {
       </header>
 
       <main>
-        <section id="caminatas" class="content">
+        <section id="caminatas" class="content fade-in">
           <h1>Caminatas destacadas</h1>
           <p>Busc\u00e1 y explor\u00e1 senderos para planear tu pr\u00f3xima salida.</p>
           <div class="trails__search">

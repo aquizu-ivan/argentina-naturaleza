@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-walk" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e9f2ed"/>
+      <stop offset="100%" stop-color="#d7e4da"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg-walk)"/>
+  <path d="M-30 420 Q 200 330 360 420 T 740 430 T 900 430 L 900 520 L -30 520 Z" fill="#5f8f70" opacity="0.82"/>
+  <path d="M100 470 Q 240 430 380 470 T 660 470 T 920 470 L 920 520 L 100 520 Z" fill="#82b193" opacity="0.86"/>
+  <circle cx="620" cy="140" r="60" fill="#f2c18b" opacity="0.48"/>
+  <path d="M300 260 Q 330 230 360 260 Q 380 280 360 300 Q 330 330 300 300 Q 280 280 300 260 Z" fill="#c9a675" opacity="0.65"/>
+</svg>

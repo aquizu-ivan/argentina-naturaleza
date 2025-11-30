@@ -1,6 +1,10 @@
 export function createTrailCard(trail) {
+  const link = document.createElement("a");
+  link.className = "card-link";
+  link.href = `/caminata-detalle.html?id=${encodeURIComponent(trail.id)}`;
+
   const card = document.createElement("article");
-  card.className = "trail-card";
+  card.className = "trail-card fade-in";
 
   const title = document.createElement("h3");
   title.textContent = trail.name;
@@ -15,5 +19,6 @@ export function createTrailCard(trail) {
   description.textContent = trail.description;
 
   card.append(title, location, details, description);
-  return card;
+  link.append(card);
+  return link;
 }

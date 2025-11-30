@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eef4ef"/>
+      <stop offset="100%" stop-color="#d9e6db"/>
+    </linearGradient>
+    <linearGradient id="hill4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a7a5d"/>
+      <stop offset="100%" stop-color="#2a5240"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#sky4)"/>
+  <path d="M-50 430 Q 150 330 320 430 T 700 430 T 880 430 L 880 520 L -50 520 Z" fill="url(#hill4)" opacity="0.88"/>
+  <path d="M200 380 Q 260 320 320 380 T 420 380 T 520 380 L 520 520 L 200 520 Z" fill="#375b46" opacity="0.65"/>
+  <path d="M-10 470 Q 150 430 260 470 T 520 470 T 780 470 L 780 520 L -10 520 Z" fill="#8ab792" opacity="0.85"/>
+  <circle cx="640" cy="150" r="50" fill="#f5d3a0" opacity="0.45"/>
+</svg>

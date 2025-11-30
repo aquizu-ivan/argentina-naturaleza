@@ -4,7 +4,7 @@ export function renderApp() {
 
   app.innerHTML = `
     <div class="page">
-      <header class="topbar">
+      <header class="topbar fade-in">
         <div class="brand">
           <span class="brand__dot"></span>
           <span class="brand__text">Naturaleza Argentina</span>
@@ -17,7 +17,7 @@ export function renderApp() {
       </header>
 
       <main>
-        <section id="inicio" class="content hero">
+        <section id="inicio" class="content hero hero--home fade-in">
           <div class="hero__text">
             <div class="hero__badge">Naturaleza viva</div>
             <h1>Explor\u00e1 Argentina a tu ritmo</h1>
@@ -41,7 +41,7 @@ export function renderApp() {
           </div>
         </section>
 
-        <section id="inspiracion" class="content content--light">
+        <section id="inspiracion" class="content content--light fade-in">
           <h2>Respir\u00e1 aire libre</h2>
           <p>
             Inspirate con la diversidad de ecosistemas: estepa, selva, sierras y glaciares.

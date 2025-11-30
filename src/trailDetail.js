@@ -1,5 +1,5 @@
 import "./styles.css";
-import { renderApp } from "./ui/renderApp.js";
+import { renderTrailDetailPage } from "./ui/renderTrailDetailPage.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -24,6 +24,9 @@ function setupFadeInAnimations() {
   return observeTargets;
 }
 
-renderApp();
+const params = new URLSearchParams(window.location.search);
+const trailId = params.get("id");
+
+renderTrailDetailPage(trailId);
 const observeFadeIn = setupFadeInAnimations();
 observeFadeIn();

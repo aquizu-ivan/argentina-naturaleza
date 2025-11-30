@@ -4,7 +4,7 @@ export function renderActivitiesPage() {
 
   app.innerHTML = `
     <div class="page">
-      <header class="topbar">
+      <header class="topbar fade-in">
         <div class="brand">
           <span class="brand__dot"></span>
           <span class="brand__text">Naturaleza Argentina</span>
@@ -17,7 +17,7 @@ export function renderActivitiesPage() {
       </header>
 
       <main>
-        <section id="actividades" class="content">
+        <section id="actividades" class="content fade-in">
           <h1>Actividades al aire libre</h1>
           <p>Yoga, meditaci\u00f3n y movimiento para reconectar con la naturaleza.</p>
           <div class="trails__search">

@@ -1,6 +1,10 @@
 export function createActivityCard(activity) {
+  const link = document.createElement("a");
+  link.className = "card-link";
+  link.href = `/actividad-detalle.html?id=${encodeURIComponent(activity.id)}`;
+
   const card = document.createElement("article");
-  card.className = "trail-card";
+  card.className = "trail-card fade-in";
 
   const title = document.createElement("h3");
   title.textContent = activity.name;
@@ -15,5 +19,6 @@ export function createActivityCard(activity) {
   description.textContent = activity.description;
 
   card.append(title, location, details, description);
-  return card;
+  link.append(card);
+  return link;
 }
