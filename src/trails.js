@@ -30,19 +30,36 @@ function setupFadeInAnimations() {
 }
 
 renderTrailsPage(trailsData);
-renderTrailCards(trailsData);
 const observeFadeIn = setupFadeInAnimations();
-updateCartBadge();
 updateHeaderUserState();
 
 const searchInput = document.getElementById("trailSearch");
+const regionSelect = document.getElementById("trailRegionFilter");
+const difficultySelect = document.getElementById("trailDifficultyFilter");
+
+function applyTrailFilters() {
+  const filters = {
+    searchText: searchInput ? searchInput.value : "",
+    region: regionSelect ? regionSelect.value : "",
+    difficulty: difficultySelect ? difficultySelect.value : ""
+  };
+
+  const filteredTrails = filterTrails(trailsData, filters);
+  renderTrailCards(filteredTrails);
+  updateCartBadge();
+  observeFadeIn();
+}
 
 if (searchInput) {
-  searchInput.addEventListener("input", function (event) {
-    const text = event.target.value;
-    const filtered = filterTrails(trailsData, text);
-    renderTrailCards(filtered);
-    updateCartBadge();
-    observeFadeIn();
-  });
+  searchInput.addEventListener("input", applyTrailFilters);
 }
+
+if (regionSelect) {
+  regionSelect.addEventListener("change", applyTrailFilters);
+}
+
+if (difficultySelect) {
+  difficultySelect.addEventListener("change", applyTrailFilters);
+}
+
+applyTrailFilters();

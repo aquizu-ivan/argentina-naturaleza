@@ -1,8 +1,20 @@
 import { renderHeader } from "./header.js";
 
+// Mantener sincronizado con los valores de region y difficulty de src/data/activitiesData.js
+const ACTIVITY_REGIONS = ["Patagonia", "Centro", "Litoral", "Noroeste"];
+const ACTIVITY_DIFFICULTIES = ["Suave", "Media", "Baja"];
+
 export function renderActivitiesPage() {
   const app = document.querySelector("#app");
   if (!app) return;
+
+  const regionOptions = ACTIVITY_REGIONS.map(
+    (region) => `<option value="${region}">${region}</option>`
+  ).join("");
+
+  const difficultyOptions = ACTIVITY_DIFFICULTIES.map(
+    (difficulty) => `<option value="${difficulty}">${difficulty}</option>`
+  ).join("");
 
   app.innerHTML = `
     <div class="page page--list">
@@ -12,12 +24,26 @@ export function renderActivitiesPage() {
           <h1>Actividades al aire libre</h1>
           <p>Yoga, meditaci\u00f3n y movimiento para reconectar con la naturaleza.</p>
           <div class="trails__search">
-            <label class="sr-only" for="activitySearch">Buscar actividad</label>
-            <input
-              id="activitySearch"
-              type="text"
-              placeholder="Buscar actividad..."
-            />
+            <div class="filters">
+              <label class="sr-only" for="activitySearch">Buscar actividad</label>
+              <input
+                id="activitySearch"
+                type="text"
+                placeholder="Buscar actividad..."
+              />
+
+              <label class="sr-only" for="activityRegionFilter">Filtrar por regi\u00f3n</label>
+              <select id="activityRegionFilter" class="filter-select">
+                <option value="">Todas las regiones</option>
+                ${regionOptions}
+              </select>
+
+              <label class="sr-only" for="activityDifficultyFilter">Filtrar por dificultad</label>
+              <select id="activityDifficultyFilter" class="filter-select">
+                <option value="">Todas las dificultades</option>
+                ${difficultyOptions}
+              </select>
+            </div>
           </div>
           <div id="activitiesGrid" class="trails__grid"></div>
         </section>

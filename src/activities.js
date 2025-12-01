@@ -30,19 +30,36 @@ function setupFadeInAnimations() {
 }
 
 renderActivitiesPage();
-renderActivityCards(activitiesData);
 const observeFadeIn = setupFadeInAnimations();
-updateCartBadge();
 updateHeaderUserState();
 
 const searchInput = document.getElementById("activitySearch");
+const regionSelect = document.getElementById("activityRegionFilter");
+const difficultySelect = document.getElementById("activityDifficultyFilter");
+
+function applyActivityFilters() {
+  const filters = {
+    searchText: searchInput ? searchInput.value : "",
+    region: regionSelect ? regionSelect.value : "",
+    difficulty: difficultySelect ? difficultySelect.value : ""
+  };
+
+  const filteredActivities = filterTrails(activitiesData, filters);
+  renderActivityCards(filteredActivities);
+  updateCartBadge();
+  observeFadeIn();
+}
 
 if (searchInput) {
-  searchInput.addEventListener("input", function (event) {
-    const text = event.target.value;
-    const filtered = filterTrails(activitiesData, text);
-    renderActivityCards(filtered);
-    updateCartBadge();
-    observeFadeIn();
-  });
+  searchInput.addEventListener("input", applyActivityFilters);
 }
+
+if (regionSelect) {
+  regionSelect.addEventListener("change", applyActivityFilters);
+}
+
+if (difficultySelect) {
+  difficultySelect.addEventListener("change", applyActivityFilters);
+}
+
+applyActivityFilters();
