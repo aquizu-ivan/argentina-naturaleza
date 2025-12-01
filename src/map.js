@@ -2,6 +2,7 @@ import "./styles.css";
 import { updateCartBadge } from "./cart/cartBadge.js";
 import { updateHeaderUserState } from "./ui/header.js";
 import { renderMapPage } from "./ui/renderMapPage.js";
+import { renderArgentinaMap } from "./ui/renderArgentinaMap.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -27,7 +28,10 @@ function setupFadeInAnimations() {
 }
 
 function initMapPage() {
-  renderMapPage();
+  const mapPage = renderMapPage();
+  if (mapPage && mapPage.canvasElement) {
+    renderArgentinaMap(mapPage.canvasElement);
+  }
   updateHeaderUserState();
   updateCartBadge();
   const observeFadeIn = setupFadeInAnimations();
