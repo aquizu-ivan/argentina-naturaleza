@@ -914,6 +914,32 @@ h3 {
   grid-column: 1 / -1;
 }
 
+
+/* Mapa */
+.page--map main {
+  gap: 18px;
+}
+
+.map-page__intro {
+  color: var(--color-muted);
+  max-width: 760px;
+}
+
+.map-page__canvas-placeholder {
+  margin-top: 16px;
+  min-height: 340px;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 249, 244, 0.92) 100%);
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
 /* Separación visual entre secciones */
 .page main > .content + .content {
   position: relative;
