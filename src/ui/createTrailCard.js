@@ -1,6 +1,7 @@
 import { addToCart } from "../cart/cartStorage.js";
 import { updateCartBadge } from "../cart/cartBadge.js";
 import { formatPrice } from "../utils/formatters.js";
+import { createWeatherChip } from "./createWeatherChip.js";
 
 export function createTrailCard(trail) {
   const card = document.createElement("article");
@@ -30,6 +31,8 @@ export function createTrailCard(trail) {
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⏱️</span><span>${trail.duration}</span></span>
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">📍</span><span>${trail.region}</span></span>
   `;
+
+  const weatherChip = createWeatherChip(trail.city);
 
   const actions = document.createElement("div");
   actions.className = "card-actions";
@@ -63,9 +66,10 @@ export function createTrailCard(trail) {
     }, 1400);
   });
 
-  link.append(title, location, details, description, meta);
+  link.append(title, location, details, description, meta, weatherChip);
   actions.append(price, addButton);
   card.append(link, actions);
 
   return card;
 }
+
