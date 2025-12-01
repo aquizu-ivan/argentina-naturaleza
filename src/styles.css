@@ -449,29 +449,70 @@ h3 {
   display: flex;
 }
 
-.trails__search input {
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   width: 100%;
-  padding: 13px 14px;
-  border: 1px solid var(--border);
+}
+
+.trails__search input,
+.filter-select {
+  width: 100%;
+  padding: 12px 14px;
   border-radius: 13px;
-  background: linear-gradient(180deg, #ffffff 0%, #eef3ed 100%);
-  color: #0f2c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(18, 49, 36, 0.9) 0%, rgba(14, 38, 28, 0.92) 100%);
+  color: #f1f6f3;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 300;
   transition: box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+.filter-select option {
+  color: #000000;          /* color del texto de las opciones */
+  background-color: #fff;
+    /* fondo de cada opción (si querés cambiarlo) */
+}
+
+.filter-select {
+  min-width: 180px;
+  flex: 0 1 220px;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+  background-image: linear-gradient(45deg, transparent 50%, #f1f6f3 50%), linear-gradient(135deg, #f1f6f3 50%, transparent 50%);
+  background-position-x: calc(100% - 16px), calc(100% - 10px);
+}
+
+.trails__search input {
+  flex: 1 1 260px;
 }
 
 .trails__search input::placeholder {
-  color: #6b7d71;
+  color: #c7d6cd;
 }
 
-
-
-
-.trails__search input:focus {
+.trails__search input:focus,
+.filter-select:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 12px 28px rgba(11, 59, 46, 0.14), 0 0 0 4px rgba(11, 59, 46, 0.18);
+  border-color: rgba(201, 166, 117, 0.5);
+  box-shadow: 0 12px 28px rgba(11, 59, 46, 0.16), 0 0 0 3px rgba(201, 166, 117, 0.35);
+  background: linear-gradient(180deg, rgba(22, 59, 44, 0.96) 0%, rgba(16, 44, 32, 0.98) 100%);
+}
+
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .trails__search input,
+  .filter-select {
+    width: 100%;
+    flex: 1 1 auto;
+  }
 }
 
 /* Tarjetas */
