@@ -58,6 +58,8 @@ export function renderMapPage(root = document.querySelector("#app")) {
   return {
     canvasElement,
     legendElement,
+    trailToggleElement: trailsToggle,
+    activityToggleElement: activitiesToggle,
     filters: {
       trailsToggle,
       activitiesToggle

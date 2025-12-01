@@ -81,6 +81,8 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
   layer.className = "map__markers-layer";
   containerElement.appendChild(layer);
 
+  const markerElements = [];
+
   markers.forEach(function (marker) {
     const button = document.createElement("button");
     button.type = "button";
@@ -108,7 +110,23 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
     });
 
     layer.appendChild(button);
+    markerElements.push({ marker, element: button });
   });
 
-  return layer;
+  return { layer, markerElements };
+}
+
+export function updateMarkersVisibility(markerEntries, { showTrails, showActivities }) {
+  if (!Array.isArray(markerEntries)) return;
+
+  markerEntries.forEach(function ({ marker, element }) {
+    if (!marker || !element) return;
+    const shouldShow =
+      (marker.type === "trail" && showTrails) || (marker.type === "activity" && showActivities);
+    if (shouldShow) {
+      element.classList.remove("map__marker--hidden");
+    } else {
+      element.classList.add("map__marker--hidden");
+    }
+  });
 }

@@ -3,7 +3,11 @@ import { updateCartBadge } from "./cart/cartBadge.js";
 import { updateHeaderUserState } from "./ui/header.js";
 import { renderMapPage } from "./ui/renderMapPage.js";
 import { renderArgentinaMap } from "./ui/renderArgentinaMap.js";
-import { buildMapMarkers, renderMapMarkers } from "./ui/mapMarkers.js";
+import {
+  buildMapMarkers,
+  renderMapMarkers,
+  updateMarkersVisibility
+} from "./ui/mapMarkers.js";
 import { createMapTooltip } from "./ui/mapTooltip.js";
 
 function setupFadeInAnimations() {
@@ -32,6 +36,8 @@ function setupFadeInAnimations() {
 function initMapPage() {
   const mapPage = renderMapPage();
   const canvasElement = mapPage ? mapPage.canvasElement : null;
+  const trailToggleElement = mapPage ? mapPage.trailToggleElement : null;
+  const activityToggleElement = mapPage ? mapPage.activityToggleElement : null;
 
   if (canvasElement) {
     renderArgentinaMap(canvasElement);
@@ -39,11 +45,28 @@ function initMapPage() {
     const markers = buildMapMarkers();
     const { showTooltip, hideTooltip } = createMapTooltip(canvasElement);
 
-    renderMapMarkers(canvasElement, markers, {
+    const { markerElements } = renderMapMarkers(canvasElement, markers, {
       onMarkerClick(marker, element) {
         showTooltip(marker, element);
       }
     });
+
+    function applyTypeFilters() {
+      const showTrails = trailToggleElement ? trailToggleElement.checked : true;
+      const showActivities = activityToggleElement ? activityToggleElement.checked : true;
+      updateMarkersVisibility(markerElements, { showTrails, showActivities });
+      hideTooltip();
+    }
+
+    if (trailToggleElement) {
+      trailToggleElement.addEventListener("change", applyTypeFilters);
+    }
+
+    if (activityToggleElement) {
+      activityToggleElement.addEventListener("change", applyTypeFilters);
+    }
+
+    applyTypeFilters();
 
     canvasElement.addEventListener("click", function (event) {
       const isMarker = event.target.closest(".map__marker");
