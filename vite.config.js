@@ -7,6 +7,7 @@ export default defineConfig({
         main: 'index.html',
         caminatas: 'caminatas.html',
         activities: 'activities.html',
+        mapa: 'mapa.html',
         caminataDetalle: 'caminata-detalle.html',
         actividadDetalle: 'actividad-detalle.html',
         carrito: 'carrito.html',

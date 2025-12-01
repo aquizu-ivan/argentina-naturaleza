@@ -19,6 +19,7 @@ export function renderHeader(activePage) {
   const isHome = activePage === "home";
   const isTrails = activePage === "trails";
   const isActivities = activePage === "activities";
+  const isMap = activePage === "map";
   const isCart = activePage === "cart";
   const isProfile = activePage === "profile";
 
@@ -32,6 +33,7 @@ export function renderHeader(activePage) {
         <a class="nav__link ${isHome ? "nav__link--active" : ""}" href="/">Inicio</a>
         <a class="nav__link ${isTrails ? "nav__link--active" : ""}" href="/caminatas.html">Caminatas</a>
         <a class="nav__link ${isActivities ? "nav__link--active" : ""}" href="/activities.html">Actividades</a>
+        <a class="nav__link ${isMap ? "nav__link--active" : ""}" href="/mapa.html">Mapa</a>
         <a class="nav__link nav__link--cart ${isCart ? "nav__link--active" : ""}" href="/carrito.html" data-cart-link>
           <span class="nav__icon" aria-hidden="true">🛒</span>
           <span>Carrito</span>

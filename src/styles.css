@@ -914,6 +914,324 @@ h3 {
   grid-column: 1 / -1;
 }
 
+
+/* Mapa */
+.page--map main {
+  gap: 18px;
+}
+
+.map-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.map-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-page__intro {
+  color: var(--color-muted);
+  max-width: 760px;
+}
+
+.map__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.map__filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.map__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 10px 18px rgba(12, 66, 47, 0.06);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.map__toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.map__toggle-visual {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d8e9df 0%, #bfd8c7 100%);
+  border: 1px solid rgba(11, 59, 46, 0.15);
+  position: relative;
+  transition: background 160ms ease;
+}
+
+.map__toggle-visual::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(12, 66, 47, 0.14);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.map__toggle input:checked + .map__toggle-visual {
+  background: linear-gradient(135deg, #0f5f3f 0%, var(--color-primary) 100%);
+  border-color: rgba(11, 59, 46, 0.3);
+}
+
+.map__toggle input:checked + .map__toggle-visual::after {
+  transform: translateX(18px);
+  background: #f3f8f4;
+}
+
+.map__toggle-label {
+  font-weight: 500;
+  color: #ffffffdf;
+}
+
+.map__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.map__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  background: rgba(11, 59, 46, 0.08);
+  color: var(--color-text-main);
+  border: 1px solid rgba(11, 59, 46, 0.12);
+}
+
+.map__badge--trail {
+  background: #0f5f3f;
+  color: #ffffffb0;
+  border-color: rgba(75, 163, 214, 0.32);
+}
+
+.map__badge--activity {
+  background: #f2984ab9;
+  color: #ffffffb0;
+  border-color: rgba(242, 153, 74, 0.36);
+}
+
+.map__canvas {
+  position: relative;
+  min-height: 420px;
+  aspect-ratio: 3 / 5;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(216, 233, 223, 0.6) 0%, rgba(190, 224, 206, 0.7) 100%);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.map__markers-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.map__marker {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.86);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.map__marker--trail {
+  background: linear-gradient(135deg, #0f5f3f 0%, #0b3b2e 100%);
+}
+
+.map__marker--activity {
+  background: linear-gradient(135deg, #f2994a 0%, #c97a32 100%);
+}
+
+.map__marker:hover,
+.map__marker:focus-visible {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+.map__marker:focus-visible {
+  filter: brightness(1.05);
+}
+
+.map__marker--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.map__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map__base-shadow {
+  fill: rgba(11, 59, 46, 0.25);
+  filter: blur(12px);
+}
+
+.map__base-shape {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 1.5;
+}
+
+.map__base-highlight {
+  mix-blend-mode: screen;
+}
+
+.map__regions {
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.2));
+}
+
+.map-region {
+  fill: #0b3b2e;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1.6;
+  transition: transform 180ms ease, fill 180ms ease, opacity 180ms ease;
+}
+
+.map-region--patagonia {
+  fill: #0f4d37;
+}
+
+.map-region--noroeste {
+  fill: #0d3f2e;
+}
+
+.map-region--sierras {
+  fill: #0e4433;
+}
+
+.map-region--centro {
+  fill: #12523e;
+}
+
+.map-region--litoral {
+  fill: #0f5940;
+}
+
+.map-region:hover {
+  fill: #2d7f5d;
+  transform: translateY(-2px);
+}
+
+.map__tooltip {
+  position: absolute;
+  min-width: 200px;
+  max-width: 260px;
+  background: linear-gradient(180deg, rgba(15, 47, 35, 0.95) 0%, rgba(10, 34, 26, 0.94) 100%);
+  color: #f4f6f2;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+  padding: 12px 14px;
+  z-index: 3;
+  transition: opacity 160ms ease;
+  pointer-events: auto;
+}
+
+.map__tooltip-type {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(242, 245, 242, 0.7);
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+
+.map__tooltip-title {
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.map__tooltip-region,
+.map__tooltip-meta {
+  font-size: 13px;
+  color: rgba(244, 246, 242, 0.8);
+  margin-bottom: 4px;
+}
+
+.map__tooltip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-weight: 700;
+  color: #f2994a;
+  text-decoration: none;
+}
+
+.map-page__canvas-placeholder {
+  inset: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .map__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .map__filters {
+    width: 100%;
+  }
+
+  .map__legend {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .map__canvas {
+    min-height: 360px;
+  }
+}
+
 /* Separación visual entre secciones */
 .page main > .content + .content {
   position: relative;
