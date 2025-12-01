@@ -16,10 +16,10 @@ export function createTrailCard(trail) {
   title.textContent = trail.name;
 
   const location = document.createElement("p");
-  location.textContent = `${trail.province} · ${trail.region}`;
+  location.textContent = `${trail.province} • ${trail.region}`;
 
   const details = document.createElement("p");
-  details.textContent = `Dificultad: ${trail.difficulty} • Duración: ${trail.duration}`;
+  details.textContent = `Dificultad: ${trail.difficulty} · Duración: ${trail.duration}`;
 
   const description = document.createElement("p");
   description.textContent = trail.description;
@@ -59,7 +59,7 @@ export function createTrailCard(trail) {
     });
     updateCartBadge();
     addButton.classList.add("button--added");
-    addButton.textContent = "Añadido ✓";
+    addButton.textContent = "Añadido ✔";
     window.setTimeout(function () {
       addButton.classList.remove("button--added");
       addButton.textContent = "Añadir al carrito";
@@ -72,4 +72,3 @@ export function createTrailCard(trail) {
 
   return card;
 }
-

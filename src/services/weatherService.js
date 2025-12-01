@@ -1,6 +1,4 @@
-// Nota: en un entorno real la API key deberia venir de import.meta.env.VITE_WEATHER_API_KEY.
-// En esta version demo queda quemada en el codigo.
-const WEATHER_API_KEY = "PONER_API_KEY_AQUI"; // TODO: reemplazar por una key real para pruebas
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 const weatherCache = new Map(); // cityLowerCase -> resultado (objeto normalizado o null)
@@ -10,6 +8,12 @@ export async function fetchWeatherByCity(city) {
 
   const trimmedCity = city.trim();
   if (!trimmedCity) return null;
+  if (!WEATHER_API_KEY) {
+    console.warn(
+      "[weatherService] Falta VITE_WEATHER_API_KEY. El clima se mostrará como 'no disponible'."
+    );
+    return null;
+  }
 
   const cityLower = trimmedCity.toLowerCase();
   if (weatherCache.has(cityLower)) {
@@ -39,7 +43,11 @@ export async function fetchWeatherByCity(city) {
         ? temperatureRaw
         : Number.parseFloat(temperatureRaw);
 
-    if (!Number.isFinite(temperatureNumber) || typeof descriptionRaw !== "string" || !descriptionRaw.trim()) {
+    if (
+      !Number.isFinite(temperatureNumber) ||
+      typeof descriptionRaw !== "string" ||
+      !descriptionRaw.trim()
+    ) {
       weatherCache.set(cityLower, null);
       return null;
     }
