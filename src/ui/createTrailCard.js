@@ -1,6 +1,7 @@
 import { addToCart } from "../cart/cartStorage.js";
 import { updateCartBadge } from "../cart/cartBadge.js";
 import { formatPrice } from "../utils/formatters.js";
+import { createWeatherChip } from "./createWeatherChip.js";
 
 export function createTrailCard(trail) {
   const card = document.createElement("article");
@@ -15,10 +16,10 @@ export function createTrailCard(trail) {
   title.textContent = trail.name;
 
   const location = document.createElement("p");
-  location.textContent = `${trail.province} · ${trail.region}`;
+  location.textContent = `${trail.province} • ${trail.region}`;
 
   const details = document.createElement("p");
-  details.textContent = `Dificultad: ${trail.difficulty} • Duración: ${trail.duration}`;
+  details.textContent = `Dificultad: ${trail.difficulty} · Duración: ${trail.duration}`;
 
   const description = document.createElement("p");
   description.textContent = trail.description;
@@ -30,6 +31,8 @@ export function createTrailCard(trail) {
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⏱️</span><span>${trail.duration}</span></span>
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">📍</span><span>${trail.region}</span></span>
   `;
+
+  const weatherChip = createWeatherChip(trail.city);
 
   const actions = document.createElement("div");
   actions.className = "card-actions";
@@ -56,14 +59,14 @@ export function createTrailCard(trail) {
     });
     updateCartBadge();
     addButton.classList.add("button--added");
-    addButton.textContent = "Añadido ✓";
+    addButton.textContent = "Añadido ✔";
     window.setTimeout(function () {
       addButton.classList.remove("button--added");
       addButton.textContent = "Añadir al carrito";
     }, 1400);
   });
 
-  link.append(title, location, details, description, meta);
+  link.append(title, location, details, description, meta, weatherChip);
   actions.append(price, addButton);
   card.append(link, actions);
 

@@ -1,10 +1,12 @@
 // TODO: agregar las fotos reales correspondientes en /public/assets/photos/trails/
+// Campo city se usa para integrar la API de clima (Ticket 3).
 export const trailsData = [
   {
     id: "fitz-roy",
     name: "Sendero al Fitz Roy",
     type: "trail",
     province: "Santa Cruz",
+    city: "El Chaltén",
     region: "Patagonia",
     difficulty: "Alta",
     duration: "8 horas",
@@ -24,6 +26,7 @@ export const trailsData = [
     name: "Cerro Campanario",
     type: "trail",
     province: "Río Negro",
+    city: "San Carlos de Bariloche",
     region: "Patagonia",
     difficulty: "Baja",
     duration: "2 horas",
@@ -43,6 +46,7 @@ export const trailsData = [
     name: "Quebrada de San Lorenzo",
     type: "trail",
     province: "Salta",
+    city: "San Lorenzo",
     region: "Noroeste",
     difficulty: "Media",
     duration: "3 horas",
@@ -62,6 +66,7 @@ export const trailsData = [
     name: "Sendero al Cerro La Banderita",
     type: "trail",
     province: "Córdoba",
+    city: "La Cumbrecita",
     region: "Sierras Centrales",
     difficulty: "Media",
     duration: "4 horas",
@@ -81,6 +86,7 @@ export const trailsData = [
     name: "Laguna Esmeralda",
     type: "trail",
     province: "Tierra del Fuego",
+    city: "Ushuaia",
     region: "Patagonia",
     difficulty: "Media",
     duration: "5 horas",
