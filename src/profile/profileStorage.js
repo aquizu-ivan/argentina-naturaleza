@@ -1,37 +1,38 @@
+import { safeLoadJSON, safeSaveJSON } from "../utils/storageUtils.js";
+
 const PROFILE_KEY = "naturaleza-profile";
 
+const DEFAULT_PROFILE = {
+  fullName: "",
+  email: "",
+  location: "",
+  phone: "",
+  notes: ""
+};
+
+function isValidProfile(data) {
+  if (!data || typeof data !== "object") return false;
+  if (typeof data.fullName !== "string") return false;
+  if (typeof data.email !== "string") return false;
+  if (data.location !== undefined && typeof data.location !== "string") return false;
+  if (data.phone !== undefined && typeof data.phone !== "string") return false;
+  if (data.notes !== undefined && typeof data.notes !== "string") return false;
+  return true;
+}
+
+function loadProfile() {
+  return safeLoadJSON(PROFILE_KEY, DEFAULT_PROFILE, isValidProfile);
+}
+
 export function getProfile() {
-  if (typeof window === "undefined" || !window.localStorage) return null;
-  try {
-    const raw = window.localStorage.getItem(PROFILE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed === "object") {
-      return parsed;
-    }
-    return null;
-  } catch (error) {
-    console.warn("No se pudo leer el perfil:", error);
-    return null;
-  }
+  return loadProfile();
 }
 
 export function saveProfile(profile) {
-  if (typeof window === "undefined" || !window.localStorage) return null;
-  try {
-    window.localStorage.setItem(PROFILE_KEY, JSON.stringify(profile || {}));
-    return profile;
-  } catch (error) {
-    console.warn("No se pudo guardar el perfil:", error);
-    return null;
-  }
+  safeSaveJSON(PROFILE_KEY, profile || DEFAULT_PROFILE);
+  return profile;
 }
 
 export function clearProfile() {
-  if (typeof window === "undefined" || !window.localStorage) return;
-  try {
-    window.localStorage.removeItem(PROFILE_KEY);
-  } catch (error) {
-    console.warn("No se pudo limpiar el perfil:", error);
-  }
+  safeSaveJSON(PROFILE_KEY, DEFAULT_PROFILE);
 }

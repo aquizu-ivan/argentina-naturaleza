@@ -1,30 +1,33 @@
+import { safeLoadJSON, safeSaveJSON } from "../utils/storageUtils.js";
+
 const CART_KEY = "naturaleza-cart";
 
-function readCart() {
-  if (typeof window === "undefined" || !window.localStorage) return [];
-  try {
-    const stored = window.localStorage.getItem(CART_KEY);
-    if (!stored) return [];
-    const parsed = JSON.parse(stored);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    console.warn("No se pudo leer el carrito:", error);
-    return [];
-  }
+const DEFAULT_CART = {
+  items: []
+};
+
+function isValidCart(data) {
+  if (!data || typeof data !== "object") return false;
+  if (!Array.isArray(data.items)) return false;
+  return true;
 }
 
-function persistCart(items) {
-  if (typeof window === "undefined" || !window.localStorage) return;
-  window.localStorage.setItem(CART_KEY, JSON.stringify(items));
+function loadCart() {
+  const cart = safeLoadJSON(CART_KEY, DEFAULT_CART, isValidCart);
+  return cart.items || [];
+}
+
+function saveCart(items) {
+  safeSaveJSON(CART_KEY, { items });
 }
 
 export function getCartItems() {
-  return readCart();
+  return loadCart();
 }
 
 export function addToCart(item) {
   if (!item || !item.id || !item.type) return getCartItems();
-  const items = readCart();
+  const items = loadCart();
   const existing = items.find(function (entry) {
     return entry.id === item.id && entry.type === item.type;
   });
@@ -47,12 +50,12 @@ export function addToCart(item) {
     });
   }
 
-  persistCart(items);
+  saveCart(items);
   return items;
 }
 
 export function updateQuantity(id, type, newQuantity) {
-  const items = readCart().filter(Boolean);
+  const items = loadCart().filter(Boolean);
   const filtered = items.filter(function (entry) {
     if (entry.id === id && entry.type === type) {
       return newQuantity > 0;
@@ -66,31 +69,31 @@ export function updateQuantity(id, type, newQuantity) {
     }
   });
 
-  persistCart(filtered);
+  saveCart(filtered);
   return filtered;
 }
 
 export function removeFromCart(id, type) {
-  const filtered = readCart().filter(function (entry) {
+  const filtered = loadCart().filter(function (entry) {
     return !(entry.id === id && entry.type === type);
   });
-  persistCart(filtered);
+  saveCart(filtered);
   return filtered;
 }
 
 export function clearCart() {
-  persistCart([]);
+  saveCart([]);
   return [];
 }
 
 export function getCartCount() {
-  return readCart().reduce(function (acc, item) {
+  return loadCart().reduce(function (acc, item) {
     return acc + (item.quantity || 0);
   }, 0);
 }
 
 export function getCartTotal() {
-  return readCart().reduce(function (acc, item) {
+  return loadCart().reduce(function (acc, item) {
     const price = Number(item.price) || 0;
     return acc + price * (item.quantity || 0);
   }, 0);
