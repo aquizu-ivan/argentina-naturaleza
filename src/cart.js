@@ -4,6 +4,7 @@ import { updateCartBadge } from "./cart/cartBadge.js";
 import { formatPrice } from "./utils/formatters.js";
 import { updateHeaderUserState } from "./ui/header.js";
 import { renderCartPage } from "./ui/renderCartPage.js";
+import { showFeedbackMessage } from "./ui/feedbackMessages.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -110,6 +111,10 @@ function createCartRow(item) {
   removeButton.addEventListener("click", function () {
     removeFromCart(item.id, item.type);
     renderCartItems();
+    showFeedbackMessage({
+      type: "info",
+      text: `Eliminaste "${item.name}" del carrito.`
+    });
   });
 
   const rowFooter = document.createElement("div");
@@ -152,6 +157,10 @@ function bindToolbar() {
     clearButton.addEventListener("click", function () {
       clearCart();
       renderCartItems();
+      showFeedbackMessage({
+        type: "info",
+        text: "Carrito vaciado."
+      });
     });
   }
 }
