@@ -8,7 +8,7 @@ export async function fetchWeatherByCity(city) {
 
   const trimmedCity = city.trim();
   if (!trimmedCity) return null;
-  if (!WEATHER_API_KEY) {
+  if (!WEATHER_API_KEY || !`${WEATHER_API_KEY}`.trim()) {
     console.warn(
       "[weatherService] Falta VITE_WEATHER_API_KEY. El clima se mostrará como 'no disponible'."
     );
@@ -29,6 +29,9 @@ export async function fetchWeatherByCity(city) {
   try {
     const response = await fetch(url.toString());
     if (!response.ok) {
+      console.warn(
+        `[weatherService] Respuesta no exitosa (${response.status}) para ${trimmedCity}.`
+      );
       weatherCache.set(cityLower, null);
       return null;
     }
@@ -39,9 +42,7 @@ export async function fetchWeatherByCity(city) {
     const iconRaw = data?.weather?.[0]?.icon;
 
     const temperatureNumber =
-      typeof temperatureRaw === "number"
-        ? temperatureRaw
-        : Number.parseFloat(temperatureRaw);
+      typeof temperatureRaw === "number" ? temperatureRaw : Number.parseFloat(temperatureRaw);
 
     if (
       !Number.isFinite(temperatureNumber) ||
@@ -60,6 +61,7 @@ export async function fetchWeatherByCity(city) {
     weatherCache.set(cityLower, result);
     return result;
   } catch (error) {
+    console.warn(`[weatherService] Error al obtener clima para ${trimmedCity}.`, error);
     weatherCache.set(cityLower, null);
     return null;
   }

@@ -1061,6 +1061,34 @@ h3 {
   overflow: hidden;
 }
 
+.map__empty-state {
+  margin-top: 14px;
+  font-size: 14px;
+  color: rgba(11, 59, 46, 0.85);
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(11, 59, 46, 0.12);
+  border: 1px solid rgba(11, 59, 46, 0.18);
+  text-align: center;
+}
+
+.map__empty-state:not([hidden]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.map__empty-state[hidden] {
+  display: none;
+}
+
+.map__empty-state::before {
+  content: "ℹ️";
+  font-size: 15px;
+  line-height: 1;
+}
+
 .map__markers-layer {
   position: absolute;
   inset: 0;
@@ -1272,6 +1300,10 @@ h3 {
   .map__canvas {
     min-height: 360px;
     aspect-ratio: 3 / 4;
+  }
+
+  .map__empty-state {
+    width: 100%;
   }
 }
 

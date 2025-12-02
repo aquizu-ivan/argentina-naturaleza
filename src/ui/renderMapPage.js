@@ -1,4 +1,4 @@
-import { renderHeader } from "./header.js";
+﻿import { renderHeader } from "./header.js";
 
 export function renderMapPage(root = document.querySelector("#app")) {
   if (!root) return null;
@@ -38,6 +38,9 @@ export function renderMapPage(root = document.querySelector("#app")) {
           <div class="map__canvas">
             <div class="map__canvas-placeholder">Aqui va el mapa (Bloque C/D)</div>
           </div>
+          <p class="map__empty-state" role="status" aria-live="polite" hidden>
+            No hay experiencias para los filtros seleccionados.
+          </p>
         </section>
       </main>
 
@@ -54,12 +57,14 @@ export function renderMapPage(root = document.querySelector("#app")) {
   const legendElement = root.querySelector(".map__legend");
   const trailsToggle = root.querySelector("#mapToggleTrails");
   const activitiesToggle = root.querySelector("#mapToggleActivities");
+  const emptyStateElement = root.querySelector(".map__empty-state");
 
   return {
     canvasElement,
     legendElement,
     trailToggleElement: trailsToggle,
     activityToggleElement: activitiesToggle,
+    emptyStateElement,
     filters: {
       trailsToggle,
       activitiesToggle
