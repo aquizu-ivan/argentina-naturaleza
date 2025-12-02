@@ -17,16 +17,24 @@ export function renderMapPage(root = document.querySelector("#app")) {
 
           <div class="map__controls">
             <div class="map__filters" aria-label="Filtros de mapa">
-              <label class="map__toggle">
-                <input type="checkbox" id="mapToggleTrails" checked />
+              <button
+                type="button"
+                id="mapToggleTrails"
+                class="map__toggle map__toggle--active"
+                aria-pressed="true"
+              >
                 <span class="map__toggle-visual" aria-hidden="true"></span>
                 <span class="map__toggle-label">Mostrar caminatas</span>
-              </label>
-              <label class="map__toggle">
-                <input type="checkbox" id="mapToggleActivities" checked />
+              </button>
+              <button
+                type="button"
+                id="mapToggleActivities"
+                class="map__toggle map__toggle--active"
+                aria-pressed="true"
+              >
                 <span class="map__toggle-visual" aria-hidden="true"></span>
                 <span class="map__toggle-label">Mostrar actividades</span>
-              </label>
+              </button>
             </div>
 
             <div class="map__legend" aria-label="Leyenda del mapa">

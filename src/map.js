@@ -53,8 +53,11 @@ function initMapPage() {
     });
 
     function applyTypeFilters() {
-      const showTrails = trailToggleElement ? trailToggleElement.checked : true;
-      const showActivities = activityToggleElement ? activityToggleElement.checked : true;
+      const showTrails =
+        trailToggleElement?.getAttribute("aria-pressed") === "true" || trailToggleElement === null;
+      const showActivities =
+        activityToggleElement?.getAttribute("aria-pressed") === "true" ||
+        activityToggleElement === null;
 
       updateMarkersVisibility(markerElements, { showTrails, showActivities });
       hideTooltip();
@@ -69,12 +72,26 @@ function initMapPage() {
       }
     }
 
+    const setToggleState = function (button, isPressed) {
+      if (!button) return;
+      button.setAttribute("aria-pressed", String(isPressed));
+      button.classList.toggle("map__toggle--active", isPressed);
+    };
+
     if (trailToggleElement) {
-      trailToggleElement.addEventListener("change", applyTypeFilters);
+      trailToggleElement.addEventListener("click", function () {
+        const nextState = trailToggleElement.getAttribute("aria-pressed") !== "true";
+        setToggleState(trailToggleElement, nextState);
+        applyTypeFilters();
+      });
     }
 
     if (activityToggleElement) {
-      activityToggleElement.addEventListener("change", applyTypeFilters);
+      activityToggleElement.addEventListener("click", function () {
+        const nextState = activityToggleElement.getAttribute("aria-pressed") !== "true";
+        setToggleState(activityToggleElement, nextState);
+        applyTypeFilters();
+      });
     }
 
     applyTypeFilters();
