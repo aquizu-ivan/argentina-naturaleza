@@ -24,9 +24,11 @@ function getOrCreateContainer() {
 export function showFeedbackMessage({ type = "info", text = "" } = {}) {
   const container = getOrCreateContainer();
   const message = document.createElement("div");
-  const typeClass = MESSAGE_TYPES[type] || MESSAGE_TYPES.info;
+  const resolvedType = MESSAGE_TYPES[type] ? type : "info";
+  const typeClass = MESSAGE_TYPES[resolvedType];
 
   message.className = `${MESSAGE_BASE_CLASS} ${typeClass}`;
+  message.setAttribute("role", resolvedType === "warning" ? "alert" : "status");
   message.textContent = text;
 
   // Estado inicial para animación de entrada

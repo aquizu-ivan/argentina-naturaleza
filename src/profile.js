@@ -78,7 +78,7 @@ function setupProfileForm() {
     if (hasError) {
       showFeedbackMessage({
         type: "warning",
-        text: "Revisá los campos marcados antes de continuar."
+        text: "Perfil: revisá los campos marcados antes de continuar."
       });
       return;
     }
@@ -90,7 +90,7 @@ function setupProfileForm() {
     }
     showFeedbackMessage({
       type: "success",
-      text: "Perfil guardado correctamente."
+      text: "Perfil: guardado correctamente."
     });
     if (summary) {
       summary.textContent = fullName ? `Hola, ${fullName}` : "Perfil actualizado";
@@ -118,3 +118,5 @@ if (app) {
   updateHeaderUserState();
   setupFadeInAnimations();
 }
+
+

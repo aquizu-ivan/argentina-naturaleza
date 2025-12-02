@@ -108,14 +108,14 @@ function createCartRow(item) {
   removeButton.className = "button button--ghost button--small";
   removeButton.textContent = "Eliminar";
   removeButton.setAttribute("aria-label", "Eliminar este ítem del carrito");
-  removeButton.addEventListener("click", function () {
-    removeFromCart(item.id, item.type);
-    renderCartItems();
-    showFeedbackMessage({
-      type: "info",
-      text: `Eliminaste "${item.name}" del carrito.`
+    removeButton.addEventListener("click", function () {
+      removeFromCart(item.id, item.type);
+      renderCartItems();
+      showFeedbackMessage({
+        type: "info",
+        text: `Carrito: eliminaste "${item.name}" del carrito.`
+      });
     });
-  });
 
   const rowFooter = document.createElement("div");
   rowFooter.className = "cart-item__footer";
@@ -159,7 +159,7 @@ function bindToolbar() {
       renderCartItems();
       showFeedbackMessage({
         type: "info",
-        text: "Carrito vaciado."
+        text: "Carrito: carrito vaciado."
       });
     });
   }
