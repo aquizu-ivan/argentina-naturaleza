@@ -1,4 +1,4 @@
-import "./styles.css";
+﻿import "./styles.css";
 import { renderHeader, updateHeaderUserState } from "./ui/header.js";
 import { renderProfilePage } from "./ui/renderProfilePage.js";
 import { clearProfile, getProfile, saveProfile } from "./profile/profileStorage.js";
