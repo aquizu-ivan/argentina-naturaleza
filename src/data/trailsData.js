@@ -1,4 +1,4 @@
-// TODO: agregar las fotos reales correspondientes en /public/assets/photos/trails/
+﻿// TODO: agregar las fotos reales correspondientes en /public/assets/photos/trails/
 // Campo city se usa para integrar la API de clima (Ticket 3).
 export const trailsData = [
   {

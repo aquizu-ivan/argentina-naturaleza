@@ -1,4 +1,4 @@
-// TODO: agregar las fotos reales correspondientes en /public/assets/photos/activities/
+﻿// TODO: agregar las fotos reales correspondientes en /public/assets/photos/activities/
 export const activitiesData = [
   {
     id: "yoga-amanecer",
