@@ -91,10 +91,11 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
     button.style.top = `${marker.y}%`;
     button.dataset.id = marker.id;
     button.dataset.type = marker.type;
-    button.setAttribute(
-      "aria-label",
-      `${marker.type === "trail" ? "Caminata" : "Actividad"}: ${marker.title} en ${marker.region}`
-    );
+    const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
+    const difficultyLabel = marker.difficulty ? `, dificultad ${marker.difficulty}` : "";
+    const ariaLabel = `${typeLabel}: ${marker.title} en ${marker.region}${difficultyLabel}`;
+    button.setAttribute("aria-label", ariaLabel);
+    button.title = ariaLabel;
 
     button.addEventListener("click", function (event) {
       event.stopPropagation();

@@ -24,26 +24,35 @@ export function renderTrailsPage() {
           <h1>Caminatas destacadas</h1>
           <p>Busc\u00e1 y explor\u00e1 senderos para planear tu pr\u00f3xima salida.</p>
           <div class="trails__search">
-            <div class="filters">
-              <label class="sr-only" for="trailSearch">Buscar caminata</label>
-              <input
-                id="trailSearch"
-                type="text"
-                placeholder="Buscar caminata..."
-              />
+            <fieldset class="filters-panel">
+              <legend>Filtros de caminatas</legend>
+              <div class="filters-row">
+                <div class="filters-group">
+                  <label for="trailSearch">Buscar caminata</label>
+                  <input
+                    id="trailSearch"
+                    type="text"
+                    placeholder="Buscar caminata..."
+                  />
+                </div>
 
-              <label class="sr-only" for="trailRegionFilter">Filtrar por regi\u00f3n</label>
-              <select id="trailRegionFilter" class="filter-select">
-                <option value="">Todas las regiones</option>
-                ${regionOptions}
-              </select>
+                <div class="filters-group">
+                  <label for="trailRegionFilter">Regi\u00f3n</label>
+                  <select id="trailRegionFilter" class="filter-select">
+                    <option value="">Todas las regiones</option>
+                    ${regionOptions}
+                  </select>
+                </div>
 
-              <label class="sr-only" for="trailDifficultyFilter">Filtrar por dificultad</label>
-              <select id="trailDifficultyFilter" class="filter-select">
-                <option value="">Todas las dificultades</option>
-                ${difficultyOptions}
-              </select>
-            </div>
+                <div class="filters-group">
+                  <label for="trailDifficultyFilter">Dificultad</label>
+                  <select id="trailDifficultyFilter" class="filter-select">
+                    <option value="">Todas las dificultades</option>
+                    ${difficultyOptions}
+                  </select>
+                </div>
+              </div>
+            </fieldset>
           </div>
           <div id="trailsGrid" class="trails__grid"></div>
         </section>
