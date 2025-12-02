@@ -63,7 +63,7 @@ function createCartRow(item) {
   const minus = document.createElement("button");
   minus.type = "button";
   minus.className = "qty-btn";
-  minus.setAttribute("aria-label", `Restar una unidad de ${item.name}`);
+  minus.setAttribute("aria-label", "Disminuir cantidad");
   minus.textContent = "-";
 
   const input = document.createElement("input");
@@ -75,7 +75,7 @@ function createCartRow(item) {
   const plus = document.createElement("button");
   plus.type = "button";
   plus.className = "qty-btn";
-  plus.setAttribute("aria-label", `Sumar una unidad de ${item.name}`);
+  plus.setAttribute("aria-label", "Aumentar cantidad");
   plus.textContent = "+";
 
   const handleQuantityChange = function (value) {
@@ -106,6 +106,7 @@ function createCartRow(item) {
   removeButton.type = "button";
   removeButton.className = "button button--ghost button--small";
   removeButton.textContent = "Eliminar";
+  removeButton.setAttribute("aria-label", "Eliminar este ítem del carrito");
   removeButton.addEventListener("click", function () {
     removeFromCart(item.id, item.type);
     renderCartItems();
