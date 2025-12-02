@@ -2,6 +2,7 @@
 import { renderHeader, updateHeaderUserState } from "./ui/header.js";
 import { renderProfilePage } from "./ui/renderProfilePage.js";
 import { clearProfile, getProfile, saveProfile } from "./profile/profileStorage.js";
+import { showFeedbackMessage } from "./ui/feedbackMessages.js";
 
 function setupFadeInAnimations() {
   const observer = new IntersectionObserver(
@@ -74,13 +75,23 @@ function setupProfileForm() {
       setError("email", "Ingresá un email válido.");
       hasError = true;
     }
-    if (hasError) return;
+    if (hasError) {
+      showFeedbackMessage({
+        type: "warning",
+        text: "Revisá los campos marcados antes de continuar."
+      });
+      return;
+    }
 
     saveProfile({ fullName, email, location, phone, notes });
     if (status) {
       status.textContent = "Datos guardados para tus próximas reservas.";
       status.classList.add("profile__status--success");
     }
+    showFeedbackMessage({
+      type: "success",
+      text: "Perfil guardado correctamente."
+    });
     if (summary) {
       summary.textContent = fullName ? `Hola, ${fullName}` : "Perfil actualizado";
     }

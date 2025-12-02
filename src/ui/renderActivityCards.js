@@ -8,9 +8,9 @@ export function renderActivityCards(activities) {
 
   if (!activities || activities.length === 0) {
     const empty = document.createElement("div");
-    empty.className = "empty-state fade-in";
+    empty.className = "empty-state results-empty fade-in";
     empty.textContent =
-      "No encontramos resultados para tu búsqueda. Probá con otro término o explorá todas las opciones.";
+      "No encontramos actividades para estos filtros. Probá ajustar la búsqueda o la dificultad.";
     grid.appendChild(empty);
     return;
   }

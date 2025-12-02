@@ -36,6 +36,7 @@ updateHeaderUserState();
 const searchInput = document.getElementById("trailSearch");
 const regionSelect = document.getElementById("trailRegionFilter");
 const difficultySelect = document.getElementById("trailDifficultyFilter");
+const resultsInfo = document.getElementById("trailsResultsInfo");
 
 function applyTrailFilters() {
   const filters = {
@@ -46,6 +47,14 @@ function applyTrailFilters() {
 
   const filteredTrails = filterTrails(trailsData, filters);
   renderTrailCards(filteredTrails);
+
+   if (resultsInfo) {
+    if (filteredTrails.length > 0) {
+      resultsInfo.textContent = `Se encontraron ${filteredTrails.length} caminatas.`;
+    } else {
+      resultsInfo.textContent = "No encontramos caminatas para estos filtros.";
+    }
+  }
   updateCartBadge();
   observeFadeIn();
 }
