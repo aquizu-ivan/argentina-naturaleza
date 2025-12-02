@@ -1822,3 +1822,61 @@ h3 {
   background: rgba(201, 122, 50, 0.08);
   border: 1px solid rgba(201, 122, 50, 0.15);
 }
+
+/* Mapa - lista accesible de experiencias */
+.map-list {
+  margin-top: 2rem;
+}
+
+.map-list__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-main);
+}
+
+.map-list__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.map-list__item {
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 249, 244, 0.94) 100%);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 22px rgba(12, 66, 47, 0.08);
+  color: var(--color-text-main);
+}
+
+.map-list__item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary);
+}
+
+.map-list__item div {
+  color: var(--color-muted);
+}
+
+.map-list__link {
+  display: inline-flex;
+  margin-top: 6px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.map-list__link:hover {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
+.map-list__empty {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  color: var(--color-muted);
+}

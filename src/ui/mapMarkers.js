@@ -100,13 +100,13 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
     button.addEventListener("click", function (event) {
       event.stopPropagation();
       if (onMarkerClick) {
-        onMarkerClick(marker, button);
+        onMarkerClick(marker, button, { focusTooltip: true });
       }
     });
 
     button.addEventListener("mouseenter", function () {
       if (onMarkerClick) {
-        onMarkerClick(marker, button);
+        onMarkerClick(marker, button, { focusTooltip: false });
       }
     });
 
@@ -116,7 +116,7 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
       if (isEnter || isSpace) {
         event.preventDefault();
         if (onMarkerClick) {
-          onMarkerClick(marker, button);
+          onMarkerClick(marker, button, { focusTooltip: true });
         }
       }
     });
@@ -141,4 +141,24 @@ export function updateMarkersVisibility(markerEntries, { showTrails, showActivit
       element.classList.add("map__marker--hidden");
     }
   });
+}
+
+export function getVisibleExperiences(markerEntries) {
+  if (!Array.isArray(markerEntries)) return [];
+
+  return markerEntries
+    .filter(function (entry) {
+      const element = entry?.element;
+      return element && !element.classList.contains("map__marker--hidden");
+    })
+    .map(function ({ marker }) {
+      return {
+        id: marker.id,
+        type: marker.type === "trail" ? "caminata" : "actividad",
+        name: marker.title,
+        region: marker.region,
+        difficulty: marker.difficulty,
+        detailUrl: marker.href
+      };
+    });
 }

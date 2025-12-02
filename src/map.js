@@ -6,7 +6,8 @@ import { renderArgentinaMap } from "./ui/renderArgentinaMap.js";
 import {
   buildMapMarkers,
   renderMapMarkers,
-  updateMarkersVisibility
+  updateMarkersVisibility,
+  getVisibleExperiences
 } from "./ui/mapMarkers.js";
 import { createMapTooltip } from "./ui/mapTooltip.js";
 
@@ -39,16 +40,70 @@ function initMapPage() {
   const trailToggleElement = mapPage ? mapPage.trailToggleElement : null;
   const activityToggleElement = mapPage ? mapPage.activityToggleElement : null;
   const emptyStateElement = mapPage ? mapPage.emptyStateElement : null;
+  const listContentElement = mapPage ? mapPage.listContentElement : null;
+
+  const renderVisibleExperiencesList = function (experiences) {
+    if (!listContentElement) return;
+    listContentElement.innerHTML = "";
+
+    if (!experiences.length) {
+      const empty = document.createElement("p");
+      empty.className = "map-list__empty";
+      empty.textContent = "No hay experiencias visibles en el mapa con los filtros actuales.";
+      listContentElement.appendChild(empty);
+      return;
+    }
+
+    const list = document.createElement("ul");
+    list.className = "map-list__items";
+
+    experiences.forEach(function (experience) {
+      const item = document.createElement("li");
+      item.className = "map-list__item";
+
+      const title = document.createElement("strong");
+      const typeLabel = experience.type === "caminata" ? "Caminata" : "Actividad";
+      title.textContent = `${typeLabel}: ${experience.name}`;
+
+      const details = document.createElement("div");
+      const difficultyText = experience.difficulty ? ` · Dificultad: ${experience.difficulty}` : "";
+      details.textContent = `Región: ${experience.region || "Argentina"}${difficultyText}`;
+
+      const link = document.createElement("a");
+      link.className = "map-list__link";
+      link.href = experience.detailUrl;
+      link.textContent = "Ver detalle";
+
+      item.append(title, details, link);
+      list.appendChild(item);
+    });
+
+    listContentElement.appendChild(list);
+  };
 
   if (canvasElement) {
     renderArgentinaMap(canvasElement);
 
     const markers = buildMapMarkers();
-    const { showTooltip, hideTooltip } = createMapTooltip(canvasElement);
+    let lastActiveMarker = null;
+    const { showTooltip, hideTooltip } = createMapTooltip(canvasElement, {
+      onClose() {
+        if (lastActiveMarker) {
+          const target = lastActiveMarker;
+          lastActiveMarker = null;
+          target.focus();
+        }
+      }
+    });
 
     const { markerElements } = renderMapMarkers(canvasElement, markers, {
-      onMarkerClick(marker, element) {
-        showTooltip(marker, element);
+      onMarkerClick(marker, element, options = {}) {
+        if (options.focusTooltip) {
+          lastActiveMarker = element;
+        } else {
+          lastActiveMarker = null;
+        }
+        showTooltip(marker, element, { focus: Boolean(options.focusTooltip) });
       }
     });
 
@@ -60,12 +115,13 @@ function initMapPage() {
         activityToggleElement === null;
 
       updateMarkersVisibility(markerElements, { showTrails, showActivities });
-      hideTooltip();
+      hideTooltip({ restoreFocus: false });
+      lastActiveMarker = null;
 
-      const hasVisibleMarkers = markerElements.some(function (entry) {
-        const element = entry?.element || entry;
-        return element && !element.classList.contains("map__marker--hidden");
-      });
+      const visibleExperiences = getVisibleExperiences(markerElements);
+      renderVisibleExperiencesList(visibleExperiences);
+
+      const hasVisibleMarkers = visibleExperiences.length > 0;
 
       if (emptyStateElement) {
         emptyStateElement.hidden = hasVisibleMarkers;

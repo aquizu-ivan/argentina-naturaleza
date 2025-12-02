@@ -54,7 +54,12 @@ export function renderTrailsPage() {
               </div>
             </fieldset>
           </div>
-          <p class="results-info" id="trailsResultsInfo"></p>
+          <p
+            class="results-info"
+            id="trailsResultsInfo"
+            role="status"
+            aria-live="polite"
+          ></p>
           <div id="trailsGrid" class="trails__grid"></div>
         </section>
       </main>

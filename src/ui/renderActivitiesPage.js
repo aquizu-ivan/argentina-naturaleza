@@ -54,7 +54,12 @@ export function renderActivitiesPage() {
               </div>
             </fieldset>
           </div>
-          <p class="results-info" id="activitiesResultsInfo"></p>
+          <p
+            class="results-info"
+            id="activitiesResultsInfo"
+            role="status"
+            aria-live="polite"
+          ></p>
           <div id="activitiesGrid" class="trails__grid"></div>
         </section>
       </main>

@@ -49,6 +49,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
             No hay experiencias para los filtros seleccionados.
           </p>
+          <section class="map-list" aria-label="Listado de experiencias visibles en el mapa">
+            <h2 class="map-list__title">Experiencias visibles en el mapa</h2>
+            <div class="map-list__content"></div>
+          </section>
         </section>
       </main>
 
@@ -66,6 +70,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
   const trailsToggle = root.querySelector("#mapToggleTrails");
   const activitiesToggle = root.querySelector("#mapToggleActivities");
   const emptyStateElement = root.querySelector(".map__empty-state");
+  const listContentElement = root.querySelector(".map-list__content");
 
   return {
     canvasElement,
@@ -73,6 +78,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
     trailToggleElement: trailsToggle,
     activityToggleElement: activitiesToggle,
     emptyStateElement,
+    listContentElement,
     filters: {
       trailsToggle,
       activitiesToggle
