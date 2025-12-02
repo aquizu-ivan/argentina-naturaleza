@@ -1,4 +1,4 @@
-﻿export function createMapTooltip(containerElement) {
+export function createMapTooltip(containerElement, { onClose } = {}) {
   if (!containerElement) return { showTooltip: () => {}, hideTooltip: () => {} };
 
   const tooltip = document.createElement("div");
@@ -36,7 +36,7 @@
     tooltip.style.top = `${top}px`;
   }
 
-  function showTooltip(marker, markerElement) {
+  function showTooltip(marker, markerElement, { focus = false } = {}) {
     if (!markerElement) return;
 
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
@@ -45,16 +45,20 @@
       ? `<p class="map__tooltip-detail">Dificultad: ${marker.difficulty}</p>`
       : "";
 
+    const titleId = "mapTooltipTitle";
     tooltip.innerHTML = `
       <button class="map__tooltip-close" type="button" aria-label="Cerrar información">×</button>
-      <h3 class="map__tooltip-title">${marker.title}</h3>
+      <h3 class="map__tooltip-title" id="${titleId}">${marker.title}</h3>
       <p class="map__tooltip-type">${typeLabel}</p>
       <p class="map__tooltip-detail">Región: ${regionText}</p>
       ${difficulty}
       <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
     `;
+    tooltip.setAttribute("role", "dialog");
+    tooltip.setAttribute("aria-labelledby", titleId);
 
     const closeButton = tooltip.querySelector(".map__tooltip-close");
+    const detailLink = tooltip.querySelector(".map__tooltip-link");
     if (closeButton) {
       closeButton.addEventListener("click", function (event) {
         event.stopPropagation();
@@ -70,12 +74,22 @@
       positionTooltip(markerElement);
       tooltip.style.visibility = "visible";
       tooltip.style.opacity = "1";
+      if (focus) {
+        if (closeButton) {
+          closeButton.focus();
+        } else if (detailLink) {
+          detailLink.focus();
+        }
+      }
     });
   }
 
-  function hideTooltip() {
+  function hideTooltip({ restoreFocus = true } = {}) {
     tooltip.style.display = "none";
     tooltip.style.opacity = "0";
+    if (restoreFocus && typeof onClose === "function") {
+      onClose();
+    }
   }
 
   return { showTooltip, hideTooltip };
