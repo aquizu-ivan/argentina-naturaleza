@@ -46,12 +46,21 @@
       : "";
 
     tooltip.innerHTML = `
+      <button class="map__tooltip-close" type="button" aria-label="Cerrar información">×</button>
       <h3 class="map__tooltip-title">${marker.title}</h3>
       <p class="map__tooltip-type">${typeLabel}</p>
       <p class="map__tooltip-detail">Región: ${regionText}</p>
       ${difficulty}
       <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
     `;
+
+    const closeButton = tooltip.querySelector(".map__tooltip-close");
+    if (closeButton) {
+      closeButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        hideTooltip();
+      });
+    }
 
     tooltip.style.display = "block";
     tooltip.style.visibility = "hidden";
