@@ -12,6 +12,13 @@ export function createTrailCard(trail) {
   link.href = `/caminata-detalle.html?id=${encodeURIComponent(trail.id)}`;
   link.setAttribute("aria-label", `${trail.name}, dificultad ${trail.difficulty}`);
 
+  const image = document.createElement("img");
+  image.src = trail.imageUrl;
+  image.alt = trail.name;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.className = "card__image";
+
   const title = document.createElement("h3");
   title.textContent = trail.name;
 
@@ -66,7 +73,7 @@ export function createTrailCard(trail) {
     }, 1400);
   });
 
-  link.append(title, location, details, description, meta, weatherChip);
+  link.append(image, title, location, details, description, meta, weatherChip);
   actions.append(price, addButton);
   card.append(link, actions);
 

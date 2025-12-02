@@ -11,6 +11,13 @@ export function createActivityCard(activity) {
   link.href = `/actividad-detalle.html?id=${encodeURIComponent(activity.id)}`;
   link.setAttribute("aria-label", `${activity.name}, ${activity.style}`);
 
+  const image = document.createElement("img");
+  image.src = activity.imageUrl;
+  image.alt = activity.name;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.className = "card__image";
+
   const title = document.createElement("h3");
   title.textContent = activity.name;
 
@@ -64,7 +71,7 @@ export function createActivityCard(activity) {
     }, 1400);
   });
 
-  link.append(title, location, details, description, meta);
+  link.append(image, title, location, details, description, meta);
   actions.append(price, addButton);
   card.append(link, actions);
 
