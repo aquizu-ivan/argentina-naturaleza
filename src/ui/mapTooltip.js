@@ -1,4 +1,4 @@
-export function createMapTooltip(containerElement) {
+﻿export function createMapTooltip(containerElement) {
   if (!containerElement) return { showTooltip: () => {}, hideTooltip: () => {} };
 
   const tooltip = document.createElement("div");
@@ -13,17 +13,24 @@ export function createMapTooltip(containerElement) {
   function positionTooltip(markerElement) {
     const canvasRect = containerElement.getBoundingClientRect();
     const markerRect = markerElement.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
 
+    const padding = 12;
+    const verticalOffset = 12;
     const markerCenterX = markerRect.left + markerRect.width / 2;
-    let left = markerCenterX - canvasRect.left;
-    let top = markerRect.top - canvasRect.top - tooltip.offsetHeight - 12;
 
-    const maxLeft = canvasRect.width - tooltip.offsetWidth - 8;
-    left = Math.max(8, Math.min(left - tooltip.offsetWidth / 2, maxLeft));
+    let left = markerCenterX - canvasRect.left - tooltipRect.width / 2;
+    let top = markerRect.top - canvasRect.top - tooltipRect.height - verticalOffset;
 
-    if (top < 8) {
-      top = markerRect.bottom - canvasRect.top + 12;
+    if (top < padding) {
+      top = markerRect.bottom - canvasRect.top + verticalOffset;
     }
+
+    const maxLeft = canvasRect.width - tooltipRect.width - padding;
+    const maxTop = canvasRect.height - tooltipRect.height - padding;
+
+    left = Math.max(padding, Math.min(left, maxLeft));
+    top = Math.max(padding, Math.min(top, maxTop));
 
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
@@ -33,15 +40,27 @@ export function createMapTooltip(containerElement) {
     if (!markerElement) return;
 
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
-    const difficulty = marker.difficulty ? `<span class="map__tooltip-meta">Dificultad: ${marker.difficulty}</span>` : "";
+    const regionText = marker.region || "Argentina";
+    const difficulty = marker.difficulty
+      ? `<p class="map__tooltip-detail">Dificultad: ${marker.difficulty}</p>`
+      : "";
 
     tooltip.innerHTML = `
-      <div class="map__tooltip-type">${typeLabel}</div>
-      <div class="map__tooltip-title">${marker.title}</div>
-      <div class="map__tooltip-region">Región: ${marker.region}</div>
+      <button class="map__tooltip-close" type="button" aria-label="Cerrar información">×</button>
+      <h3 class="map__tooltip-title">${marker.title}</h3>
+      <p class="map__tooltip-type">${typeLabel}</p>
+      <p class="map__tooltip-detail">Región: ${regionText}</p>
       ${difficulty}
-      <a class="map__tooltip-link" href="${marker.href}">Ver más</a>
+      <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
     `;
+
+    const closeButton = tooltip.querySelector(".map__tooltip-close");
+    if (closeButton) {
+      closeButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        hideTooltip();
+      });
+    }
 
     tooltip.style.display = "block";
     tooltip.style.visibility = "hidden";

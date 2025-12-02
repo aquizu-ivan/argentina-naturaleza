@@ -93,7 +93,7 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
     button.dataset.type = marker.type;
     button.setAttribute(
       "aria-label",
-      `${marker.type === "trail" ? "Caminata" : "Actividad"}: ${marker.title}`
+      `${marker.type === "trail" ? "Caminata" : "Actividad"}: ${marker.title} en ${marker.region}`
     );
 
     button.addEventListener("click", function (event) {
@@ -106,6 +106,17 @@ export function renderMapMarkers(containerElement, markers, { onMarkerClick } = 
     button.addEventListener("mouseenter", function () {
       if (onMarkerClick) {
         onMarkerClick(marker, button);
+      }
+    });
+
+    button.addEventListener("keydown", function (event) {
+      const isEnter = event.key === "Enter";
+      const isSpace = event.key === " ";
+      if (isEnter || isSpace) {
+        event.preventDefault();
+        if (onMarkerClick) {
+          onMarkerClick(marker, button);
+        }
       }
     });
 

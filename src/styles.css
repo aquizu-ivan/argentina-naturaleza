@@ -931,7 +931,7 @@ h3 {
 .map-page {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .map-page__header {
@@ -949,14 +949,14 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .map__filters {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -1021,7 +1021,7 @@ h3 {
 .map__legend {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
@@ -1029,7 +1029,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 9px 13px;
   border-radius: 999px;
   font-weight: 700;
   font-size: 13px;
@@ -1052,7 +1052,7 @@ h3 {
 
 .map__canvas {
   position: relative;
-  min-height: 420px;
+  min-height: 440px;
   aspect-ratio: 3 / 5;
   border-radius: 20px;
   border: 1px solid var(--border);
@@ -1097,6 +1097,8 @@ h3 {
 
 .map__marker:focus-visible {
   filter: brightness(1.05);
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
 }
 
 .map__marker--hidden {
@@ -1163,47 +1165,79 @@ h3 {
 .map__tooltip {
   position: absolute;
   min-width: 200px;
-  max-width: 260px;
+  max-width: min(300px, 78vw);
   background: linear-gradient(180deg, rgba(15, 47, 35, 0.95) 0%, rgba(10, 34, 26, 0.94) 100%);
   color: #f4f6f2;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
-  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+  padding: 14px 16px;
   z-index: 3;
   transition: opacity 160ms ease;
   pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: absolute;
+  overflow-wrap: anywhere;
+}
+
+.map__tooltip-close {
+  align-self: flex-end;
+  background: transparent;
+  border: 1px solid rgba(244, 246, 242, 0.2);
+  color: #f4f6f2;
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map__tooltip-close:focus-visible {
+  outline: 2px solid rgba(242, 153, 74, 0.8);
+  outline-offset: 2px;
 }
 
 .map__tooltip-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: rgba(242, 245, 242, 0.7);
-  margin-bottom: 4px;
+  color: rgba(242, 245, 242, 0.72);
   font-weight: 800;
 }
 
 .map__tooltip-title {
   font-weight: 800;
-  font-size: 16px;
-  margin-bottom: 6px;
+  font-size: 17px;
+  line-height: 1.3;
 }
 
-.map__tooltip-region,
-.map__tooltip-meta {
+.map__tooltip-detail {
   font-size: 13px;
   color: rgba(244, 246, 242, 0.8);
-  margin-bottom: 4px;
+  line-height: 1.5;
 }
 
 .map__tooltip-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 6px;
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 6px 10px;
+  border-radius: 10px;
   font-weight: 700;
   color: #f2994a;
+  background: rgba(242, 153, 74, 0.12);
+  border: 1px solid rgba(242, 153, 74, 0.32);
   text-decoration: none;
 }
 
@@ -1237,6 +1271,61 @@ h3 {
 
   .map__canvas {
     min-height: 360px;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-page {
+    gap: 18px;
+  }
+
+  .map__controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .map__filters {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .map__legend {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .map__badge {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .map__canvas {
+    min-height: 340px;
+    aspect-ratio: 3 / 4.2;
+  }
+
+  .map__tooltip {
+    max-width: min(280px, 86vw);
+    padding: 12px 14px;
+    gap: 5px;
+  }
+
+  .map__tooltip-title {
+    font-size: 16px;
+  }
+
+  .map__tooltip-type {
+    font-size: 11px;
+  }
+
+  .map__tooltip-detail {
+    font-size: 12px;
+  }
+
+  .map__tooltip-link {
+    font-size: 13px;
   }
 }
 
