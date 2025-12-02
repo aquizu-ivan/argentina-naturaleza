@@ -1,4 +1,4 @@
-import "./styles.css";
+﻿import "./styles.css";
 import { clearCart, getCartCount, getCartItems, getCartTotal, removeFromCart, updateQuantity } from "./cart/cartStorage.js";
 import { updateCartBadge } from "./cart/cartBadge.js";
 import { formatPrice } from "./utils/formatters.js";
@@ -48,9 +48,9 @@ function createCartRow(item) {
   const meta = document.createElement("div");
   meta.className = "cart-item__meta";
   meta.innerHTML = `
-    <span>📍 ${item.province || item.location || item.region || "Argentina"}</span>
-    <span>⛰️ ${item.difficulty || "—"}</span>
-    <span>⏱️ ${item.duration || "—"}</span>
+    <span>🗺️ ${item.province || item.location || item.region || "Argentina"}</span>
+    <span>⛰️ ${item.difficulty || "Sin dato"}</span>
+    <span>⏱️ ${item.duration || "Sin duración"}</span>
   `;
 
   const price = document.createElement("div");
@@ -64,7 +64,7 @@ function createCartRow(item) {
   minus.type = "button";
   minus.className = "qty-btn";
   minus.setAttribute("aria-label", `Restar una unidad de ${item.name}`);
-  minus.textContent = "−";
+  minus.textContent = "-";
 
   const input = document.createElement("input");
   input.type = "number";

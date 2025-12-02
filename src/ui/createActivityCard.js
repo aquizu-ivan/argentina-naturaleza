@@ -1,4 +1,4 @@
-import { addToCart } from "../cart/cartStorage.js";
+﻿import { addToCart } from "../cart/cartStorage.js";
 import { updateCartBadge } from "../cart/cartBadge.js";
 import { formatPrice } from "../utils/formatters.js";
 
@@ -28,7 +28,7 @@ export function createActivityCard(activity) {
   meta.innerHTML = `
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⛰️</span><span>Dificultad: ${activity.difficulty}</span></span>
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⏱️</span><span>${activity.duration}</span></span>
-    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">📍</span><span>${activity.region}</span></span>
+    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">🗺️</span><span>${activity.region}</span></span>
   `;
 
   const actions = document.createElement("div");
@@ -57,7 +57,7 @@ export function createActivityCard(activity) {
     });
     updateCartBadge();
     addButton.classList.add("button--added");
-    addButton.textContent = "Añadido ✓";
+    addButton.textContent = "Añadido ✔";
     window.setTimeout(function () {
       addButton.classList.remove("button--added");
       addButton.textContent = "Añadir al carrito";
