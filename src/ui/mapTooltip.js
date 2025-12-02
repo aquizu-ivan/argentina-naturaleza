@@ -1,4 +1,4 @@
-export function createMapTooltip(containerElement) {
+﻿export function createMapTooltip(containerElement) {
   if (!containerElement) return { showTooltip: () => {}, hideTooltip: () => {} };
 
   const tooltip = document.createElement("div");
@@ -33,14 +33,17 @@ export function createMapTooltip(containerElement) {
     if (!markerElement) return;
 
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
-    const difficulty = marker.difficulty ? `<span class="map__tooltip-meta">Dificultad: ${marker.difficulty}</span>` : "";
+    const regionText = marker.region || "Argentina";
+    const difficulty = marker.difficulty
+      ? `<p class="map__tooltip-detail">Dificultad: ${marker.difficulty}</p>`
+      : "";
 
     tooltip.innerHTML = `
-      <div class="map__tooltip-type">${typeLabel}</div>
-      <div class="map__tooltip-title">${marker.title}</div>
-      <div class="map__tooltip-region">Región: ${marker.region}</div>
+      <h3 class="map__tooltip-title">${marker.title}</h3>
+      <p class="map__tooltip-type">${typeLabel}</p>
+      <p class="map__tooltip-detail">Región: ${regionText}</p>
       ${difficulty}
-      <a class="map__tooltip-link" href="${marker.href}">Ver más</a>
+      <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
     `;
 
     tooltip.style.display = "block";
