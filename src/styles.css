@@ -1750,3 +1750,62 @@ h3 {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
   }
 }
+/* ================================
+   Feedback / toasts de la app
+  ================================ */
+.feedback-container {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1200;
+  max-width: min(360px, 90vw);
+  pointer-events: none;
+}
+
+.feedback-message {
+  pointer-events: auto;
+  background: rgba(16, 44, 32, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.feedback-message--enter {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.feedback-message:not(.feedback-message--enter) {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.feedback-message--leave {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.feedback-message--success {
+  border-color: rgba(14, 188, 114, 0.4);
+  background: linear-gradient(135deg, rgba(15, 95, 63, 0.9), rgba(12, 74, 51, 0.94));
+}
+
+.feedback-message--info {
+  border-color: rgba(75, 163, 214, 0.35);
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(20, 52, 134, 0.94));
+}
+
+.feedback-message--warning {
+  border-color: rgba(242, 153, 74, 0.5);
+  background: linear-gradient(135deg, rgba(201, 122, 50, 0.92), rgba(168, 94, 35, 0.95));
+}
