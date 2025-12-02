@@ -1,4 +1,4 @@
-import "./styles.css";
+﻿import "./styles.css";
 import { updateCartBadge } from "./cart/cartBadge.js";
 import { updateHeaderUserState } from "./ui/header.js";
 import { renderMapPage } from "./ui/renderMapPage.js";
@@ -38,6 +38,7 @@ function initMapPage() {
   const canvasElement = mapPage ? mapPage.canvasElement : null;
   const trailToggleElement = mapPage ? mapPage.trailToggleElement : null;
   const activityToggleElement = mapPage ? mapPage.activityToggleElement : null;
+  const emptyStateElement = mapPage ? mapPage.emptyStateElement : null;
 
   if (canvasElement) {
     renderArgentinaMap(canvasElement);
@@ -54,8 +55,18 @@ function initMapPage() {
     function applyTypeFilters() {
       const showTrails = trailToggleElement ? trailToggleElement.checked : true;
       const showActivities = activityToggleElement ? activityToggleElement.checked : true;
+
       updateMarkersVisibility(markerElements, { showTrails, showActivities });
       hideTooltip();
+
+      const hasVisibleMarkers = markerElements.some(function (entry) {
+        const element = entry?.element || entry;
+        return element && !element.classList.contains("map__marker--hidden");
+      });
+
+      if (emptyStateElement) {
+        emptyStateElement.hidden = hasVisibleMarkers;
+      }
     }
 
     if (trailToggleElement) {
