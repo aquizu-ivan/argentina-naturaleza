@@ -1809,3 +1809,16 @@ h3 {
   border-color: rgba(242, 153, 74, 0.5);
   background: linear-gradient(135deg, rgba(201, 122, 50, 0.92), rgba(168, 94, 35, 0.95));
 }
+/* Resultados de filtros (caminatas / actividades) */
+.results-info {
+  margin: 10px 0 12px;
+  font-size: 14px;
+  color: rgba(18, 49, 36, 0.86);
+  font-weight: 600;
+}
+
+.results-empty {
+  color: rgba(201, 122, 50, 0.95);
+  background: rgba(201, 122, 50, 0.08);
+  border: 1px solid rgba(201, 122, 50, 0.15);
+}

@@ -54,6 +54,7 @@ export function renderActivitiesPage() {
               </div>
             </fieldset>
           </div>
+          <p class="results-info" id="activitiesResultsInfo"></p>
           <div id="activitiesGrid" class="trails__grid"></div>
         </section>
       </main>

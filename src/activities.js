@@ -36,6 +36,7 @@ updateHeaderUserState();
 const searchInput = document.getElementById("activitySearch");
 const regionSelect = document.getElementById("activityRegionFilter");
 const difficultySelect = document.getElementById("activityDifficultyFilter");
+const resultsInfo = document.getElementById("activitiesResultsInfo");
 
 function applyActivityFilters() {
   const filters = {
@@ -46,6 +47,14 @@ function applyActivityFilters() {
 
   const filteredActivities = filterTrails(activitiesData, filters);
   renderActivityCards(filteredActivities);
+
+  if (resultsInfo) {
+    if (filteredActivities.length > 0) {
+      resultsInfo.textContent = `Se encontraron ${filteredActivities.length} actividades.`;
+    } else {
+      resultsInfo.textContent = "No encontramos actividades para estos filtros.";
+    }
+  }
   updateCartBadge();
   observeFadeIn();
 }
