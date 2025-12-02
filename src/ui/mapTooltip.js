@@ -13,17 +13,24 @@
   function positionTooltip(markerElement) {
     const canvasRect = containerElement.getBoundingClientRect();
     const markerRect = markerElement.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
 
+    const padding = 12;
+    const verticalOffset = 12;
     const markerCenterX = markerRect.left + markerRect.width / 2;
-    let left = markerCenterX - canvasRect.left;
-    let top = markerRect.top - canvasRect.top - tooltip.offsetHeight - 12;
 
-    const maxLeft = canvasRect.width - tooltip.offsetWidth - 8;
-    left = Math.max(8, Math.min(left - tooltip.offsetWidth / 2, maxLeft));
+    let left = markerCenterX - canvasRect.left - tooltipRect.width / 2;
+    let top = markerRect.top - canvasRect.top - tooltipRect.height - verticalOffset;
 
-    if (top < 8) {
-      top = markerRect.bottom - canvasRect.top + 12;
+    if (top < padding) {
+      top = markerRect.bottom - canvasRect.top + verticalOffset;
     }
+
+    const maxLeft = canvasRect.width - tooltipRect.width - padding;
+    const maxTop = canvasRect.height - tooltipRect.height - padding;
+
+    left = Math.max(padding, Math.min(left, maxLeft));
+    top = Math.max(padding, Math.min(top, maxTop));
 
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
