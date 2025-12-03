@@ -327,7 +327,8 @@ h3 {
 
 .hero__content {
   position: relative;
-  max-width: 100%;
+  width: 100%;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -482,17 +483,32 @@ h3 {
   outline-offset: 2px;
 }
 
-/* Caminatas y actividades */
+/* Grillas de cards (caminatas, actividades, home) */
 .trails__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 10px;
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 3vw, 22px);
+  margin-top: 12px;
 }
 
+@media (min-width: 768px) {
+  .trails__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .trails__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Panel de filtros */
 .trails__search {
   margin: 30px 0 35px 0;
   display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .filters-panel {
@@ -500,6 +516,7 @@ h3 {
   border-radius: 12px;
   padding: 12px 16px 16px;
   margin-top: 14px;
+  width: 100%;
   min-width: 0;
 }
 
@@ -514,9 +531,9 @@ h3 {
 
 .filters-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 16px;
-  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
   margin-top: 8px;
 }
 
@@ -524,8 +541,9 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-width: 200px;
-  flex: 1 1 200px;
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 100%;
 }
 
 .filters-group label {
@@ -535,10 +553,25 @@ h3 {
 }
 
 @media (min-width: 768px) {
+  .trails__search {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .filters-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    align-items: center;
+  }
+
   .filters-group {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    flex: 1 1 240px;
+    min-width: 220px;
   }
 
   .filters-group label {
@@ -1691,13 +1724,26 @@ h3 {
   }
 
   .hero {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
     padding: 18px;
     min-height: 300px;
+  }
+
+  .hero__content {
+    gap: 10px;
+  }
+
+  .hero__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero__actions .button--primary {
+    width: 100%;
   }
 
   .hero__title {
