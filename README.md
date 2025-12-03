@@ -1,189 +1,187 @@
-# Naturaleza Argentina 🌿
+# Naturaleza Argentina
+App multipagina para explorar caminatas y actividades en la naturaleza argentina, con clima, mapa interactivo y carrito sin backend.
 
-Sitio multipágina sobre **caminatas y actividades al aire libre en Argentina**, pensado como proyecto de porfolio front-end.  
-Incluye home con hero fotográfico, listados filtrables, páginas de detalle, carrito de actividades y un perfil de usuario guardado en `localStorage`.
-
-## 🚀 Demo
-
-- **Producción:** https://naturaleza-argentina-ivanaquizu.netlify.app/ 
-- **Repositorio:** https://github.com/aquizu-ivan/argentina-naturaleza
-
-
+- Multipagina real con Vite (un entry JS por pagina).
+- Listados con filtros en vivo, clima por ciudad y estados vacios claros.
+- Mapa interactivo con markers y version textual accesible.
+- Carrito y perfil en localStorage con helpers de storage robusto.
 
 ---
 
-## 🌱 Visión general
-
-Naturaleza Argentina propone un flujo simple pero completo:
-
-1. El usuario explora **caminatas** y **actividades** con buscadores en vivo.
-2. Abre **páginas de detalle** con descripciones extendidas, beneficios y datos clave.
-3. Añade experiencias a un **carrito**.
-4. Completa sus **datos de perfil** para agilizar futuras reservas (demo sin backend).
-5. Vuelve a explorar con su nombre visible en el header.
-
-Todo está desarrollado con **Vite + JavaScript vanilla**, sin frameworks, para mostrar dominio de HTML, CSS y JS “a mano”.
+## Tabla de contenidos
+- [Resumen rapido](#resumen-rapido)
+- [Stack y enfoque tecnico](#stack-y-enfoque-tecnico)
+- [Como correr el proyecto](#como-correr-el-proyecto)
+- [Arquitectura y estructura de carpetas](#arquitectura-y-estructura-de-carpetas)
+- [Funcionalidades principales](#funcionalidades-principales)
+- [Accesibilidad y UX](#accesibilidad-y-ux)
+- [Robustez y manejo de errores](#robustez-y-manejo-de-errores)
+- [Roadmap / mejoras futuras](#roadmap--mejoras-futuras)
 
 ---
 
-## ✨ Funcionalidades principales
-
-- **UI multipágina**
-  - `index.html` (Home)
-  - `caminatas.html` (lista de caminatas)
-  - `activities.html` (lista de actividades)
-  - `caminata-detalle.html` / `actividad-detalle.html`
-  - `carrito.html`
-  - `perfil.html`
-
-- **Hero fotográfico**
-  - Imagen real en `public/assets/photos/home-hero.jpg`.
-  - Overlay y tarjeta con título, subtítulo, “eyebrow” y chips temáticos.
-  - Dos botones primarios iguales: **Ver caminatas** / **Ver actividades**.
-
-- **Listados con buscador en vivo**
-  - Filtrado por texto sobre el nombre de la caminata/actividad.
-  - Estado vacío (“no encontramos resultados”) cuando el filtro no matchea nada.
-  - Cards con:
-    - Dificultad, duración y región (con iconos).
-    - Precio por persona.
-    - CTA **Añadir al carrito** + link a detalle.
-
-- **Páginas de detalle**
-  - Foto ilustrativa de la caminata/actividad.
-  - Descripción extendida.
-  - Bloque de **“Información clave”** (dificultad, duración, región).
-  - Lista de beneficios (“Qué vas a vivir”, “Beneficios para tu cuerpo y mente”).
-  - Botón **Añadir al carrito** y **Volver** a la lista correspondiente.
-  - Manejo de errores: si el `id` no existe, se muestra mensaje de “no encontrado” y CTA para volver.
-
-- **Carrito de actividades y caminatas**
-  - Añadir desde cards y desde detalle.
-  - Ajustar cantidades (+/−, input numérico).
-  - Eliminar ítems y vaciar carrito.
-  - Cálculo de subtotal por ítem y total general.
-  - Badges con contador en el header (icono 🛒).
-
-- **Perfil de usuario (demo)**
-  - Formulario: nombre, email, localidad/provincia, teléfono y nota.
-  - Datos guardados en `localStorage`.
-  - Header dinámico: muestra “Hola, {nombre}” o “Mi perfil” según haya datos.
-  - En el carrito se muestran los “Datos del viajero” si el perfil está completo.
-  - Botón **Cerrar sesión**: limpia el perfil y devuelve al home.
-
-- **Carrito + perfil con estado persistente**
-  - Implementados con `localStorage`:
-    - `cartStorage.js`
-    - `profileStorage.js`
-  - El sitio recuerda carrito y datos de usuario entre visitas.
-
-- **Diseño y accesibilidad**
-  - Fondo de naturaleza con canopy, degradados verdes y textura de papel.
-  - Navbar y footer en gradiente oscuro coherente con el resto del diseño.
-  - Hover/focus claros en botones y cards.
-  - `prefers-color-scheme: dark` para un modo “bosque nocturno” automático.
-  - `alt` descriptivos en imágenes de detalle.
-  - Breadcrumbs con `aria-label="Breadcrumb"` en las páginas de detalle.
-  - Uso de `sr-only` para etiquetas de inputs de búsqueda.
-
-- **SEO básico**
-  - Títulos y `meta description` específicos por página.
-  - `og:title`, `og:description` y `og:image` configurados (hero general).
+## Resumen rapido
+- Vite multipagina real (no SPA), con un JS por pagina.
+- Listados de caminatas y actividades con filtros y clima por ciudad.
+- Mapa interactivo de Argentina con markers y lista accesible de experiencias.
+- Carrito de actividades/caminatas y perfil de usuario guardados en localStorage.
+- Accesibilidad basica cuidada (skip link, foco visible, aria-live, toasts con roles).
+- Responsive trabajado para mobile, tablet y desktop.
 
 ---
 
-## 🧱 Tecnologías
+## Stack y enfoque tecnico
+Proyecto front-end 100 % en el navegador: Vite como bundler, JavaScript vanilla modular y HTML multipagina real. Se usa un unico CSS principal para mantener coherencia visual y facilitar el mantenimiento.
 
-- **Vite** (vanilla)
-- **JavaScript ES6+**
-- **HTML5**
-- **CSS3** (layout, variables, animaciones y media queries)
-- `localStorage` para carrito y perfil
+No hay backend: el estado de carrito y perfil se persiste en localStorage mediante helpers robustos de lectura/escritura segura. La UI se organiza separando renderizado, datos mock, servicios, almacenamiento y utilidades, de modo que cada pagina tiene su entry JS pero comparte logica comun (filtros, toasts, storage).
 
 ---
 
-## 📁 Estructura del proyecto (resumen)
+## Como correr el proyecto
 
-```txt
-.
-├─ index.html
-├─ caminatas.html
-├─ activities.html
-├─ caminata-detalle.html
-├─ actividad-detalle.html
-├─ carrito.html
-├─ perfil.html
-├─ public/
-│  ├─ assets/
-│  │  ├─ backgrounds/
-│  │  ├─ textures/
-│  │  ├─ photos/
-│  │  │  ├─ trails/        # Fotos sugeridas para caminatas
-│  │  │  └─ activities/    # Fotos sugeridas para actividades
-│  │  └─ og/
-│  └─ favicon.ico
-└─ src/
-   ├─ main.js              # Home
-   ├─ trails.js            # Lista de caminatas
-   ├─ activities.js        # Lista de actividades
-   ├─ trailDetail.js       # Detalle caminata
-   ├─ activityDetail.js    # Detalle actividad
-   ├─ cart.js              # Carrito
-   ├─ profile.js           # Perfil
-   ├─ styles.css
-   ├─ data/
-   │  ├─ trailsData.js
-   │  └─ activitiesData.js
-   ├─ ui/
-   │  ├─ header.js
-   │  ├─ renderApp.js
-   │  ├─ renderTrailsPage.js
-   │  ├─ renderActivitiesPage.js
-   │  ├─ renderTrailDetailPage.js
-   │  ├─ renderActivityDetailPage.js
-   │  ├─ renderCartPage.js
-   │  ├─ renderProfilePage.js
-   │  ├─ createTrailCard.js
-   │  └─ createActivityCard.js
-   ├─ cart/
-   │  ├─ cartStorage.js
-   │  └─ cartBadge.js
-   └─ profile/
-      └─ profileStorage.js
+Requisitos:
+- Node.js
+- npm
 
-      Cómo correr el proyecto
-# 1. Clonar el repositorio
-git clone https://github.com/aquizu-ivan/argentina-naturaleza.git
-cd argentina-naturaleza
-
-# 2. Instalar dependencias
+Comandos basicos:
+```bash
 npm install
-
-# 3. Entorno de desarrollo
 npm run dev
-
-# 4. Build de producción
 npm run build
+```
 
-Mejoras futuras
+Navegacion multipagina (dev server o build): `/` (home), `/caminatas.html`, `/activities.html`, `/carrito.html`, `/perfil.html`, `/mapa.html`, mas las paginas de detalle.
 
-Agregar filtro por región/dificultad además del buscador de texto.
+---
 
-Añadir paginación o carga progresiva para listas largas.
+## Arquitectura y estructura de carpetas
+Arquitectura multipagina con Vite: cada HTML tiene su entry JS; la UI se separa en modulos dentro de `src/ui`, los datos viven en `src/data`, los servicios (clima) en `src/services`, carrito y perfil en carpetas propias, helpers en `src/utils` y un unico `src/styles.css` organizado por secciones.
 
-Integrar un backend real para:
+```
+src/
+  ui/
+    ...
+  data/
+    ...
+  services/
+    ...
+  cart/
+    ...
+  profile/
+    ...
+  utils/
+    ...
+  styles.css
+```
 
-Autenticación.
+- `src/ui/`: componentes de interfaz y funciones de render para cada pagina (home, caminatas, actividades, detalle, mapa, etc.).
+- `src/data/`: datos mockeados de caminatas, actividades y regiones.
+- `src/services/weatherService.js`: integracion con OpenWeatherMap para clima por ciudad, con manejo de errores basico.
+- `src/cart/`: logica de carrito (lectura/escritura en localStorage, badge, helpers de conteo).
+- `src/profile/`: logica del perfil de usuario (carga/guardado de formulario en localStorage).
+- `src/utils/`: helpers compartidos (storage robusto, formateadores, etc.).
+- `src/styles.css`: estilos globales organizados por secciones (layout, header, hero, cards, filtros, mapa, carrito, perfil, etc.).
 
-Reservas de actividades.
+Patrones clave:
+- Inicializacion por pagina: cada entry JS renderiza su pagina, conecta eventos (filtros, botones) y usa helpers compartidos (filtros, toasts, storage).
+- Helpers reutilizables: `setupListFilters` comparte la logica de filtros entre caminatas y actividades; `storageUtils` (`safeLoadJSON`, `safeSaveJSON`) protege lecturas/escrituras en localStorage; `feedbackMessages` unifica los toasts.
 
-Historial de compras.
+---
 
-Sistema de reseñas y valoraciones de caminatas/actividades.
+## Funcionalidades principales
 
-Internacionalización (ES / EN).
+### Home
+- Hero con mensaje principal y CTA para explorar caminatas y actividades.
+- Acceso rapido a las secciones clave (listados, mapa, carrito/perfil).
 
-Autor
+### Listados de caminatas y actividades
+- Cards generadas dinamicamente desde datos mock.
+- Filtros en vivo por texto, region y dificultad.
+- Contadores de resultados y mensajes claros cuando no hay coincidencias.
+- Logica de filtros reutilizada mediante un helper compartido.
 
-Desarrollado por Iván Aquizu como proyecto de porfolio front-end.
-Centrado en diseño, experiencia de usuario y manejo de estado en el cliente con JavaScript vanilla.
+### Clima por ciudad
+- Integracion con OpenWeatherMap usando el nombre de la ciudad.
+- Estado “Cargando clima…” mientras se realiza el fetch.
+- Mensaje claro cuando el clima no esta disponible o hay error.
+- Chips de clima embebidos dentro de las cards de caminatas.
+
+### Mapa interactivo
+- Mapa estilizado de Argentina con markers de caminatas y actividades.
+- Toggles para mostrar/ocultar tipos de experiencias.
+- Tooltips con informacion de cada experiencia y link a la pagina de detalle.
+- Lista textual accesible de las experiencias visibles en el mapa.
+
+### Carrito
+- Agregar caminatas/actividades al carrito desde las cards o el detalle.
+- Modificar cantidades, eliminar items y vaciar el carrito.
+- Calculo de totales segun los datos de cada experiencia.
+- Estado persistido en localStorage con helpers robustos.
+- Toasts de feedback al eliminar items o vaciar el carrito.
+
+### Perfil de usuario
+- Formulario para guardar nombre, email y otros datos basicos.
+- Validaciones simples en el front.
+- Guardado de datos en localStorage con helpers seguros.
+- Toasts de exito/advertencia para el estado del formulario.
+
+### Accesibilidad basica y UX
+- Skip link para saltar al contenido principal.
+- Foco visible consistente en enlaces y botones.
+- Mensajes dinamicos (resultados de filtros, clima, toasts) con aria-live y roles apropiados.
+- Mapa con toggles accesibles y lista paralela para lectores de pantalla.
+
+### Responsive
+- Layout adaptado a mobile, tablet y desktop.
+- Grillas de cards en 1/2/3 columnas segun ancho.
+- Ajustes especificos en detalle, carrito, perfil y mapa para pantallas pequenas.
+
+---
+
+## Accesibilidad y UX
+
+- Lo que ya esta implementado:
+  - Estructura y navegacion: `lang="es"`, skip link al inicio, uso de `<main>`, nav con `aria-label` y `aria-current` para marcar la pagina activa.
+  - Formularios y filtros: filtros en `<fieldset>` con `<legend>`, labels asociadas, contadores de resultados con `role="status"` y `aria-live="polite"`.
+  - Clima, mensajes y toasts: chip de clima con estados de carga/error; mensajes dinamicos (clima, resultados, toasts) anunciables via `aria-live` y roles (`status`, `alert`); toasts contextuales para acciones clave (guardar perfil, eliminar/vaciar carrito).
+  - Mapa interactivo: markers como botones con `aria-label` descriptivo, toggles con `aria-pressed`, lista textual accesible de experiencias visibles, tooltip como mini dialogo con foco en Cerrar y retorno al marker.
+  - Foco visible y responsive: estilos de `:focus-visible` coherentes y layouts adaptados para que controles no se superpongan ni se salgan del viewport en mobile.
+
+- Posibles mejoras:
+  - Asociar mensajes de error de formularios con `aria-describedby`.
+  - Agregar un boton accesible de “limpiar filtros” en listados.
+  - Respetar `prefers-reduced-motion` para reducir animaciones.
+  - Afinar manejo de foco/teclado en el mapa (ej. cerrar tooltip con `Esc`, navegacion entre markers).
+
+---
+
+## Robustez y manejo de errores
+
+- Lo que ya esta implementado:
+  - Storage robusto: helpers `safeLoadJSON` / `safeSaveJSON` para leer/escribir en `localStorage`, manejando claves inexistentes o JSON corrupto con defaults seguros y avisos en consola.
+  - Perfil y carrito: validaciones simples en perfil antes de guardar; totales del carrito calculados desde datos originales; comportamiento estable incluso con storage viejo o mal formado.
+  - Clima y mapa: servicio de clima que distingue errores (API key, red, respuestas inesperadas) y muestra mensajes claros cuando no hay datos; mapa con estados vacios explicitos al no haber experiencias visibles.
+  - Feedback de errores/estados vacios: toasts informan acciones clave (guardar perfil, eliminar/vaciar carrito); listados muestran “sin resultados” cuando los filtros no devuelven coincidencias.
+
+- Posibles mejoras:
+  - Agregar TTL/cache para respuestas de clima y evitar peticiones repetidas.
+  - Implementar timeouts y mensajes especificos cuando el clima tarde o falle.
+  - Extender helpers de storage a futuros modulos (favoritos, preferencias).
+  - Guardas adicionales en el mapa para datos incompletos de experiencias.
+
+---
+
+## Roadmap / mejoras futuras
+
+- **Accesibilidad 2.5 / 3.0**  
+  aria-describedby en errores, boton de limpiar filtros, soporte `prefers-reduced-motion`, mejoras de foco/teclado en mapa y toasts.
+- **Performance movil ampliada**  
+  Optimizacion y lazy-load de imagenes, reduccion de efectos pesados en baja gama, ajuste de CSS para mejorar carga percibida.
+- **Refactor visual y sistema de diseno ligero**  
+  Modularizar `styles.css`, consolidar tokens de espaciado/color, limpiar duplicados para mantenimiento.
+- **Mejoras en mapa y clima**  
+  Cache con TTL y reintentos suaves, mensajes mas claros en fallos de red, posible clustering si crece el dataset.
+- **Funcionalidades de producto**  
+  Favoritos, filtros avanzados, historial de busquedas o mas metadatos por experiencia, manteniendo enfoque en UX y accesibilidad.
+- **Compartir y deep links**  
+  Links directos a experiencias o filtros preaplicados para mejorar descubrimiento y compartir contenido.
