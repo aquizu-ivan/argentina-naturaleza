@@ -4,6 +4,7 @@ import { trailsData } from "./data/trailsData.js";
 import { renderTrailsPage } from "./ui/renderTrailsPage.js";
 import { renderTrailCards } from "./ui/renderTrailCards.js";
 import { filterTrails } from "./ui/filterTrails.js";
+import { setupListFilters } from "./ui/listFilters.js";
 import { updateHeaderUserState } from "./ui/header.js";
 
 function setupFadeInAnimations() {
@@ -38,37 +39,26 @@ const regionSelect = document.getElementById("trailRegionFilter");
 const difficultySelect = document.getElementById("trailDifficultyFilter");
 const resultsInfo = document.getElementById("trailsResultsInfo");
 
-function applyTrailFilters() {
-  const filters = {
-    searchText: searchInput ? searchInput.value : "",
-    region: regionSelect ? regionSelect.value : "",
-    difficulty: difficultySelect ? difficultySelect.value : ""
-  };
-
-  const filteredTrails = filterTrails(trailsData, filters);
-  renderTrailCards(filteredTrails);
-
-   if (resultsInfo) {
-    if (filteredTrails.length > 0) {
-      resultsInfo.textContent = `Se encontraron ${filteredTrails.length} caminatas.`;
-    } else {
-      resultsInfo.textContent = "No encontramos caminatas para estos filtros.";
-    }
-  }
+function renderFilteredTrails(trails) {
+  renderTrailCards(trails);
   updateCartBadge();
   observeFadeIn();
 }
 
-if (searchInput) {
-  searchInput.addEventListener("input", applyTrailFilters);
-}
-
-if (regionSelect) {
-  regionSelect.addEventListener("change", applyTrailFilters);
-}
-
-if (difficultySelect) {
-  difficultySelect.addEventListener("change", applyTrailFilters);
-}
-
-applyTrailFilters();
+setupListFilters({
+  searchInput,
+  regionSelect,
+  difficultySelect,
+  resultsInfoElement: resultsInfo,
+  getAllItems: function () {
+    return trailsData;
+  },
+  applyFilterLogic: function (items, filters) {
+    return filterTrails(items, filters);
+  },
+  onResultsChange: renderFilteredTrails,
+  labels: {
+    singular: "caminata",
+    plural: "caminatas"
+  }
+});
