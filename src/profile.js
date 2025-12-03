@@ -1,4 +1,4 @@
-﻿import "./styles.css";
+import "./styles.css";
 import { renderHeader, updateHeaderUserState } from "./ui/header.js";
 import { renderProfilePage } from "./ui/renderProfilePage.js";
 import { clearProfile, getProfile, saveProfile } from "./profile/profileStorage.js";
@@ -30,17 +30,35 @@ function setupProfileForm() {
   const summary = document.getElementById("profileSummary");
   const profile = getProfile();
 
-  const setError = function (field, message) {
-    const errorEl = document.querySelector(`[data-error-for="${field}"]`);
-    if (errorEl) errorEl.textContent = message || "";
-  };
+  const fullNameInput = form.querySelector("#fullName");
+  const emailInput = form.querySelector("#email");
+  const locationInput = form.querySelector("#location");
+  const phoneInput = form.querySelector("#phone");
+  const notesInput = form.querySelector("#notes");
+
+  const fullNameError = document.getElementById("fullNameError");
+  const emailError = document.getElementById("emailError");
+
+  function setFieldError(input, errorElement, message) {
+    if (!input || !errorElement) return;
+    input.setAttribute("aria-invalid", "true");
+    input.setAttribute("aria-describedby", errorElement.id);
+    errorElement.textContent = message;
+  }
+
+  function clearFieldError(input, errorElement) {
+    if (!input || !errorElement) return;
+    input.removeAttribute("aria-invalid");
+    input.removeAttribute("aria-describedby");
+    errorElement.textContent = "";
+  }
 
   if (profile) {
-    form.fullName.value = profile.fullName || "";
-    form.email.value = profile.email || "";
-    form.location.value = profile.location || "";
-    form.phone.value = profile.phone || "";
-    form.notes.value = profile.notes || "";
+    if (fullNameInput) fullNameInput.value = profile.fullName || "";
+    if (emailInput) emailInput.value = profile.email || "";
+    if (locationInput) locationInput.value = profile.location || "";
+    if (phoneInput) phoneInput.value = profile.phone || "";
+    if (notesInput) notesInput.value = profile.notes || "";
   }
 
   const clearButton = document.querySelector("[data-profile-clear]");
@@ -53,26 +71,30 @@ function setupProfileForm() {
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    setError("fullName", "");
-    setError("email", "");
+    clearFieldError(fullNameInput, fullNameError);
+    clearFieldError(emailInput, emailError);
     if (status) {
       status.textContent = "";
       status.className = "profile__status";
     }
 
-    const fullName = form.fullName.value.trim();
-    const email = form.email.value.trim();
-    const location = form.location.value.trim();
-    const phone = form.phone.value.trim();
-    const notes = form.notes.value.trim();
+    const fullName = fullNameInput ? fullNameInput.value.trim() : "";
+    const email = emailInput ? emailInput.value.trim() : "";
+    const location = locationInput ? locationInput.value.trim() : "";
+    const phone = phoneInput ? phoneInput.value.trim() : "";
+    const notes = notesInput ? notesInput.value.trim() : "";
 
     let hasError = false;
-    if (!fullName) {
-      setError("fullName", "Ingresá tu nombre completo.");
+    if (fullNameInput && !fullName) {
+      setFieldError(fullNameInput, fullNameError, "Ingresá tu nombre completo.");
       hasError = true;
     }
     if (!email || !email.includes("@")) {
-      setError("email", "Ingresá un email válido.");
+      setFieldError(
+        emailInput,
+        emailError,
+        "Ingresá un email válido, por ejemplo: nombre@correo.com."
+      );
       hasError = true;
     }
     if (hasError) {
@@ -80,6 +102,10 @@ function setupProfileForm() {
         type: "warning",
         text: "Perfil: revisá los campos marcados antes de continuar."
       });
+      const firstErrorInput = form.querySelector("[aria-invalid='true']");
+      if (firstErrorInput) {
+        firstErrorInput.focus();
+      }
       return;
     }
 
@@ -106,9 +132,9 @@ if (app) {
       ${renderHeader("profile")}
       ${renderProfilePage()}
       <footer class="footer">
-        <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
         <div class="footer__links">
-          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
@@ -118,5 +144,4 @@ if (app) {
   updateHeaderUserState();
   setupFadeInAnimations();
 }
-
 
