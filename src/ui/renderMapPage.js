@@ -13,6 +13,9 @@ export function renderMapPage(root = document.querySelector("#app")) {
             <p class="map-page__intro">
               Explora las caminatas y actividades de Naturaleza Argentina en un mapa interactivo.
             </p>
+            <a href="#mapExperiencesList" class="map-skip-link">
+              Saltar al listado de experiencias
+            </a>
           </div>
 
           <div class="map__controls">
@@ -49,7 +52,11 @@ export function renderMapPage(root = document.querySelector("#app")) {
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
             No hay experiencias para los filtros seleccionados.
           </p>
-          <section class="map-list" aria-label="Listado de experiencias visibles en el mapa">
+          <section
+            class="map-list"
+            aria-label="Listado de experiencias visibles en el mapa"
+            id="mapExperiencesList"
+          >
             <h2 class="map-list__title">Experiencias visibles en el mapa</h2>
             <div class="map-list__content"></div>
           </section>

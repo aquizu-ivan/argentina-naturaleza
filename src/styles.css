@@ -2079,3 +2079,11 @@ h3 {
   opacity: 0.9;
   color: var(--color-muted);
 }
+
+.map-skip-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  text-decoration: underline;
+}
