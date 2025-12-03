@@ -552,6 +552,35 @@ h3 {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.filters-clear {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #f1f6f3;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.filters-clear:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 14px rgba(11, 59, 46, 0.14);
+  transform: translateY(-1px);
+}
+
+.filters-clear:focus-visible {
+  outline: 2px solid var(--color-brown-accent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .filters-panel .filters-clear {
+    align-self: flex-start;
+  }
+}
+
 @media (min-width: 768px) {
   .trails__search {
     flex-direction: row;
@@ -2049,4 +2078,12 @@ h3 {
   font-size: 0.95rem;
   opacity: 0.9;
   color: var(--color-muted);
+}
+
+.map-skip-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  text-decoration: underline;
 }

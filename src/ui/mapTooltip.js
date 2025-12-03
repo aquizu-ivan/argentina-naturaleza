@@ -1,3 +1,5 @@
+let tooltipKeydownHandler = null;
+
 export function createMapTooltip(containerElement, { onClose } = {}) {
   if (!containerElement) return { showTooltip: () => {}, hideTooltip: () => {} };
 
@@ -65,6 +67,21 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
         hideTooltip();
       });
     }
+    if (tooltipKeydownHandler) {
+      document.removeEventListener("keydown", tooltipKeydownHandler);
+      tooltipKeydownHandler = null;
+    }
+
+    function handleKeydown(event) {
+      if (event.key === "Escape" || event.key === "Esc") {
+        event.preventDefault();
+        event.stopPropagation();
+        hideTooltip();
+      }
+    }
+
+    tooltipKeydownHandler = handleKeydown;
+    document.addEventListener("keydown", handleKeydown);
 
     tooltip.style.display = "block";
     tooltip.style.visibility = "hidden";
@@ -87,6 +104,10 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
   function hideTooltip({ restoreFocus = true } = {}) {
     tooltip.style.display = "none";
     tooltip.style.opacity = "0";
+    if (tooltipKeydownHandler) {
+      document.removeEventListener("keydown", tooltipKeydownHandler);
+      tooltipKeydownHandler = null;
+    }
     if (restoreFocus && typeof onClose === "function") {
       onClose();
     }

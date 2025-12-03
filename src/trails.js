@@ -38,6 +38,7 @@ const searchInput = document.getElementById("trailSearch");
 const regionSelect = document.getElementById("trailRegionFilter");
 const difficultySelect = document.getElementById("trailDifficultyFilter");
 const resultsInfo = document.getElementById("trailsResultsInfo");
+const clearFiltersButton = document.getElementById("trailsClearFiltersButton");
 
 function renderFilteredTrails(trails) {
   renderTrailCards(trails);
@@ -45,7 +46,7 @@ function renderFilteredTrails(trails) {
   observeFadeIn();
 }
 
-setupListFilters({
+const { update } = setupListFilters({
   searchInput,
   regionSelect,
   difficultySelect,
@@ -62,3 +63,15 @@ setupListFilters({
     plural: "caminatas"
   }
 });
+
+if (clearFiltersButton) {
+  clearFiltersButton.addEventListener("click", function () {
+    if (searchInput) searchInput.value = "";
+    if (regionSelect) regionSelect.value = "";
+    if (difficultySelect) difficultySelect.value = "";
+
+    if (typeof update === "function") {
+      update();
+    }
+  });
+}

@@ -16,12 +16,22 @@ export function renderProfilePage() {
             <div class="profile__field">
               <label for="fullName">Nombre completo</label>
               <input id="fullName" name="fullName" type="text" autocomplete="name" required />
-              <small class="profile__error" data-error-for="fullName"></small>
+              <small
+                id="fullNameError"
+                class="profile__error"
+                data-error-for="fullName"
+                aria-live="polite"
+              ></small>
             </div>
             <div class="profile__field">
               <label for="email">Email</label>
               <input id="email" name="email" type="email" autocomplete="email" required />
-              <small class="profile__error" data-error-for="email"></small>
+              <small
+                id="emailError"
+                class="profile__error"
+                data-error-for="email"
+                aria-live="polite"
+              ></small>
             </div>
             <div class="profile__field">
               <label for="location">Localidad / Provincia</label>
