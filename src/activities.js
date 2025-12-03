@@ -4,6 +4,7 @@ import { activitiesData } from "./data/activitiesData.js";
 import { renderActivitiesPage } from "./ui/renderActivitiesPage.js";
 import { renderActivityCards } from "./ui/renderActivityCards.js";
 import { filterTrails } from "./ui/filterTrails.js";
+import { setupListFilters } from "./ui/listFilters.js";
 import { updateHeaderUserState } from "./ui/header.js";
 
 function setupFadeInAnimations() {
@@ -38,37 +39,26 @@ const regionSelect = document.getElementById("activityRegionFilter");
 const difficultySelect = document.getElementById("activityDifficultyFilter");
 const resultsInfo = document.getElementById("activitiesResultsInfo");
 
-function applyActivityFilters() {
-  const filters = {
-    searchText: searchInput ? searchInput.value : "",
-    region: regionSelect ? regionSelect.value : "",
-    difficulty: difficultySelect ? difficultySelect.value : ""
-  };
-
-  const filteredActivities = filterTrails(activitiesData, filters);
-  renderActivityCards(filteredActivities);
-
-  if (resultsInfo) {
-    if (filteredActivities.length > 0) {
-      resultsInfo.textContent = `Se encontraron ${filteredActivities.length} actividades.`;
-    } else {
-      resultsInfo.textContent = "No encontramos actividades para estos filtros.";
-    }
-  }
+function renderFilteredActivities(activities) {
+  renderActivityCards(activities);
   updateCartBadge();
   observeFadeIn();
 }
 
-if (searchInput) {
-  searchInput.addEventListener("input", applyActivityFilters);
-}
-
-if (regionSelect) {
-  regionSelect.addEventListener("change", applyActivityFilters);
-}
-
-if (difficultySelect) {
-  difficultySelect.addEventListener("change", applyActivityFilters);
-}
-
-applyActivityFilters();
+setupListFilters({
+  searchInput,
+  regionSelect,
+  difficultySelect,
+  resultsInfoElement: resultsInfo,
+  getAllItems: function () {
+    return activitiesData;
+  },
+  applyFilterLogic: function (items, filters) {
+    return filterTrails(items, filters);
+  },
+  onResultsChange: renderFilteredActivities,
+  labels: {
+    singular: "actividad",
+    plural: "actividades"
+  }
+});
