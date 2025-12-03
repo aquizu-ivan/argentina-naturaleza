@@ -52,6 +52,13 @@ export function renderActivitiesPage() {
                   </select>
                 </div>
               </div>
+              <button
+                type="button"
+                class="filters-clear"
+                id="activitiesClearFiltersButton"
+              >
+                Limpiar filtros
+              </button>
             </fieldset>
           </div>
           <p

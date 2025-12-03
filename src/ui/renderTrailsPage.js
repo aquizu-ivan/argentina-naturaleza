@@ -52,6 +52,13 @@ export function renderTrailsPage() {
                   </select>
                 </div>
               </div>
+              <button
+                type="button"
+                class="filters-clear"
+                id="trailsClearFiltersButton"
+              >
+                Limpiar filtros
+              </button>
             </fieldset>
           </div>
           <p

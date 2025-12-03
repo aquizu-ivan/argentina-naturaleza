@@ -38,6 +38,7 @@ const searchInput = document.getElementById("activitySearch");
 const regionSelect = document.getElementById("activityRegionFilter");
 const difficultySelect = document.getElementById("activityDifficultyFilter");
 const resultsInfo = document.getElementById("activitiesResultsInfo");
+const clearFiltersButton = document.getElementById("activitiesClearFiltersButton");
 
 function renderFilteredActivities(activities) {
   renderActivityCards(activities);
@@ -45,7 +46,7 @@ function renderFilteredActivities(activities) {
   observeFadeIn();
 }
 
-setupListFilters({
+const { update } = setupListFilters({
   searchInput,
   regionSelect,
   difficultySelect,
@@ -62,3 +63,15 @@ setupListFilters({
     plural: "actividades"
   }
 });
+
+if (clearFiltersButton) {
+  clearFiltersButton.addEventListener("click", function () {
+    if (searchInput) searchInput.value = "";
+    if (regionSelect) regionSelect.value = "";
+    if (difficultySelect) difficultySelect.value = "";
+
+    if (typeof update === "function") {
+      update();
+    }
+  });
+}
