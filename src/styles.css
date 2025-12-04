@@ -1911,6 +1911,37 @@ h3 {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .fade-in,
+  .map__tooltip,
+  .feedback-message,
+  .hero,
+  .trail-card,
+  .cart-item,
+  .cart-summary,
+  .profile__field input,
+  .map__toggle,
+  .filters-clear,
+  .map-skip-link {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: #0f1f17;

@@ -12,6 +12,7 @@ export function renderProfilePage() {
         <p class="profile__helper">Guardá tus datos para agilizar tus próximas reservas de caminatas y actividades.</p>
         <div class="profile__summary" id="profileSummary">${greeting}</div>
         <form id="profileForm" class="profile__form">
+          <p id="profileErrorsSummary" class="sr-only" aria-live="assertive"></p>
           <div class="profile__fields">
             <div class="profile__field">
               <label for="fullName">Nombre completo</label>
