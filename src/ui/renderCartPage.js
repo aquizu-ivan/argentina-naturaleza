@@ -23,8 +23,10 @@ export function renderCartPage() {
           </div>
 
           <div class="cart-layout">
+            <h2 class="sr-only">Experiencias en tu carrito</h2>
             <div id="cartList" class="cart-list"></div>
             <aside class="cart-summary" aria-label="Resumen del carrito">
+              <h2 class="sr-only">Resumen del carrito</h2>
               <div class="cart-summary__user">
                 <p class="cart-summary__label">Datos del viajero</p>
                 ${
