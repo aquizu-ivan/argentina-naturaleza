@@ -48,18 +48,37 @@ function setupProfileForm() {
 
   const fullNameError = document.getElementById("fullNameError");
   const emailError = document.getElementById("emailError");
+  const errorsSummary = document.getElementById("profileErrorsSummary");
 
   function setFieldError(input, errorElement, message) {
     if (!input || !errorElement) return;
     input.setAttribute("aria-invalid", "true");
-    input.setAttribute("aria-describedby", errorElement.id);
+    const current = input.getAttribute("aria-describedby");
+    const ids = current ? current.split(" ").filter(Boolean) : [];
+    if (!ids.includes(errorElement.id)) {
+      ids.push(errorElement.id);
+    }
+    input.setAttribute("aria-describedby", ids.join(" "));
     errorElement.textContent = message;
   }
 
   function clearFieldError(input, errorElement) {
     if (!input || !errorElement) return;
     input.removeAttribute("aria-invalid");
-    input.removeAttribute("aria-describedby");
+    const current = input.getAttribute("aria-describedby");
+    if (current) {
+      const ids = current
+        .split(" ")
+        .filter(Boolean)
+        .filter(function (id) {
+          return id !== errorElement.id;
+        });
+      if (ids.length > 0) {
+        input.setAttribute("aria-describedby", ids.join(" "));
+      } else {
+        input.removeAttribute("aria-describedby");
+      }
+    }
     errorElement.textContent = "";
   }
 
@@ -83,6 +102,9 @@ function setupProfileForm() {
     event.preventDefault();
     clearFieldError(fullNameInput, fullNameError);
     clearFieldError(emailInput, emailError);
+    if (errorsSummary) {
+      errorsSummary.textContent = "";
+    }
     if (status) {
       status.textContent = "";
       status.className = "profile__status";
@@ -108,6 +130,20 @@ function setupProfileForm() {
       hasError = true;
     }
     if (hasError) {
+      if (errorsSummary) {
+        const messages = [];
+        if (fullNameInput && fullNameInput.hasAttribute("aria-invalid")) {
+          messages.push("Nombre completo");
+        }
+        if (emailInput && emailInput.hasAttribute("aria-invalid")) {
+          messages.push("Email");
+        }
+        const count = messages.length;
+        errorsSummary.textContent =
+          count > 0
+            ? `Hay ${count} campo${count > 1 ? "s" : ""} con error: ${messages.join(", ")}.`
+            : "";
+      }
       showFeedbackMessage({
         type: "warning",
         text: "Perfil: revisá los campos marcados antes de continuar."
@@ -123,6 +159,9 @@ function setupProfileForm() {
     if (status) {
       status.textContent = "Datos guardados para tus próximas reservas.";
       status.classList.add("profile__status--success");
+    }
+    if (errorsSummary) {
+      errorsSummary.textContent = "";
     }
     showFeedbackMessage({
       type: "success",
