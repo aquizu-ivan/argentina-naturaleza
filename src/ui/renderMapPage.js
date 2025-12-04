@@ -13,6 +13,9 @@ export function renderMapPage(root = document.querySelector("#app")) {
             <p class="map-page__intro">
               Explora las caminatas y actividades de Naturaleza Argentina en un mapa interactivo.
             </p>
+            <p class="map-page__intro map-page__hint">
+              Cómo usar este mapa: usá los botones para mostrar caminatas o actividades, seleccioná un punto en el mapa para ver detalles y revisá la lista de experiencias visibles debajo.
+            </p>
             <a href="#mapExperiencesList" class="map-skip-link">
               Saltar al listado de experiencias
             </a>

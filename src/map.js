@@ -76,9 +76,16 @@ function initMapPage() {
     listContentElement.innerHTML = "";
 
     if (!experiences.length) {
-      const empty = document.createElement("p");
-      empty.className = "map-list__empty";
-      empty.textContent = "No hay experiencias visibles en el mapa con los filtros actuales.";
+      const empty = document.createElement("div");
+      empty.className = "empty-state map-list__empty fade-in";
+
+      const title = document.createElement("p");
+      title.textContent = "No hay experiencias visibles en el mapa con esta combinación de filtros.";
+
+      const hint = document.createElement("p");
+      hint.textContent = "Probá activar caminatas, actividades o ajustar los filtros.";
+
+      empty.append(title, hint);
       listContentElement.appendChild(empty);
       return;
     }
