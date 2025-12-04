@@ -9,7 +9,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
       <main>
         <section class="content content--light map-page fade-in">
           <div class="map-page__header">
-            <h1>Mapa de experiencias</h1>
+            <h1>Mapa interactivo de experiencias</h1>
             <p class="map-page__intro">
               Explora las caminatas y actividades de Naturaleza Argentina en un mapa interactivo.
             </p>
@@ -18,13 +18,22 @@ export function renderMapPage(root = document.querySelector("#app")) {
             </a>
           </div>
 
-          <div class="map__controls">
+          <p
+            id="mapExperiencesLiveRegion"
+            class="sr-only"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <section class="map__controls" aria-label="Controles del mapa">
+            <h2 class="sr-only">Controles del mapa</h2>
             <div class="map__filters" aria-label="Filtros de mapa">
               <button
                 type="button"
                 id="mapToggleTrails"
                 class="map__toggle map__toggle--active"
                 aria-pressed="true"
+                aria-controls="mapCanvasRegion mapExperiencesList"
               >
                 <span class="map__toggle-visual" aria-hidden="true"></span>
                 <span class="map__toggle-label">Mostrar caminatas</span>
@@ -34,6 +43,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
                 id="mapToggleActivities"
                 class="map__toggle map__toggle--active"
                 aria-pressed="true"
+                aria-controls="mapCanvasRegion mapExperiencesList"
               >
                 <span class="map__toggle-visual" aria-hidden="true"></span>
                 <span class="map__toggle-label">Mostrar actividades</span>
@@ -44,20 +54,29 @@ export function renderMapPage(root = document.querySelector("#app")) {
               <span class="map__badge map__badge--trail">Caminatas</span>
               <span class="map__badge map__badge--activity">Actividades</span>
             </div>
-          </div>
+          </section>
 
-          <div class="map__canvas">
+          <section
+            class="map__canvas"
+            id="mapCanvasRegion"
+            role="region"
+            aria-label="Mapa interactivo de experiencias en Argentina"
+          >
+            <h2 class="sr-only">Mapa de experiencias</h2>
             <div class="map__canvas-placeholder">Aqui va el mapa (Bloque C/D)</div>
-          </div>
+          </section>
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
             No hay experiencias para los filtros seleccionados.
           </p>
           <section
             class="map-list"
-            aria-label="Listado de experiencias visibles en el mapa"
+            role="region"
             id="mapExperiencesList"
+            aria-labelledby="mapExperiencesListTitle"
           >
-            <h2 class="map-list__title">Experiencias visibles en el mapa</h2>
+            <h2 class="map-list__title" id="mapExperiencesListTitle">
+              Experiencias visibles en el mapa
+            </h2>
             <div class="map-list__content"></div>
           </section>
         </section>

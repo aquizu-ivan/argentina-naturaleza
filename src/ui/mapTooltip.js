@@ -1,4 +1,8 @@
+const FOCUSABLE_SELECTOR =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 let tooltipKeydownHandler = null;
+let currentTriggerElement = null;
 
 export function createMapTooltip(containerElement, { onClose } = {}) {
   if (!containerElement) return { showTooltip: () => {}, hideTooltip: () => {} };
@@ -41,51 +45,86 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
   function showTooltip(marker, markerElement, { focus = false } = {}) {
     if (!markerElement) return;
 
+    currentTriggerElement = focus ? markerElement : null;
+
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
     const regionText = marker.region || "Argentina";
     const difficulty = marker.difficulty
       ? `<p class="map__tooltip-detail">Dificultad: ${marker.difficulty}</p>`
       : "";
 
-    const titleId = "mapTooltipTitle";
+    const markerIdSuffix = marker.id || "experience";
+    const titleId = `mapTooltipTitle-${markerIdSuffix}`;
+    const bodyId = `mapTooltipBody-${markerIdSuffix}`;
     tooltip.innerHTML = `
       <button class="map__tooltip-close" type="button" aria-label="Cerrar información">×</button>
       <h3 class="map__tooltip-title" id="${titleId}">${marker.title}</h3>
-      <p class="map__tooltip-type">${typeLabel}</p>
-      <p class="map__tooltip-detail">Región: ${regionText}</p>
-      ${difficulty}
-      <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
+      <div class="map__tooltip-body" id="${bodyId}">
+        <p class="map__tooltip-type">${typeLabel}</p>
+        <p class="map__tooltip-detail">Región: ${regionText}</p>
+        ${difficulty}
+        <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
+      </div>
     `;
     tooltip.setAttribute("role", "dialog");
+    tooltip.setAttribute("aria-modal", "true");
     tooltip.setAttribute("aria-labelledby", titleId);
+    tooltip.setAttribute("aria-describedby", bodyId);
 
     const closeButton = tooltip.querySelector(".map__tooltip-close");
     const detailLink = tooltip.querySelector(".map__tooltip-link");
+
+    tooltip.style.display = "block";
+    tooltip.style.visibility = "hidden";
+    tooltip.style.opacity = "0";
+
+    const focusableElements = Array.from(
+      tooltip.querySelectorAll(FOCUSABLE_SELECTOR)
+    ).filter(function (el) {
+      return !el.hasAttribute("disabled");
+    });
+
     if (closeButton) {
       closeButton.addEventListener("click", function (event) {
         event.stopPropagation();
         hideTooltip();
       });
     }
+
     if (tooltipKeydownHandler) {
-      document.removeEventListener("keydown", tooltipKeydownHandler);
+      tooltip.removeEventListener("keydown", tooltipKeydownHandler);
       tooltipKeydownHandler = null;
     }
 
     function handleKeydown(event) {
-      if (event.key === "Escape" || event.key === "Esc") {
+      const isEscape = event.key === "Escape" || event.key === "Esc";
+      const isTab = event.key === "Tab";
+
+      if (isEscape) {
         event.preventDefault();
         event.stopPropagation();
         hideTooltip();
+        return;
+      }
+
+      if (!isTab || focusableElements.length === 0) return;
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+      const isShift = event.shiftKey;
+
+      if (!isShift && activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (isShift && activeElement === first) {
+        event.preventDefault();
+        last.focus();
       }
     }
 
     tooltipKeydownHandler = handleKeydown;
-    document.addEventListener("keydown", handleKeydown);
-
-    tooltip.style.display = "block";
-    tooltip.style.visibility = "hidden";
-    tooltip.style.opacity = "0";
+    tooltip.addEventListener("keydown", handleKeydown);
 
     requestAnimationFrame(function () {
       positionTooltip(markerElement);
@@ -105,12 +144,17 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
     tooltip.style.display = "none";
     tooltip.style.opacity = "0";
     if (tooltipKeydownHandler) {
-      document.removeEventListener("keydown", tooltipKeydownHandler);
+      tooltip.removeEventListener("keydown", tooltipKeydownHandler);
       tooltipKeydownHandler = null;
     }
-    if (restoreFocus && typeof onClose === "function") {
+    const shouldCallOnClose = restoreFocus && typeof onClose === "function";
+    if (restoreFocus && currentTriggerElement && document.contains(currentTriggerElement)) {
+      currentTriggerElement.focus();
+    }
+    if (shouldCallOnClose) {
       onClose();
     }
+    currentTriggerElement = null;
   }
 
   return { showTooltip, hideTooltip };
