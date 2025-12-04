@@ -18,6 +18,13 @@ export function renderMapPage(root = document.querySelector("#app")) {
             </a>
           </div>
 
+          <p
+            id="mapExperiencesLiveRegion"
+            class="sr-only"
+            role="status"
+            aria-live="polite"
+          ></p>
+
           <section class="map__controls" aria-label="Controles del mapa">
             <h2 class="sr-only">Controles del mapa</h2>
             <div class="map__filters" aria-label="Filtros de mapa">

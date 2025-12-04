@@ -51,6 +51,25 @@ function initMapPage() {
   const activityToggleElement = mapPage ? mapPage.activityToggleElement : null;
   const emptyStateElement = mapPage ? mapPage.emptyStateElement : null;
   const listContentElement = mapPage ? mapPage.listContentElement : null;
+  const liveRegionElement = document.getElementById("mapExperiencesLiveRegion");
+
+  const updateMapExperiencesLiveRegion = function ({ total, hikesCount, activitiesCount }) {
+    if (!liveRegionElement) return;
+    let message = "";
+
+    if (total === 0) {
+      message =
+        "No hay experiencias visibles en el mapa. Ajustá los filtros para ver resultados.";
+    } else if (hikesCount > 0 && activitiesCount > 0) {
+      message = `Se muestran ${total} experiencias en el mapa: ${hikesCount} caminatas y ${activitiesCount} actividades.`;
+    } else if (hikesCount > 0) {
+      message = `Se muestran ${hikesCount} caminatas en el mapa.`;
+    } else if (activitiesCount > 0) {
+      message = `Se muestran ${activitiesCount} actividades en el mapa.`;
+    }
+
+    liveRegionElement.textContent = message;
+  };
 
   const renderVisibleExperiencesList = function (experiences) {
     if (!listContentElement) return;
@@ -132,10 +151,22 @@ function initMapPage() {
       renderVisibleExperiencesList(visibleExperiences);
 
       const hasVisibleMarkers = visibleExperiences.length > 0;
+      const hikesCount = visibleExperiences.filter(function (item) {
+        return item.type === "caminata";
+      }).length;
+      const activitiesCount = visibleExperiences.filter(function (item) {
+        return item.type === "actividad";
+      }).length;
 
       if (emptyStateElement) {
         emptyStateElement.hidden = hasVisibleMarkers;
       }
+
+      updateMapExperiencesLiveRegion({
+        total: visibleExperiences.length,
+        hikesCount,
+        activitiesCount
+      });
     }
 
     const setToggleState = function (button, isPressed) {
