@@ -1,4 +1,4 @@
-﻿import { createTrailCard } from "./createTrailCard.js";
+import { createTrailCard } from "./createTrailCard.js";
 
 export function renderTrailCards(trails) {
   const grid = document.getElementById("trailsGrid");
@@ -9,8 +9,14 @@ export function renderTrailCards(trails) {
   if (!trails || trails.length === 0) {
     const empty = document.createElement("div");
     empty.className = "empty-state results-empty fade-in";
-    empty.textContent =
-      "No encontramos caminatas para estos filtros. Probá ajustar la búsqueda o la región.";
+
+    const title = document.createElement("p");
+    title.textContent = "No encontramos caminatas para esta combinación de filtros.";
+
+    const hint = document.createElement("p");
+    hint.textContent = "Probá limpiar los filtros o elegir otra región/dificultad.";
+
+    empty.append(title, hint);
     grid.appendChild(empty);
     return;
   }

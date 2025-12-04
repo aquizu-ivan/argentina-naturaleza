@@ -1,4 +1,4 @@
-﻿import { createActivityCard } from "./createActivityCard.js";
+import { createActivityCard } from "./createActivityCard.js";
 
 export function renderActivityCards(activities) {
   const grid = document.getElementById("activitiesGrid");
@@ -9,8 +9,14 @@ export function renderActivityCards(activities) {
   if (!activities || activities.length === 0) {
     const empty = document.createElement("div");
     empty.className = "empty-state results-empty fade-in";
-    empty.textContent =
-      "No encontramos actividades para estos filtros. Probá ajustar la búsqueda o la dificultad.";
+
+    const title = document.createElement("p");
+    title.textContent = "No encontramos actividades para esta combinación de filtros.";
+
+    const hint = document.createElement("p");
+    hint.textContent = "Probá limpiar los filtros o elegir otra región/dificultad.";
+
+    empty.append(title, hint);
     grid.appendChild(empty);
     return;
   }
