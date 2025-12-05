@@ -4,6 +4,7 @@ const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const WEATHER_CACHE_STORAGE_KEY = "weatherCache";
 const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutos
+const WEATHER_REQUEST_TIMEOUT_MS = 8000; // timeout suave para la request
 
 function isPlainObject(value) {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -52,6 +53,8 @@ export async function fetchWeatherByCity(city) {
 
   const cityLower = trimmedCity.toLowerCase();
   const cacheEntry = weatherCache[cityLower];
+  const staleCacheData =
+    isPlainObject(cacheEntry) && isValidWeatherData(cacheEntry.data) ? cacheEntry.data : null;
   if (isCacheEntryValid(cacheEntry)) {
     return cacheEntry.data;
   }
@@ -62,12 +65,20 @@ export async function fetchWeatherByCity(city) {
   url.searchParams.set("lang", "es");
   url.searchParams.set("appid", WEATHER_API_KEY);
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), WEATHER_REQUEST_TIMEOUT_MS);
+
   try {
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), { signal: controller.signal });
+    clearTimeout(timeoutId);
     if (!response.ok) {
       console.warn(
         `[weatherService] Respuesta no exitosa (${response.status}) para ${trimmedCity}.`
       );
+      if (staleCacheData) {
+        console.warn("[weatherService] Fallo al actualizar clima, usando datos de cache.");
+        return staleCacheData;
+      }
       return null;
     }
 
@@ -84,6 +95,10 @@ export async function fetchWeatherByCity(city) {
       typeof descriptionRaw !== "string" ||
       !descriptionRaw.trim()
     ) {
+      if (staleCacheData) {
+        console.warn("[weatherService] Datos de clima invalidos, usando cache disponible.");
+        return staleCacheData;
+      }
       return null;
     }
 
@@ -96,7 +111,12 @@ export async function fetchWeatherByCity(city) {
     safeSaveJSON(WEATHER_CACHE_STORAGE_KEY, weatherCache);
     return result;
   } catch (error) {
+    clearTimeout(timeoutId);
     console.warn(`[weatherService] Error al obtener clima para ${trimmedCity}.`, error);
+    if (staleCacheData) {
+      console.warn("[weatherService] Error de red/timeout, usando datos de cache.");
+      return staleCacheData;
+    }
     return null;
   }
 }
