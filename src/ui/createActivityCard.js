@@ -16,6 +16,8 @@ export function createActivityCard(activity) {
   image.alt = activity.name;
   image.loading = "lazy";
   image.decoding = "async";
+  image.width = 400;
+  image.height = 260;
   image.className = "card__image";
 
   const title = document.createElement("h3");
