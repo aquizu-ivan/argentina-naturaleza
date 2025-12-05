@@ -88,7 +88,7 @@ export function renderActivityDetailPage(activityId) {
             </nav>
           </div>
           <div class="detail__media">
-            <img src="${activity.imageUrl}" alt="${activity.name} en ${activity.region}, imagen destacada de la actividad" loading="lazy" />
+            <img src="${activity.imageUrl}" alt="${activity.name} en ${activity.region}, imagen destacada de la actividad" loading="lazy" decoding="async" width="1200" height="720" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">

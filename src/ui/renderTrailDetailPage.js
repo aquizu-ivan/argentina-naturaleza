@@ -88,7 +88,7 @@ export function renderTrailDetailPage(trailId) {
             </nav>
           </div>
           <div class="detail__media">
-            <img src="${trail.imageUrl}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" />
+            <img src="${trail.imageUrl}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" decoding="async" width="1200" height="720" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">
