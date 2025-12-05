@@ -58,9 +58,9 @@ export function renderTrailDetailPage(trailId) {
           </section>
         </main>
         <footer class="footer">
-          <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+          <span>Naturaleza Argentina — Proyecto personal de Iván Aquizu</span>
           <div class="footer__links">
-            <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+            <span>© 2025 — Inspirado en la naturaleza de Argentina</span>
           </div>
         </footer>
       </div>
@@ -101,16 +101,16 @@ export function renderTrailDetailPage(trailId) {
             <p>${trail.longDescription}</p>
             <h2>Información clave</h2>
             <div class="info-keys">
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⛰️</span><span>Dificultad: ${trail.difficulty}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⚡</span><span>Dificultad: ${trail.difficulty}</span></div>
               <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⏱️</span><span>Duración: ${trail.duration}</span></div>
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">📍</span><span>${trail.province} – ${trail.region}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">📍</span><span>${trail.province} — ${trail.region}</span></div>
             </div>
             <div class="price-line">
               <span>Precio por persona</span>
               <strong>${formatPrice(trail.price)}</strong>
             </div>
             <div class="hero__actions">
-              <button class="button button--primary" type="button" data-add-cart> Añadir al carrito</button>
+              <button class="button button--primary" type="button" data-add-cart>Añadir al carrito</button>
               <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
             </div>
           </div>
@@ -129,9 +129,9 @@ export function renderTrailDetailPage(trailId) {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+        <span>Naturaleza Argentina — Proyecto personal de Iván Aquizu</span>
         <div class="footer__links">
-          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 — Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

@@ -1,4 +1,4 @@
-﻿import "./styles.css";
+import "./styles.css";
 import { clearCart, getCartCount, getCartItems, getCartTotal, removeFromCart, updateQuantity } from "./cart/cartStorage.js";
 import { updateCartBadge } from "./cart/cartBadge.js";
 import { formatPrice } from "./utils/formatters.js";
@@ -59,8 +59,8 @@ function createCartRow(item) {
   const meta = document.createElement("div");
   meta.className = "cart-item__meta";
   meta.innerHTML = `
-    <span>🗺️ ${item.province || item.location || item.region || "Argentina"}</span>
-    <span>⛰️ ${item.difficulty || "Sin dato"}</span>
+    <span>📍 ${item.province || item.location || item.region || "Argentina"}</span>
+    <span>⚡ ${item.difficulty || "Sin dato"}</span>
     <span>⏱️ ${item.duration || "Sin duración"}</span>
   `;
 
@@ -118,14 +118,14 @@ function createCartRow(item) {
   removeButton.className = "button button--ghost button--small";
   removeButton.textContent = "Eliminar";
   removeButton.setAttribute("aria-label", "Eliminar este ítem del carrito");
-    removeButton.addEventListener("click", function () {
-      removeFromCart(item.id, item.type);
-      renderCartItems();
-      showFeedbackMessage({
-        type: "info",
-        text: `Carrito: eliminaste "${item.name}" del carrito.`
-      });
+  removeButton.addEventListener("click", function () {
+    removeFromCart(item.id, item.type);
+    renderCartItems();
+    showFeedbackMessage({
+      type: "info",
+      text: `Carrito: eliminaste "${item.name}" del carrito.`
     });
+  });
 
   const rowFooter = document.createElement("div");
   rowFooter.className = "cart-item__footer";

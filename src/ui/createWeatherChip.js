@@ -1,11 +1,11 @@
-﻿import { fetchWeatherByCity } from "../services/weatherService.js";
+import { fetchWeatherByCity } from "../services/weatherService.js";
 
 export function createWeatherChip(city) {
   const chip = document.createElement("div");
   chip.className = "card__weather";
   chip.setAttribute("role", "status");
   chip.setAttribute("aria-live", "polite");
-  chip.textContent = "Cargando clima…";
+  chip.textContent = "Cargando clima.";
 
   if (typeof city !== "string" || !city.trim()) {
     chip.textContent = "Clima no disponible en este momento.";

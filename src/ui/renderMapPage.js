@@ -1,4 +1,4 @@
-﻿import { renderHeader } from "./header.js";
+import { renderHeader } from "./header.js";
 
 export function renderMapPage(root = document.querySelector("#app")) {
   if (!root) return null;
@@ -66,7 +66,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
             aria-label="Mapa interactivo de experiencias en Argentina"
           >
             <h2 class="sr-only">Mapa de experiencias</h2>
-            <div class="map__canvas-placeholder">Aqui va el mapa (Bloque C/D)</div>
+            <div class="map__canvas-placeholder">Aquí va el mapa (Bloque C/D)</div>
           </section>
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
             No hay experiencias para los filtros seleccionados.

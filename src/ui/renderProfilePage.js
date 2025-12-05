@@ -48,7 +48,7 @@ export function renderProfilePage() {
             </div>
           </div>
           <div class="profile__actions">
-            <button class="button button--primary" type="submit">Iniciar sesion</button>
+            <button class="button button--primary" type="submit">Iniciar sesión</button>
             <a class="button button--ghost" href="/index.html">Volver a explorar</a>
             ${hasProfile ? `<button class="button button--ghost" type="button" data-profile-clear>Cerrar sesión</button>` : ""}
           </div>

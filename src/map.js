@@ -59,7 +59,7 @@ function initMapPage() {
 
     if (total === 0) {
       message =
-        "No hay experiencias visibles en el mapa. Ajustá los filtros para ver resultados.";
+        "No hay experiencias visibles en el mapa. Ajust\u00e1 los filtros para ver resultados.";
     } else if (hikesCount > 0 && activitiesCount > 0) {
       message = `Se muestran ${total} experiencias en el mapa: ${hikesCount} caminatas y ${activitiesCount} actividades.`;
     } else if (hikesCount > 0) {
@@ -80,10 +80,10 @@ function initMapPage() {
       empty.className = "empty-state map-list__empty fade-in";
 
       const title = document.createElement("p");
-      title.textContent = "No hay experiencias visibles en el mapa con esta combinación de filtros.";
+      title.textContent = "No hay experiencias visibles en el mapa con esta combinaci\u00f3n de filtros.";
 
       const hint = document.createElement("p");
-      hint.textContent = "Probá activar caminatas, actividades o ajustar los filtros.";
+      hint.textContent = "Prob\u00e1 activar caminatas, actividades o ajustar los filtros.";
 
       empty.append(title, hint);
       listContentElement.appendChild(empty);
@@ -102,8 +102,8 @@ function initMapPage() {
       title.textContent = `${typeLabel}: ${experience.name}`;
 
       const details = document.createElement("div");
-      const difficultyText = experience.difficulty ? ` · Dificultad: ${experience.difficulty}` : "";
-      details.textContent = `Región: ${experience.region || "Argentina"}${difficultyText}`;
+      const difficultyText = experience.difficulty ? ` \u00b7 Dificultad: ${experience.difficulty}` : "";
+      details.textContent = `Regi\u00f3n: ${experience.region || "Argentina"}${difficultyText}`;
 
       const link = document.createElement("a");
       link.className = "map-list__link";

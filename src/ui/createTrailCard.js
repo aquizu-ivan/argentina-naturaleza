@@ -1,4 +1,4 @@
-﻿import { addToCart } from "../cart/cartStorage.js";
+import { addToCart } from "../cart/cartStorage.js";
 import { updateCartBadge } from "../cart/cartBadge.js";
 import { formatPrice } from "../utils/formatters.js";
 import { createWeatherChip } from "./createWeatherChip.js";
@@ -36,9 +36,9 @@ export function createTrailCard(trail) {
   const meta = document.createElement("div");
   meta.className = "card-meta";
   meta.innerHTML = `
-    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⛰️</span><span>Dificultad: ${trail.difficulty}</span></span>
+    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⚡</span><span>Dificultad: ${trail.difficulty}</span></span>
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">⏱️</span><span>${trail.duration}</span></span>
-    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">🗺️</span><span>${trail.region}</span></span>
+    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">📍</span><span>${trail.region}</span></span>
   `;
 
   const weatherChip = createWeatherChip(trail.city);
@@ -68,7 +68,7 @@ export function createTrailCard(trail) {
     });
     updateCartBadge();
     addButton.classList.add("button--added");
-    addButton.textContent = "Añadido ✔";
+    addButton.textContent = "Añadido ✓";
     window.setTimeout(function () {
       addButton.classList.remove("button--added");
       addButton.textContent = "Añadir al carrito";

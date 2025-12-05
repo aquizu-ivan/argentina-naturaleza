@@ -58,9 +58,9 @@ export function renderCartPage() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+        <span>Naturaleza Argentina — Proyecto personal de Iván Aquizu</span>
         <div class="footer__links">
-          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 — Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
