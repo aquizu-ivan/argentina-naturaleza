@@ -30,7 +30,7 @@ export function setupListFilters({
       if (filteredItems.length > 0) {
         resultsInfoElement.textContent = `Se encontraron ${filteredItems.length} ${messages.plural}.`;
       } else {
-        resultsInfoElement.textContent = `No encontramos ${messages.plural} para estos filtros.`;
+        resultsInfoElement.textContent = `No encontramos ${messages.plural} para estos filtros. Probá limpiar o ajustar los filtros para ver más opciones.`;
       }
     }
 

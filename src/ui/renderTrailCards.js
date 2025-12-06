@@ -11,10 +11,11 @@ export function renderTrailCards(trails) {
     empty.className = "empty-state results-empty fade-in";
 
     const title = document.createElement("p");
-    title.textContent = "No encontramos caminatas para esta combinaci\u00f3n de filtros.";
+    title.textContent = "No encontramos caminatas para esta combinación de filtros.";
 
     const hint = document.createElement("p");
-    hint.textContent = "Prob\u00e1 limpiar los filtros o elegir otra regi\u00f3n/dificultad.";
+    hint.textContent =
+      "Probá limpiar los filtros, elegir otra región/dificultad o volver a la lista completa para seguir explorando.";
 
     empty.append(title, hint);
     grid.appendChild(empty);

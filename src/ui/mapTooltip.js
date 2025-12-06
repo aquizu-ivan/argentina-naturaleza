@@ -10,6 +10,7 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
   const tooltip = document.createElement("div");
   tooltip.className = "map__tooltip";
   tooltip.style.display = "none";
+  tooltip.setAttribute("tabindex", "-1");
   containerElement.appendChild(tooltip);
 
   tooltip.addEventListener("click", function (event) {
@@ -42,26 +43,26 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
     tooltip.style.top = `${top}px`;
   }
 
-  function showTooltip(marker, markerElement, { focus = false } = {}) {
+  function showTooltip(marker, markerElement) {
     if (!markerElement) return;
 
-    currentTriggerElement = focus ? markerElement : null;
+    currentTriggerElement = markerElement;
 
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
     const regionText = marker.region || "Argentina";
     const difficulty = marker.difficulty
-      ? `<p class="map__tooltip-detail"><span aria-hidden="true">\u26a1</span> Dificultad: ${marker.difficulty}</p>`
+      ? `<p class="map__tooltip-detail"><span aria-hidden="true">⚡</span> Dificultad: ${marker.difficulty}</p>`
       : "";
 
     const markerIdSuffix = marker.id || "experience";
     const titleId = `mapTooltipTitle-${markerIdSuffix}`;
     const bodyId = `mapTooltipBody-${markerIdSuffix}`;
     tooltip.innerHTML = `
-      <button class="map__tooltip-close" type="button" aria-label="Cerrar informaci\u00f3n de la experiencia"><span aria-hidden="true">\u2715</span></button>
+      <button class="map__tooltip-close" type="button" aria-label="Cerrar información de la experiencia"><span aria-hidden="true">✕</span></button>
       <h3 class="map__tooltip-title" id="${titleId}">${marker.title}</h3>
       <div class="map__tooltip-body" id="${bodyId}">
         <p class="map__tooltip-type">${typeLabel}</p>
-        <p class="map__tooltip-detail"><span aria-hidden="true">\ud83d\uddcd</span> Regi\u00f3n: ${regionText}</p>
+        <p class="map__tooltip-detail"><span aria-hidden="true">📍</span> Región: ${regionText}</p>
         ${difficulty}
         <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
       </div>
@@ -71,12 +72,6 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
     tooltip.setAttribute("aria-describedby", bodyId);
 
     const closeButton = tooltip.querySelector(".map__tooltip-close");
-    const detailLink = tooltip.querySelector(".map__tooltip-link");
-
-    tooltip.style.display = "block";
-    tooltip.style.visibility = "hidden";
-    tooltip.style.opacity = "0";
-
     const focusableElements = Array.from(
       tooltip.querySelectorAll(FOCUSABLE_SELECTOR)
     ).filter(function (el) {
@@ -129,12 +124,10 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
       positionTooltip(markerElement);
       tooltip.style.visibility = "visible";
       tooltip.style.opacity = "1";
-      if (focus) {
-        if (closeButton) {
-          closeButton.focus();
-        } else if (detailLink) {
-          detailLink.focus();
-        }
+      const focusTarget = tooltip.querySelector(".map__tooltip-title") || tooltip;
+      if (focusTarget) {
+        focusTarget.setAttribute("tabindex", "-1");
+        focusTarget.focus();
       }
     });
   }

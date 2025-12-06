@@ -14,7 +14,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
               Explora las caminatas y actividades de Naturaleza Argentina en un mapa interactivo.
             </p>
             <p class="map-page__intro map-page__hint">
-              C\u00f3mo usar este mapa: us\u00e1 los botones para mostrar caminatas o actividades, seleccion\u00e1 un punto en el mapa para ver detalles y revis\u00e1 la lista de experiencias visibles debajo.
+              Cómo usar este mapa: usá los botones para mostrar caminatas o actividades, seleccioná un punto en el mapa para ver detalles y revisá la lista de experiencias visibles debajo.
             </p>
             <a href="#mapExperiencesList" class="map-skip-link">
               Saltar al listado de experiencias
@@ -66,10 +66,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
             aria-label="Mapa interactivo de experiencias en Argentina"
           >
             <h2 class="sr-only">Mapa de experiencias</h2>
-            <div class="map__canvas-placeholder">Ac\u00e1 va el mapa (Bloque C/D)</div>
+            <div class="map__canvas-placeholder">Acá va el mapa (Bloque C/D)</div>
           </section>
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
-            No hay experiencias para los filtros seleccionados.
+            No hay experiencias para los filtros seleccionados. Probá ajustar los filtros o volver a mostrar caminatas y actividades.
           </p>
           <section
             class="map-list"
@@ -88,7 +88,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
       <footer class="footer">
         <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
         <div class="footer__links">
-          <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
@@ -100,6 +100,12 @@ export function renderMapPage(root = document.querySelector("#app")) {
   const activitiesToggle = root.querySelector("#mapToggleActivities");
   const emptyStateElement = root.querySelector(".map__empty-state");
   const listContentElement = root.querySelector(".map-list__content");
+
+  const heading = root.querySelector("h1");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+  }
 
   return {
     canvasElement,
