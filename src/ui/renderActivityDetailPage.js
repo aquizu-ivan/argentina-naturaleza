@@ -59,7 +59,7 @@ export function renderActivityDetailPage(activityId) {
         </main>
 
         <footer class="footer">
-          <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+          <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
           <div class="footer__links">
             <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
           </div>
@@ -137,7 +137,7 @@ export function renderActivityDetailPage(activityId) {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
           <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
@@ -162,12 +162,12 @@ export function renderActivityDetailPage(activityId) {
         region: activity.region,
         location: activity.location,
         difficulty: activity.difficulty,
-      duration: activity.duration,
-      style: activity.style
-    });
-    updateCartBadge();
-    announceCartAddition(`Se añadió ${activity.name} al carrito.`);
-    addButton.textContent = "Añadido ✓";
+        duration: activity.duration,
+        style: activity.style
+      });
+      updateCartBadge();
+      announceCartAddition(`Se añadió ${activity.name} al carrito.`);
+      addButton.textContent = "Añadido ✓";
       addButton.classList.add("button--added");
       window.setTimeout(function () {
         addButton.textContent = "Añadir al carrito";

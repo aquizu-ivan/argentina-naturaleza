@@ -13,7 +13,7 @@ export function renderCartPage() {
       <main>
         <section class="content fade-in">
           <h1>Carrito de actividades y caminatas</h1>
-          <p>Revis\u00e1 lo que a\u00f1adiste y ajust\u00e1 cantidades antes de seguir explorando.</p>
+          <p>Revisá lo que añadiste y ajustá cantidades antes de seguir explorando.</p>
           <div class="cart-toolbar">
             <div class="cart-toolbar__links">
               <a class="button button--ghost" href="/caminatas.html">Seguir explorando caminatas</a>
@@ -35,16 +35,16 @@ export function renderCartPage() {
                       <p class="cart-summary__value">${user.fullName || "Nombre no indicado"}</p>
                       <p class="cart-summary__detail">${user.email || "Email no indicado"}</p>
                       <p class="cart-summary__detail">${user.location || "Ciudad/Provincia no indicada"}</p>
-                      <p class="cart-summary__note">Revis\u00e1 que tus datos est\u00e9n correctos antes de confirmar.</p>
+                      <p class="cart-summary__note">Revisá que tus datos estén correctos antes de confirmar.</p>
                     `
                     : `
-                      <p class="cart-summary__detail">A\u00fan no cargaste tus datos.</p>
+                      <p class="cart-summary__detail">Aún no cargaste tus datos.</p>
                       <a class="button button--ghost button--small" href="/perfil.html">Completar mis datos</a>
                     `
                 }
               </div>
               <div>
-                <p class="cart-summary__label">Total de \u00edtems</p>
+                <p class="cart-summary__label">Total de ítems</p>
                 <p class="cart-summary__value" id="cartCountText">0</p>
               </div>
               <div>
@@ -58,9 +58,9 @@ export function renderCartPage() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
