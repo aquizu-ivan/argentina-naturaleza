@@ -1388,6 +1388,13 @@ h3 {
   outline-offset: 2px;
 }
 
+.map__marker--active {
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.32);
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}
+
 .map__marker--hidden {
   opacity: 0;
   pointer-events: none;

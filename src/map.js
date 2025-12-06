@@ -122,22 +122,30 @@ function initMapPage() {
 
     const markers = buildMapMarkers();
     let lastActiveMarker = null;
+    const clearActiveMarker = function () {
+      if (lastActiveMarker) {
+        lastActiveMarker.classList.remove("map__marker--active");
+        lastActiveMarker = null;
+      }
+    };
+    const setActiveMarker = function (element) {
+      if (!element) return;
+      if (lastActiveMarker && lastActiveMarker !== element) {
+        lastActiveMarker.classList.remove("map__marker--active");
+      }
+      lastActiveMarker = element;
+      lastActiveMarker.classList.add("map__marker--active");
+    };
     const { showTooltip, hideTooltip } = createMapTooltip(canvasElement, {
       onClose() {
-        if (lastActiveMarker) {
-          const target = lastActiveMarker;
-          lastActiveMarker = null;
-          target.focus();
-        }
+        clearActiveMarker();
       }
     });
 
     const { markerElements } = renderMapMarkers(canvasElement, markers, {
       onMarkerClick(marker, element, options = {}) {
         if (options.focusTooltip) {
-          lastActiveMarker = element;
-        } else {
-          lastActiveMarker = null;
+          setActiveMarker(element);
         }
         showTooltip(marker, element, { focus: Boolean(options.focusTooltip) });
       }
@@ -152,7 +160,7 @@ function initMapPage() {
 
       updateMarkersVisibility(markerElements, { showTrails, showActivities });
       hideTooltip({ restoreFocus: false });
-      lastActiveMarker = null;
+      clearActiveMarker();
 
       const visibleExperiences = getVisibleExperiences(markerElements);
       renderVisibleExperiencesList(visibleExperiences);
