@@ -52,6 +52,10 @@ function initMapPage() {
   const emptyStateElement = mapPage ? mapPage.emptyStateElement : null;
   const listContentElement = mapPage ? mapPage.listContentElement : null;
   const liveRegionElement = document.getElementById("mapExperiencesLiveRegion");
+  const setLiveRegionMessage = function (message) {
+    if (!liveRegionElement) return;
+    liveRegionElement.textContent = message;
+  };
 
   const updateMapExperiencesLiveRegion = function ({ total, hikesCount, activitiesCount }) {
     if (!liveRegionElement) return;
@@ -146,6 +150,9 @@ function initMapPage() {
       onMarkerClick(marker, element, options = {}) {
         if (options.focusTooltip) {
           setActiveMarker(element);
+          const typeLabel = marker.type === "trail" ? "caminata" : "actividad";
+          const regionLabel = marker.region || "Argentina";
+          setLiveRegionMessage(`Se seleccionó ${marker.title}, ${typeLabel}, región ${regionLabel}.`);
         }
         showTooltip(marker, element, { focus: Boolean(options.focusTooltip) });
       }
@@ -161,6 +168,9 @@ function initMapPage() {
       updateMarkersVisibility(markerElements, { showTrails, showActivities });
       hideTooltip({ restoreFocus: false });
       clearActiveMarker();
+      setLiveRegionMessage(
+        "Selección de marcador limpiada. Mostrando experiencias según filtros actuales."
+      );
 
       const visibleExperiences = getVisibleExperiences(markerElements);
       renderVisibleExperiencesList(visibleExperiences);
