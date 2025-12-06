@@ -20,7 +20,7 @@ export function createWeatherChip(city) {
       }
 
       const { temperatureC, description } = result;
-      chip.textContent = `${temperatureC}°C · ${description}`;
+      chip.textContent = `${temperatureC}\u00b0C | ${description}`;
     })
     .catch(function () {
       chip.textContent = "Clima no disponible en este momento.";

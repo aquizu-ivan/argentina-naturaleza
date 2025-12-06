@@ -11,16 +11,16 @@ export function renderApp() {
         <section id="inicio" class="hero fade-in">
           <div class="hero__image-layer"></div>
           <div class="hero__content">
-            <span class="hero__eyebrow">Explorá la naturaleza argentina</span>
+            <span class="hero__eyebrow">Explor\u00e1 la naturaleza argentina</span>
             <h1 class="hero__title">Caminatas y actividades al aire libre</h1>
             <p class="hero__subtitle">
-              Bosques patagónicos, yungas húmedas, lagunas turquesa y cielos abiertos.
-              Planificá tu próxima salida y dejate llevar por los paisajes.
+              Bosques patag\u00f3nicos, yungas h\u00famedas, lagunas turquesa y cielos abiertos.
+              Planific\u00e1 tu pr\u00f3xima salida y dejate llevar por los paisajes.
             </p>
             <div class="hero__chips">
-              <span class="chip">🌲 Bosques</span>
-              <span class="chip">⛰️ Montañas</span>
-              <span class="chip">🏞️ Lagunas</span>
+              <span class="chip"><span aria-hidden="true">\ud83c\udf3f</span> Bosques</span>
+              <span class="chip"><span aria-hidden="true">\ud83c\udf3f</span> Monta\u00f1as</span>
+              <span class="chip"><span aria-hidden="true">\ud83c\udf3f</span> Lagunas</span>
             </div>
             <div class="hero__actions">
               <a class="button button--primary" href="/caminatas.html">Ver caminatas</a>
@@ -30,18 +30,18 @@ export function renderApp() {
         </section>
 
         <section id="inspiracion" class="content content--light fade-in">
-          <h2>Respirá aire libre</h2>
+          <h2>Respir\u00e1 aire libre</h2>
           <p>
             Inspirate con la diversidad de ecosistemas: estepa, selva, sierras y glaciares.
-            Prepará tu equipo, elegí el sendero y salí a descubrir el país caminando.
+            Prepar\u00e1 tu equipo, eleg\u00ed el sendero y sal\u00ed a descubrir el pa\u00eds caminando.
           </p>
         </section>
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina – Proyecto personal de Iván Aquizu</span>
+        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
         <div class="footer__links">
-          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

@@ -43,7 +43,7 @@ export function renderActivityDetailPage(activityId) {
   if (!activity) {
     upsertMeta(
       "Actividad no encontrada | Naturaleza Argentina",
-      "No encontramos la actividad que buscás. Volvé a la lista para seguir explorando.",
+      "No encontramos la actividad que busc\u00e1s. Volv\u00e9 a la lista para seguir explorando.",
       "/assets/og/og-hero.png"
     );
     app.innerHTML = `
@@ -52,15 +52,15 @@ export function renderActivityDetailPage(activityId) {
         <main>
           <section class="content fade-in">
             <h1>Actividad no encontrada</h1>
-            <p>No encontramos esta actividad. Volvé a la lista para seguir explorando.</p>
+            <p>No encontramos esta actividad. Volv\u00e9 a la lista para seguir explorando.</p>
             <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
           </section>
         </main>
 
         <footer class="footer">
-          <span>Naturaleza Argentina — Proyecto personal de Iván Aquizu</span>
+          <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
           <div class="footer__links">
-            <span>© 2025 — Inspirado en la naturaleza de Argentina</span>
+            <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
           </div>
         </footer>
       </div>
@@ -70,8 +70,8 @@ export function renderActivityDetailPage(activityId) {
   }
 
   upsertMeta(
-    `${activity.name} — Actividad al aire libre | Naturaleza Argentina`,
-    `${activity.name} en ${activity.region}. Duración ${activity.duration}. Descubrí más detalles y beneficios.`,
+    `${activity.name} | Actividad al aire libre | Naturaleza Argentina`,
+    `${activity.name} en ${activity.region}. Duraci\u00f3n ${activity.duration}. Descubr\u00ed m\u00e1s detalles y beneficios.`,
     activity.imageUrl
   );
 
@@ -83,7 +83,7 @@ export function renderActivityDetailPage(activityId) {
           <div class="detail__body" style="grid-column: 1 / -1;">
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <a href="/activities.html">Actividades</a>
-              <span aria-hidden="true">›</span>
+              <span aria-hidden="true" class="breadcrumbs__separator">\u203a</span>
               <span>${activity.name}</span>
             </nav>
           </div>
@@ -94,23 +94,23 @@ export function renderActivityDetailPage(activityId) {
             <div class="detail__meta">
               <span class="pill">Actividad</span>
               <span class="pill">${activity.style}</span>
-              <span class="pill">Duración: ${activity.duration}</span>
+              <span class="pill">Duraci\u00f3n: ${activity.duration}</span>
             </div>
             <h1>${activity.name}</h1>
             <p>${activity.description}</p>
             <p>${activity.longDescription}</p>
-            <h2>Información clave</h2>
+            <h2>Informaci\u00f3n clave</h2>
             <div class="info-keys">
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⚡</span><span>Dificultad: ${activity.difficulty}</span></div>
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⏱️</span><span>Duración: ${activity.duration}</span></div>
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">📍</span><span>${activity.region} — ${activity.location}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">\u26a1</span><span>Dificultad: ${activity.difficulty}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">\u23f1\ufe0f</span><span>Duraci\u00f3n: ${activity.duration}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">\ud83d\uddcd</span><span>Ubicaci\u00f3n: ${activity.region} - ${activity.location}</span></div>
             </div>
             <div class="price-line">
               <span>Precio por persona</span>
               <strong>${formatPrice(activity.price)}</strong>
             </div>
             <div class="hero__actions">
-              <button class="button button--primary" type="button" data-add-cart aria-label="Añadir actividad al carrito">Añadir al carrito</button>
+              <button class="button button--primary" type="button" data-add-cart aria-label="A\u00f1adir actividad al carrito">A\u00f1adir al carrito</button>
               <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
             </div>
           </div>
@@ -121,7 +121,7 @@ export function renderActivityDetailPage(activityId) {
           <ul class="benefits">
             ${activity.benefits
               .map(function (benefit) {
-                return `<li>🌿 ${benefit}</li>`;
+                return `<li><span class="benefits__icon" aria-hidden="true">\ud83c\udf3f</span><span>${benefit}</span></li>`;
               })
               .join("")}
           </ul>
@@ -129,9 +129,9 @@ export function renderActivityDetailPage(activityId) {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina — Proyecto personal de Iván Aquizu</span>
+        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
         <div class="footer__links">
-          <span>© 2025 — Inspirado en la naturaleza de Argentina</span>
+          <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
@@ -152,10 +152,10 @@ export function renderActivityDetailPage(activityId) {
         style: activity.style
       });
       updateCartBadge();
-      addButton.textContent = "Añadido ✓";
+      addButton.textContent = "A\u00f1adido \u2713";
       addButton.classList.add("button--added");
       window.setTimeout(function () {
-        addButton.textContent = "Añadir al carrito";
+        addButton.textContent = "A\u00f1adir al carrito";
         addButton.classList.remove("button--added");
       }, 1600);
     });

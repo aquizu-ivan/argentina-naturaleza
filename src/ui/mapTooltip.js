@@ -1,4 +1,4 @@
-﻿const FOCUSABLE_SELECTOR =
+const FOCUSABLE_SELECTOR =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 let tooltipKeydownHandler = null;
@@ -50,18 +50,18 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
     const regionText = marker.region || "Argentina";
     const difficulty = marker.difficulty
-      ? `<p class="map__tooltip-detail">Dificultad: ${marker.difficulty}</p>`
+      ? `<p class="map__tooltip-detail"><span aria-hidden="true">\u26a1</span> Dificultad: ${marker.difficulty}</p>`
       : "";
 
     const markerIdSuffix = marker.id || "experience";
     const titleId = `mapTooltipTitle-${markerIdSuffix}`;
     const bodyId = `mapTooltipBody-${markerIdSuffix}`;
     tooltip.innerHTML = `
-      <button class="map__tooltip-close" type="button" aria-label="Cerrar informaci\u00f3n">\u00d7</button>
+      <button class="map__tooltip-close" type="button" aria-label="Cerrar informaci\u00f3n de la experiencia"><span aria-hidden="true">\u2715</span></button>
       <h3 class="map__tooltip-title" id="${titleId}">${marker.title}</h3>
       <div class="map__tooltip-body" id="${bodyId}">
         <p class="map__tooltip-type">${typeLabel}</p>
-        <p class="map__tooltip-detail">Regi\u00f3n: ${regionText}</p>
+        <p class="map__tooltip-detail"><span aria-hidden="true">\ud83d\uddcd</span> Regi\u00f3n: ${regionText}</p>
         ${difficulty}
         <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
       </div>
