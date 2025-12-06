@@ -3,13 +3,15 @@ import { getProfile } from "../profile/profileStorage.js";
 export function renderProfilePage() {
   const profile = getProfile();
   const hasProfile = Boolean(profile && profile.fullName);
-  const greeting = hasProfile ? `Hola, ${profile.fullName}` : "Completá tu perfil para empezar";
+  const greeting = hasProfile
+    ? `Hola, ${profile.fullName}`
+    : "Complet\u00e1 tus datos en este dispositivo para empezar";
 
   return `
     <main class="page page--profile fade-in">
       <section class="profile-card content">
-        <h1>Mi perfil</h1>
-        <p class="profile__helper">Guardá tus datos para agilizar tus próximas reservas de caminatas y actividades.</p>
+        <h1>Tu perfil en este dispositivo</h1>
+        <p class="profile__helper">Guard\u00e1 tus datos de contacto en este navegador para completar m\u00e1s r\u00e1pido tus pr\u00f3ximas reservas. No se crea ninguna cuenta y pod\u00e9s borrar los datos cuando quieras.</p>
         <div class="profile__summary" id="profileSummary">${greeting}</div>
         <form id="profileForm" class="profile__form">
           <p id="profileErrorsSummary" class="sr-only" aria-live="assertive"></p>
@@ -39,21 +41,23 @@ export function renderProfilePage() {
               <input id="location" name="location" type="text" autocomplete="address-level2" />
             </div>
             <div class="profile__field">
-              <label for="phone">Teléfono</label>
+              <label for="phone">Tel\u00e9fono</label>
               <input id="phone" name="phone" type="tel" autocomplete="tel" />
             </div>
             <div class="profile__field profile__field--full">
               <label for="notes">Nota / Preferencias</label>
-              <textarea id="notes" name="notes" rows="3" placeholder="¿Algo que debamos saber? (opcional)"></textarea>
+              <textarea id="notes" name="notes" rows="3" placeholder="\u00bfAlgo que debamos saber? (opcional)"></textarea>
             </div>
           </div>
           <div class="profile__actions">
-            <button class="button button--primary" type="submit">Iniciar sesión</button>
+            <button class="button button--primary" type="submit">Guardar datos en este dispositivo</button>
             <a class="button button--ghost" href="/index.html">Volver a explorar</a>
-            ${hasProfile ? `<button class="button button--ghost" type="button" data-profile-clear>Cerrar sesión</button>` : ""}
+            ${hasProfile ? `<button class="button button--ghost" type="button" data-profile-clear aria-label="Borrar los datos guardados de este dispositivo">Borrar datos guardados</button>` : ""}
           </div>
-          <div class="profile__note">Este flujo es demo: no hay backend ni autenticación real.</div>
-          <div class="profile__status" id="profileStatus" role="status" aria-live="polite"></div>
+          <div class="profile__note">Tus datos se guardan solo en este navegador. No se crea ninguna cuenta y pod\u00e9s borrarlos en cualquier momento.</div>
+          <div class="profile__status${hasProfile ? " profile__status--success" : ""}" id="profileStatus" role="status" aria-live="polite">
+            ${hasProfile ? "Datos guardados en este dispositivo." : "Todav\u00eda no guardaste datos en este dispositivo."}
+          </div>
         </form>
       </section>
     </main>
