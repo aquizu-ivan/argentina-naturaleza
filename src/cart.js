@@ -59,9 +59,9 @@ function createCartRow(item) {
   const meta = document.createElement("div");
   meta.className = "cart-item__meta";
   meta.innerHTML = `
-    <span>📍 ${item.province || item.location || item.region || "Argentina"}</span>
-    <span>⚡ ${item.difficulty || "Sin dato"}</span>
-    <span>⏱️ ${item.duration || "Sin duración"}</span>
+    <span><span aria-hidden="true">📍</span> ${item.province || item.location || item.region || "Argentina"}</span>
+    <span><span aria-hidden="true">⚡</span> ${item.difficulty || "Sin dato"}</span>
+    <span><span aria-hidden="true">⏱️</span> ${item.duration || "Sin duración"}</span>
   `;
 
   const price = document.createElement("div");
@@ -147,7 +147,8 @@ function renderCartItems() {
   if (!items.length) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
-    empty.textContent = "Tu carrito está vacío. Sumá caminatas o actividades para empezar.";
+    empty.textContent =
+      "Tu carrito está vacío. Sumá caminatas o actividades para empezar o volvé a explorarlas para elegir qué agregar.";
     list.appendChild(empty);
   } else {
     items.forEach(function (item) {
