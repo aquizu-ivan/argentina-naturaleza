@@ -47,6 +47,9 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
     if (!markerElement) return;
 
     currentTriggerElement = markerElement;
+    tooltip.style.display = "block";
+    tooltip.style.visibility = "hidden";
+    tooltip.style.opacity = "0";
 
     const typeLabel = marker.type === "trail" ? "Caminata" : "Actividad";
     const regionText = marker.region || "Argentina";
