@@ -1,4 +1,4 @@
-﻿// TODO: agregar las fotos reales correspondientes en /public/assets/photos/trails/
+// TODO: agregar las fotos reales correspondientes en /public/assets/photos/trails/
 // Campo city se usa para integrar la API de clima (Ticket 3).
 export const trailsData = [
   {
@@ -14,7 +14,7 @@ export const trailsData = [
     description: "Un sendero icónico con vistas espectaculares del Fitz Roy.",
     imageUrl: "/assets/photos/trails/fitz-roy.jpg",
     longDescription:
-      "El clásico sendero de El Chaltén que lleva a la laguna de los Tres, con panorámicas del macizo Fitz Roy. Terreno variado, bosque andino, morenas glaciarias y un ascenso final exigente que recompensa con vistas únicas.",
+      "El clásico sendero de El Chaltén que lleva a la laguna de los Tres, con panorámicas del macizo Fitz Roy. Terreno variado, bosque andino, morenas glaciares y un ascenso final exigente que recompensa con vistas únicas.",
     benefits: [
       "Grandes vistas del macizo y glaciares",
       "Condición física y entrenamiento en altura moderada",

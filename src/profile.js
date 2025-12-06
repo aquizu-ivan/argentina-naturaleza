@@ -118,14 +118,14 @@ function setupProfileForm() {
 
     let hasError = false;
     if (fullNameInput && !fullName) {
-      setFieldError(fullNameInput, fullNameError, "Ingresá tu nombre completo.");
+      setFieldError(fullNameInput, fullNameError, "Ingres\u00e1 tu nombre completo.");
       hasError = true;
     }
     if (!email || !email.includes("@")) {
       setFieldError(
         emailInput,
         emailError,
-        "Ingresá un email válido, por ejemplo: nombre@correo.com."
+        "Ingres\u00e1 un correo v\u00e1lido, por ejemplo: nombre@correo.com."
       );
       hasError = true;
     }
@@ -146,7 +146,7 @@ function setupProfileForm() {
       }
       showFeedbackMessage({
         type: "warning",
-        text: "Perfil: revisá los campos marcados antes de continuar."
+        text: "Perfil: revis\u00e1 los campos marcados antes de continuar."
       });
       const firstErrorInput = form.querySelector("[aria-invalid='true']");
       if (firstErrorInput) {
@@ -157,7 +157,7 @@ function setupProfileForm() {
 
     saveProfile({ fullName, email, location, phone, notes });
     if (status) {
-      status.textContent = "Datos guardados para tus próximas reservas.";
+      status.textContent = "Datos guardados en este dispositivo.";
       status.classList.add("profile__status--success");
     }
     if (errorsSummary) {
@@ -165,10 +165,10 @@ function setupProfileForm() {
     }
     showFeedbackMessage({
       type: "success",
-      text: "Perfil: guardado correctamente."
+      text: "Perfil: datos guardados en este dispositivo."
     });
     if (summary) {
-      summary.textContent = fullName ? `Hola, ${fullName}` : "Perfil actualizado";
+      summary.textContent = fullName ? `Hola, ${fullName}` : "Perfil actualizado en este dispositivo";
     }
     updateHeaderUserState();
   });
@@ -183,7 +183,7 @@ if (app) {
       <footer class="footer">
         <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
         <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
+          <span>&copy; 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

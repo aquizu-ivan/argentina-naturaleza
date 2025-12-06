@@ -11,10 +11,10 @@ export function renderActivityCards(activities) {
     empty.className = "empty-state results-empty fade-in";
 
     const title = document.createElement("p");
-    title.textContent = "No encontramos actividades para esta combinación de filtros.";
+    title.textContent = "No encontramos actividades para esta combinaci\u00f3n de filtros.";
 
     const hint = document.createElement("p");
-    hint.textContent = "Probá limpiar los filtros o elegir otra región/dificultad.";
+    hint.textContent = "Prob\u00e1 limpiar los filtros o elegir otra regi\u00f3n/dificultad.";
 
     empty.append(title, hint);
     grid.appendChild(empty);

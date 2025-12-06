@@ -2,7 +2,7 @@ import { getCartCount } from "./cartStorage.js";
 
 export function updateCartBadge() {
   const count = getCartCount();
-  const label = count > 0 ? `Carrito, ${count} elemento${count === 1 ? "" : "s"}` : "Carrito vacío";
+  const label = count > 0 ? `Carrito, ${count} elemento${count === 1 ? "" : "s"}` : "Carrito vac\u00edo";
 
   document.querySelectorAll("[data-cart-badge]").forEach(function (badge) {
     if (count > 0) {

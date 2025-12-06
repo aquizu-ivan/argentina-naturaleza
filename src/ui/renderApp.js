@@ -18,9 +18,9 @@ export function renderApp() {
               Planific\u00e1 tu pr\u00f3xima salida y dejate llevar por los paisajes.
             </p>
             <div class="hero__chips">
-              <span class="chip">🌲 Bosques</span>
-              <span class="chip">🏔️ Monta\u00f1as</span>
-              <span class="chip">💧 Lagunas</span>
+              <span class="chip"><span aria-hidden="true">\ud83c\udf3f</span> Bosques</span>
+              <span class="chip"><span aria-hidden="true">\ud83c\udf3f</span> Monta\u00f1as</span>
+              <span class="chip"><span aria-hidden="true">\ud83c\udf3f</span> Lagunas</span>
             </div>
             <div class="hero__actions">
               <a class="button button--primary" href="/caminatas.html">Ver caminatas</a>
@@ -39,9 +39,9 @@ export function renderApp() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina \u2013 Proyecto personal de Iv\u00e1n Aquizu</span>
+        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
         <div class="footer__links">
-          <span>\u00a9 2025 \u2013 Inspirado en la naturaleza de Argentina</span>
+          <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
