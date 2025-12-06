@@ -15,7 +15,15 @@ function ensureLiveRegion(id = "live-region", politeness = "polite") {
   return region;
 }
 
-export function announceCartAddition(message) {
+function announce(message) {
   const region = ensureLiveRegion("cart-live-region", "polite");
   region.textContent = message;
+}
+
+export function announceCartAddition(message) {
+  announce(message);
+}
+
+export function announceCartUpdate(message) {
+  announce(message);
 }

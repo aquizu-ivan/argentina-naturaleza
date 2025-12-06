@@ -5,6 +5,7 @@ import { formatPrice } from "./utils/formatters.js";
 import { updateHeaderUserState } from "./ui/header.js";
 import { renderCartPage } from "./ui/renderCartPage.js";
 import { showFeedbackMessage } from "./ui/feedbackMessages.js";
+import { announceCartUpdate } from "./utils/ariaLive.js";
 
 function setupFadeInAnimations() {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -93,6 +94,11 @@ function createCartRow(item) {
     const next = Math.max(0, Number.parseInt(value, 10) || 0);
     updateQuantity(item.id, item.type, next);
     renderCartItems();
+    announceCartUpdate(
+      `Se actualizó la cantidad de ${item.name} a ${next}. Total: ${formatPrice(
+        getCartTotal()
+      )}.`
+    );
   };
 
   minus.addEventListener("click", function () {
@@ -125,6 +131,7 @@ function createCartRow(item) {
       type: "info",
       text: `Carrito: eliminaste "${item.name}" del carrito.`
     });
+    announceCartUpdate(`Se eliminó ${item.name} del carrito. Total: ${formatPrice(getCartTotal())}.`);
   });
 
   const rowFooter = document.createElement("div");
@@ -150,6 +157,7 @@ function renderCartItems() {
     empty.textContent =
       "Tu carrito está vacío. Sumá caminatas o actividades para empezar o volvé a explorarlas para elegir qué agregar.";
     list.appendChild(empty);
+    announceCartUpdate("Carrito vacío. No hay ítems seleccionados.");
   } else {
     items.forEach(function (item) {
       list.appendChild(createCartRow(item));
