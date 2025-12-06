@@ -1,6 +1,6 @@
 # Naturaleza Argentina
 
-Obra interactiva para explorar caminatas y actividades al aire libre en Argentina. Permite descubrir experiencias, ver detalles clave, guardar un perfil local y armar un carrito de recorridos sin backend.
+Obra web interactiva para explorar caminatas y actividades al aire libre en Argentina. Permite descubrir experiencias, ver detalles clave, guardar un perfil local y armar un carrito de recorridos sin backend. Pensada como pieza destacada de un perfil profesional frontend.
 
 ## Qué podés hacer
 - Explorar caminatas y actividades con filtros en tiempo real.
@@ -18,6 +18,17 @@ Obra interactiva para explorar caminatas y actividades al aire libre en Argentin
   - `src/cart/`, `src/profile/`: estado local y persistencia en `localStorage` para carrito y perfil.
   - `src/services/weatherService.js`: integración de clima encapsulada.
   - `src/utils/`: helpers compartidos (formatos, aria-live, storage).
+
+## Guía técnica rápida (para desarrolladores)
+- Punto de entrada: estructura multipágina real (no hay framework de rutas); cada HTML monta su vista desde `src/ui/`.
+- Dónde mirar en `src/`:
+  - `ui/`: funciones de render y componentes de página.
+  - `data/`: datasets estáticos de experiencias.
+  - `cart/` y `profile/`: manejo de estado en `localStorage` para carrito y perfil.
+  - `services/weatherService.js`: obtención de clima encapsulada.
+  - `utils/`: helpers reutilizables (formatos, aria-live, storage).
+- Decisiones clave: UI modular por funciones, estados vacíos y mensajes accesibles integrados, aria-live para filtros y carrito, foco gestionado y breadcrumbs semánticos.
+- Qué evaluar al revisar: claridad de los renders en `ui/`, tratamiento de estados vacíos y feedback, uso de helpers en `utils/`, consistencia de copy y accesibilidad.
 
 ## Accesibilidad y UX
 - Skip-link y `<main>` único por página.
