@@ -9,8 +9,8 @@ Obra creada por **IAQUIZU — Origin Architect of the Eighth Art**. IAQUIZU crea
 - Ver detalles con duración, dificultad, ubicación, beneficios e imágenes.
 - Armar un carrito de experiencias (persistencia en `localStorage`, sin backend real).
 - Guardar tu perfil de contacto de forma local en el navegador.
-- Consultar un mapa conceptual de experiencias (placeholder interactivo actual).
-- Ver clima básico por experiencia mediante un servicio encapsulado (si está activo).
+- Consultar un mapa conceptual en modo placeholder, con controles y listado para explorar experiencias (sin capa geográfica real por ahora).
+- Ver clima básico en las tarjetas de caminatas mediante un chip opcional cuando el servicio de clima está configurado.
 
 ## Stack y arquitectura
 - **Stack**: Vite multipágina, JavaScript vanilla, HTML, CSS único.
@@ -57,10 +57,10 @@ Páginas de entrada (multipágina): `index.html` (home), `caminatas.html`, `acti
 3. Abrir un detalle y añadir al carrito.
 4. Revisar el carrito y ajustar cantidades.
 5. Completar tu perfil local.
-6. Pasar por el mapa conceptual para ver la lista visible de experiencias.
+6. Pasar por el mapa conceptual (placeholder) para ver la lista visible de experiencias.
 
 ## Estado actual y mejoras posibles
-- El mapa es un placeholder conceptual listo para una integración real.
-- El clima está encapsulado y puede ampliarse o conectarse a un servicio real.
+- El mapa es un placeholder conceptual (controles, lista y tooltip) sin capa geográfica real, listo para una integración futura.
+- El clima está encapsulado y se muestra como chip opcional en caminatas cuando el servicio está configurado; puede ampliarse o conectarse a un servicio real.
 - Hay margen para optimizar imágenes y performance si la obra crece.
 - Pensada como pieza principal de perfil profesional; se puede profundizar en narrativa y exportabilidad en futuros tickets.
