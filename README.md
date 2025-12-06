@@ -2,6 +2,8 @@
 
 Obra web interactiva para explorar caminatas y actividades al aire libre en Argentina. Permite descubrir experiencias, ver detalles clave, guardar un perfil local y armar un carrito de recorridos sin backend. Pensada como pieza destacada de un perfil profesional frontend.
 
+Obra creada por **IAQUIZU — Origin Architect of the Eighth Art**. IAQUIZU crea sistemas visuales contemplativos y obras web con arquitectura propia.
+
 ## Qué podés hacer
 - Explorar caminatas y actividades con filtros en tiempo real.
 - Ver detalles con duración, dificultad, ubicación, beneficios e imágenes.

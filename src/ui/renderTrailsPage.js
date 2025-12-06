@@ -22,7 +22,7 @@ export function renderTrailsPage() {
       <main>
         <section id="caminatas" class="content fade-in">
           <h1>Caminatas destacadas</h1>
-          <p>Busc\u00e1 y explor\u00e1 senderos para planear tu pr\u00f3xima salida.</p>
+          <p>Buscá y explorá senderos para planear tu próxima salida.</p>
           <div class="trails__search">
             <fieldset class="filters-panel">
               <legend>Filtros de caminatas</legend>
@@ -37,7 +37,7 @@ export function renderTrailsPage() {
                 </div>
 
                 <div class="filters-group">
-                  <label for="trailRegionFilter">Regi\u00f3n</label>
+                  <label for="trailRegionFilter">Región</label>
                   <select id="trailRegionFilter" class="filter-select">
                     <option value="">Todas las regiones</option>
                     ${regionOptions}
@@ -72,9 +72,9 @@ export function renderTrailsPage() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina \u2013 Proyecto personal de Iv\u00e1n Aquizu</span>
+        <span>Naturaleza Argentina – Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>\u00a9 2025 \u2013 Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

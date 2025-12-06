@@ -72,7 +72,7 @@ export function renderActivitiesPage() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina \u2013 Proyecto personal de Iv\u00e1n Aquizu</span>
+        <span>Naturaleza Argentina \u2013 Obra creada por IAQUIZU \u2014 Origin Architect of the Eighth Art</span>
         <div class="footer__links">
           <span>\u00a9 2025 \u2013 Inspirado en la naturaleza de Argentina</span>
         </div>

@@ -59,7 +59,7 @@ export function renderTrailDetailPage(trailId) {
           </section>
         </main>
         <footer class="footer">
-          <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+          <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
           <div class="footer__links">
             <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
           </div>
@@ -137,7 +137,7 @@ export function renderTrailDetailPage(trailId) {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
           <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
