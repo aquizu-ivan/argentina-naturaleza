@@ -2,6 +2,7 @@ import { addToCart } from "../cart/cartStorage.js";
 import { updateCartBadge } from "../cart/cartBadge.js";
 import { formatPrice } from "../utils/formatters.js";
 import { createWeatherChip } from "./createWeatherChip.js";
+import { announceCartAddition } from "../utils/ariaLive.js";
 
 export function createTrailCard(trail) {
   const card = document.createElement("article");
@@ -67,6 +68,7 @@ export function createTrailCard(trail) {
       duration: trail.duration
     });
     updateCartBadge();
+    announceCartAddition(`Se añadió ${trail.name} al carrito.`);
     addButton.classList.add("button--added");
     addButton.textContent = "A\u00f1adido \u2713";
     window.setTimeout(function () {
