@@ -1,73 +1,64 @@
 # Naturaleza Argentina
-App multipágina para explorar caminatas y actividades al aire libre en Argentina, pensada como pieza principal de portfolio front-end.
 
-## Visión general
-Aplicación web multipágina que permite descubrir experiencias (caminatas y actividades), ver detalles, agregarlas al carrito, gestionar un perfil básico y explorar un mapa accesible. El foco es mostrar dominio de arquitectura modular en vanilla JS, accesibilidad aplicada y decisiones técnicas cercanas a un producto real.
+Obra web interactiva para explorar caminatas y actividades al aire libre en Argentina. Permite descubrir experiencias, ver detalles clave, guardar un perfil local y armar un carrito de recorridos sin backend. Pensada como pieza destacada de un perfil profesional frontend.
 
-## Funcionalidades principales
-- Listados de caminatas y actividades con filtros en vivo (texto, región, dificultad), contador de resultados y estados vacíos guiados.
-- Detalle de experiencias con información ampliada y CTA al carrito.
-- Carrito persistente en localStorage con totales, modificaciones y toasts de feedback.
-- Perfil de usuario con validación accesible (aria-invalid/aria-describedby, resumen de errores, foco).
-- Mapa interactivo de Argentina con markers, tooltip accesible (diálogo con focus trap), lista textual y live region de resultados.
-- Clima integrado por ciudad con cache + TTL + timeout + fallback a cache stale.
-- Soporte de prefers-reduced-motion en CSS y JS para bajar animaciones.
+## Qué podés hacer
+- Explorar caminatas y actividades con filtros en tiempo real.
+- Ver detalles con duración, dificultad, ubicación, beneficios e imágenes.
+- Armar un carrito de experiencias (persistencia en `localStorage`, sin backend real).
+- Guardar tu perfil de contacto de forma local en el navegador.
+- Consultar un mapa conceptual de experiencias (placeholder interactivo actual).
+- Ver clima básico por experiencia mediante un servicio encapsulado (si está activo).
 
-## Stack y herramientas
-- Vite + JavaScript vanilla.
-- HTML + un único CSS principal con tokens en :root.
-- Sin backend: estado en localStorage (carrito, perfil, clima) con helpers robustos.
-- API de clima: OpenWeather via `import.meta.env.VITE_WEATHER_API_KEY`.
+## Stack y arquitectura
+- **Stack**: Vite multipágina, JavaScript vanilla, HTML, CSS único.
+- **Estructura**:
+  - `src/ui/`: componentes y render de páginas y vistas.
+  - `src/data/`: datasets mock de caminatas y actividades.
+  - `src/cart/`, `src/profile/`: estado local y persistencia en `localStorage` para carrito y perfil.
+  - `src/services/weatherService.js`: integración de clima encapsulada.
+  - `src/utils/`: helpers compartidos (formatos, aria-live, storage).
+
+## Guía técnica rápida (para desarrolladores)
+- Punto de entrada: estructura multipágina real (no hay framework de rutas); cada HTML monta su vista desde `src/ui/`.
+- Dónde mirar en `src/`:
+  - `ui/`: funciones de render y componentes de página.
+  - `data/`: datasets estáticos de experiencias.
+  - `cart/` y `profile/`: manejo de estado en `localStorage` para carrito y perfil.
+  - `services/weatherService.js`: obtención de clima encapsulada.
+  - `utils/`: helpers reutilizables (formatos, aria-live, storage).
+- Decisiones clave: UI modular por funciones, estados vacíos y mensajes accesibles integrados, aria-live para filtros y carrito, foco gestionado y breadcrumbs semánticos.
+- Qué evaluar al revisar: claridad de los renders en `ui/`, tratamiento de estados vacíos y feedback, uso de helpers en `utils/`, consistencia de copy y accesibilidad.
+
+## Accesibilidad y UX
+- Skip-link y `<main>` único por página.
+- Breadcrumbs en vistas de detalle.
+- Foco gestionado: h1 enfocable al cargar, retorno de foco en tooltip del mapa.
+- Regiones `aria-live` para filtros, carrito y acciones de añadir/quitar/actualizar.
+- Mensajes claros de estados vacíos y feedback textual.
+- Foco visible en links, botones y controles interactivos.
+- Trabajado con intención accesible; no es perfecto pero está encaminado.
 
 ## Cómo correr el proyecto
 Requisitos: Node.js y npm.
 
-Pasos:
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
+Comandos:
+- `npm install`
+- `npm run dev` (Vite levanta habitualmente en `http://localhost:5173`)
+- `npm run build` (compilación de producción)
 
-API key de clima:
-- Crear un archivo `.env` (o `.env.local`) con `VITE_WEATHER_API_KEY=tu_api_key`.
-- Si no se configura, el clima se degrada a "no disponible" sin romper la app.
+Páginas de entrada (multipágina): `index.html` (home), `caminatas.html`, `activities.html`, `caminata-detalle.html`, `actividad-detalle.html`, `carrito.html`, `perfil.html`, `mapa.html`.
 
-## Arquitectura (alto nivel)
-- Multipágina real: cada HTML tiene su entry JS (`src/main.js`, `src/trails.js`, `src/activities.js`, `src/trailDetail.js`, `src/activityDetail.js`, `src/cart.js`, `src/profile.js`, `src/map.js`).
-- Carpetas:
-  - `src/ui`: render de UI (cards, listados, detalle, mapa, tooltips, toasts, estados vacíos).
-  - `src/data`: datos mock (caminatas, actividades, regiones del mapa).
-  - `src/services`: servicios como `weatherService` (cache/TTL/timeout/fallback).
-  - `src/cart`, `src/profile`: lógica propia de carrito y perfil.
-  - `src/utils`: helpers compartidos (`storageUtils` con `safeLoadJSON`/`safeSaveJSON`, formateadores, filtros).
-  - `src/styles.css`: única hoja de estilos, secciones por bloque (layout, header, hero, listados, detalle, carrito, perfil, mapa, toasts, utils) y tokens (`--space-*`, `--radius-*`, `--shadow-card`, etc.).
-- Helpers clave: `storageUtils` protege lecturas/escrituras en localStorage; `weatherService` normaliza clima con cache y resiliencia; helpers de filtros y `feedbackMessages` para toasts.
+## Recorrido sugerido
+1. Entrar a la home (`index.html`).
+2. Explorar caminatas y actividades con sus filtros.
+3. Abrir un detalle y añadir al carrito.
+4. Revisar el carrito y ajustar cantidades.
+5. Completar tu perfil local.
+6. Pasar por el mapa conceptual para ver la lista visible de experiencias.
 
-## Accesibilidad y UX
-- Lang, skip-link y landmarks sin main anidado; titles normalizados por página.
-- Filtros con `fieldset`/`legend`/`label` y contadores con `aria-live`.
-- Perfil: aria-invalid/aria-describedby por campo, resumen de errores en `aria-live="assertive"`, foco en el primer campo inválido; toasts de éxito/advertencia.
-- Mapa: regiones con `role="region"` y `aria-label`/`aria-labelledby`, tooltip como diálogo con focus trap, cierre con Esc y retorno del foco; lista textual paralela y live region de resultados.
-- Estados vacíos guiados en listados y mapa con mensajes y sugerencias claras.
-- Prefers-reduced-motion en CSS y en el helper de fade-in (marca visibles sin animar).
-
-## Performance y robustez
-- Clima: cache en memoria + localStorage, TTL 10 min, timeout suave 8s con AbortController, fallback a cache stale ante errores; API pública estable (dato normalizado o null).
-- Imágenes: cards con `loading="lazy"`, `decoding="async"`, `width=400` y `height=260`; detalle con `decoding="async"`, `loading="lazy"` y `width=1200`/`height=720` para reducir layout shift.
-- Storage robusto: `safeLoadJSON`/`safeSaveJSON` en carrito, perfil y clima.
-- Estados vacíos y mensajes claros evitan pantallas rotas; toasts informan acciones clave.
-
-## Mejoras futuras (opcionales)
-
-El proyecto está listo para usarse como pieza principal de portfolio. Algunas mejoras que podrían explorarse a futuro, ya en un siguiente nivel, son:
-
-- Navegación de teclado más avanzada en el mapa (recorrido entre markers y lista textual con atajos específicos).
-- Imágenes responsive con `srcset`/`<picture>` y optimización de peso de assets para escenarios de red más exigentes.
-- División del CSS en módulos (layout, componentes, vistas) si el proyecto creciera en funcionalidades.
-- Tests básicos (unitarios o de integración ligera) para flujos clave como carrito, perfil y clima.
-- Medición y documentación de performance (por ejemplo con Lighthouse) para mostrar métricas concretas en el portfolio.
-
-## Autor
-Proyecto desarrollado por Ivan Aquizu como pieza principal de portfolio front-end.
+## Estado actual y mejoras posibles
+- El mapa es un placeholder conceptual listo para una integración real.
+- El clima está encapsulado y puede ampliarse o conectarse a un servicio real.
+- Hay margen para optimizar imágenes y performance si la obra crece.
+- Pensada como pieza principal de perfil profesional; se puede profundizar en narrativa y exportabilidad en futuros tickets.
