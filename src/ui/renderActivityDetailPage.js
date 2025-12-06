@@ -3,6 +3,7 @@ import { updateCartBadge } from "../cart/cartBadge.js";
 import { activitiesData } from "../data/activitiesData.js";
 import { formatPrice } from "../utils/formatters.js";
 import { renderHeader } from "./header.js";
+import { announceCartAddition } from "../utils/ariaLive.js";
 
 function upsertMeta(title, description, image) {
   if (title) {
@@ -161,11 +162,12 @@ export function renderActivityDetailPage(activityId) {
         region: activity.region,
         location: activity.location,
         difficulty: activity.difficulty,
-        duration: activity.duration,
-        style: activity.style
-      });
-      updateCartBadge();
-      addButton.textContent = "Añadido ✓";
+      duration: activity.duration,
+      style: activity.style
+    });
+    updateCartBadge();
+    announceCartAddition(`Se añadió ${activity.name} al carrito.`);
+    addButton.textContent = "Añadido ✓";
       addButton.classList.add("button--added");
       window.setTimeout(function () {
         addButton.textContent = "Añadir al carrito";

@@ -3,6 +3,7 @@ import { updateCartBadge } from "../cart/cartBadge.js";
 import { trailsData } from "../data/trailsData.js";
 import { formatPrice } from "../utils/formatters.js";
 import { renderHeader } from "./header.js";
+import { announceCartAddition } from "../utils/ariaLive.js";
 
 function upsertMeta(title, description, image) {
   if (title) {
@@ -161,10 +162,11 @@ export function renderTrailDetailPage(trailId) {
         province: trail.province,
         region: trail.region,
         difficulty: trail.difficulty,
-        duration: trail.duration
-      });
-      updateCartBadge();
-      addButton.textContent = "Añadido ✓";
+      duration: trail.duration
+    });
+    updateCartBadge();
+    announceCartAddition(`Se añadió ${trail.name} al carrito.`);
+    addButton.textContent = "Añadido ✓";
       addButton.classList.add("button--added");
       window.setTimeout(function () {
         addButton.textContent = "Añadir al carrito";
