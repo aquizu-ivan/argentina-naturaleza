@@ -66,8 +66,7 @@ export function createMapTooltip(containerElement, { onClose } = {}) {
         <a class="map__tooltip-link" href="${marker.href}">Ver detalle</a>
       </div>
     `;
-    tooltip.setAttribute("role", "dialog");
-    tooltip.setAttribute("aria-modal", "true");
+    tooltip.setAttribute("role", "group");
     tooltip.setAttribute("aria-labelledby", titleId);
     tooltip.setAttribute("aria-describedby", bodyId);
 
