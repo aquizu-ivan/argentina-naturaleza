@@ -79,4 +79,10 @@ export function renderActivitiesPage() {
       </footer>
     </div>
   `;
+
+  const heading = app.querySelector("h1");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+  }
 }

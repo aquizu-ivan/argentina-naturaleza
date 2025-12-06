@@ -66,6 +66,11 @@ export function renderTrailDetailPage(trailId) {
       </div>
     `;
     updateCartBadge();
+    const heading = app.querySelector("h1");
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus();
+    }
     return;
   }
 
@@ -136,6 +141,12 @@ export function renderTrailDetailPage(trailId) {
       </footer>
     </div>
   `;
+
+  const heading = app.querySelector("h1");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+  }
 
   const addButton = document.querySelector("[data-add-cart]");
   if (addButton) {

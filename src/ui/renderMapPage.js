@@ -113,4 +113,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
       activitiesToggle
     }
   };
+
+  const heading = root.querySelector("h1");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+  }
 }

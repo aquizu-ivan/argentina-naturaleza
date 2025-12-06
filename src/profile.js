@@ -159,6 +159,7 @@ function setupProfileForm() {
     if (status) {
       status.textContent = "Datos guardados en este dispositivo.";
       status.classList.add("profile__status--success");
+      status.focus();
     }
     if (errorsSummary) {
       errorsSummary.textContent = "";
@@ -192,4 +193,10 @@ if (app) {
   setupProfileForm();
   updateHeaderUserState();
   setupFadeInAnimations();
+
+  const heading = app.querySelector(".page--profile h1");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+  }
 }

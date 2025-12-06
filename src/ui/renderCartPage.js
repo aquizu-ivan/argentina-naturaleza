@@ -65,4 +65,10 @@ export function renderCartPage() {
       </footer>
     </div>
   `;
+
+  const heading = app.querySelector("h1");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+  }
 }

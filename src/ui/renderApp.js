@@ -46,4 +46,10 @@ export function renderApp() {
       </footer>
     </div>
   `;
+
+  const mainHeading = app.querySelector(".hero__title");
+  if (mainHeading) {
+    mainHeading.setAttribute("tabindex", "-1");
+    mainHeading.focus();
+  }
 }
