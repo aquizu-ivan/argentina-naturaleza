@@ -259,6 +259,7 @@ h3 {
   box-shadow: 0 8px 20px rgba(12, 66, 47, 0.06);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+  width: 100%;
 }
 
 .brand {
@@ -557,7 +558,7 @@ h3 {
   margin-top: var(--space-sm);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .trails__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -645,13 +646,13 @@ h3 {
   outline-offset: 2px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .filters-panel .filters-clear {
     align-self: flex-start;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .trails__search {
     flex-direction: row;
     align-items: center;
@@ -677,6 +678,22 @@ h3 {
     margin: 0;
     min-width: 110px;
     text-align: left;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .trails__search {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .filters-row {
+    gap: 12px;
+  }
+
+  .filters-group {
+    flex: 1 1 calc(50% - 12px);
+    min-width: 240px;
   }
 }
 
@@ -1111,10 +1128,25 @@ h3 {
   font-size: 16px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 769px) {
   .detail {
     grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
-    align-items: center;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .detail__media {
+    min-height: 320px;
+  }
+
+  .info-keys {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .detail {
+    gap: 24px;
   }
 }
 
@@ -1141,6 +1173,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
   font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 12px;
@@ -1164,6 +1197,47 @@ h3 {
   background: var(--surface-alt);
   color: var(--color-muted);
   grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .detail {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .detail__body {
+    gap: 12px;
+  }
+
+  .detail__media {
+    min-height: 220px;
+    border-radius: 14px;
+  }
+
+  .detail__section {
+    margin-top: 12px;
+    padding: 12px 14px;
+  }
+
+  .info-keys {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .price-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .breadcrumbs {
+    font-size: 13px;
+    row-gap: 6px;
+  }
 }
 
 
@@ -1823,6 +1897,32 @@ h3 {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page {
+    max-width: 1100px;
+    padding: 26px 22px 92px;
+    gap: 28px;
+  }
+
+  .topbar {
+    padding-inline: 18px;
+    gap: 12px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    min-height: 340px;
+    padding: 22px;
+  }
+
+  .hero__content {
+    max-width: 700px;
+  }
+}
+
 @media (min-width: 1200px) {
   .page {
     max-width: 1280px;
@@ -1843,13 +1943,49 @@ h3 {
 }
 
 @media (max-width: 768px) {
+  body {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
   .page {
-    padding: 28px 18px 40px;
-    gap: 24px;
+    padding: 24px 16px 44px;
+    gap: 22px;
   }
 
   .content {
-    padding: 22px 20px 24px;
+    padding: 20px 18px 22px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .nav {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 4px 2px 6px;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__link {
+    white-space: nowrap;
+    padding: 9px 12px;
+  }
+
+  .nav--right {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .hero {
@@ -1862,6 +1998,7 @@ h3 {
 
   .hero__content {
     gap: 10px;
+    max-width: 100%;
   }
 
   .hero__actions {
@@ -1876,13 +2013,37 @@ h3 {
   }
 
   .hero__title {
-    font-size: 24px;
+    font-size: 26px;
+    line-height: 1.2;
     color: #ead307;
   }
 
+  .hero__subtitle {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hero__eyebrow {
+    font-size: 12px;
+  }
+
+  .hero__chips {
+    gap: 6px;
+  }
+
   h1 {
-    font-size: 30px;
+    font-size: 28px;
+    line-height: 1.22;
     color: #ead307;
+  }
+
+  h2 {
+    font-size: 22px;
+    line-height: 1.28;
+  }
+
+  h3 {
+    line-height: 1.25;
   }
 
   .detail {
