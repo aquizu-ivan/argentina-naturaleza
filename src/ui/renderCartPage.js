@@ -53,7 +53,7 @@ export function renderCartPage() {
                 <p class="cart-summary__label">Total a pagar</p>
                 <p class="cart-summary__value" id="cartTotalText">$0</p>
               </div>
-              <p class="cart-summary__note">Los valores son referenciales, sin proceso de pago real.</p>
+              <p class="cart-summary__note">Valores de referencia para imaginar tu recorrido, sin compra real.</p>
               ${
                 isFallback
                   ? `<p class="cart-summary__note">Tu selección se mantiene mientras tengas esta página abierta.</p>`

@@ -95,7 +95,7 @@ function createCartRow(item) {
     updateQuantity(item.id, item.type, next);
     renderCartItems();
     announceCartUpdate(
-      `Se actualizó la cantidad de ${item.name} a ${next}. Total: ${formatPrice(
+      `Actualizaste la cantidad de ${item.name} a ${next}. Total: ${formatPrice(
         getCartTotal()
       )}.`
     );
@@ -129,7 +129,7 @@ function createCartRow(item) {
     renderCartItems();
     showFeedbackMessage({
       type: "info",
-      text: `Carrito: eliminaste "${item.name}" del carrito.`
+      text: `Carrito: quitaste "${item.name}" de tu recorrido.`
     });
     announceCartUpdate(`Se eliminó ${item.name} del carrito. Total: ${formatPrice(getCartTotal())}.`);
   });
@@ -154,8 +154,7 @@ function renderCartItems() {
   if (!items.length) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
-    empty.textContent =
-      "Tu carrito está vacío. Sumá caminatas o actividades para empezar o volvé a explorarlas para elegir qué agregar.";
+    empty.textContent = "Tu carrito está en blanco. Sumá caminatas o actividades para seguir el recorrido.";
     list.appendChild(empty);
     announceCartUpdate("Carrito vacío. No hay ítems seleccionados.");
   } else {
@@ -178,7 +177,7 @@ function bindToolbar() {
       renderCartItems();
       showFeedbackMessage({
         type: "info",
-        text: "Carrito: carrito vaciado."
+        text: "Carrito en blanco, listo para un nuevo recorrido."
       });
     });
   }

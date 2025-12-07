@@ -118,14 +118,14 @@ function setupProfileForm() {
 
     let hasError = false;
     if (fullNameInput && !fullName) {
-      setFieldError(fullNameInput, fullNameError, "Ingres\u00e1 tu nombre completo.");
+      setFieldError(fullNameInput, fullNameError, "Ingresá tu nombre completo.");
       hasError = true;
     }
     if (!email || !email.includes("@")) {
       setFieldError(
         emailInput,
         emailError,
-        "Ingres\u00e1 un correo v\u00e1lido, por ejemplo: nombre@correo.com."
+        "Ingresá un correo válido, por ejemplo: nombre@correo.com."
       );
       hasError = true;
     }
@@ -146,7 +146,7 @@ function setupProfileForm() {
       }
       showFeedbackMessage({
         type: "warning",
-        text: "Perfil: revis\u00e1 los campos marcados antes de continuar."
+        text: "Revisá los campos marcados antes de continuar."
       });
       const firstErrorInput = form.querySelector("[aria-invalid='true']");
       if (firstErrorInput) {
@@ -157,7 +157,7 @@ function setupProfileForm() {
 
     saveProfile({ fullName, email, location, phone, notes });
     if (status) {
-      status.textContent = "Datos guardados en este dispositivo.";
+      status.textContent = "Datos guardados para tus próximas salidas.";
       status.classList.add("profile__status--success");
       status.focus();
     }
@@ -166,7 +166,7 @@ function setupProfileForm() {
     }
     showFeedbackMessage({
       type: "success",
-      text: "Perfil: datos guardados en este dispositivo."
+      text: "Datos guardados para tus próximas salidas."
     });
     if (summary) {
       summary.textContent = fullName ? `Hola, ${fullName}` : "Perfil actualizado en este dispositivo";
@@ -182,7 +182,7 @@ if (app) {
       ${renderHeader("profile")}
       ${renderProfilePage()}
       <footer class="footer">
-        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
           <span>&copy; 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
