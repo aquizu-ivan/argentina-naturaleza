@@ -951,6 +951,21 @@ h3 {
   border: 1px solid rgba(35, 84, 57, 0.3);
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page--profile .content {
+    max-width: 760px;
+  }
+
+  .profile__fields {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 16px 18px;
+  }
+
+  .profile__actions {
+    gap: 12px;
+  }
+}
+
 .trails__grid .trail-card:nth-child(1) {
   transition-delay: 60ms;
 }
@@ -1251,12 +1266,21 @@ h3 {
 }
 
 .map-page {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
   gap: 20px;
+  grid-template-areas:
+    "header"
+    "live"
+    "controls"
+    "canvas"
+    "empty"
+    "list";
 }
 
 .map-page__header {
+  grid-area: header;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1268,6 +1292,7 @@ h3 {
 }
 
 .map__controls {
+  grid-area: controls;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1383,6 +1408,7 @@ h3 {
 }
 
 .map__canvas {
+  grid-area: canvas;
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -1396,6 +1422,7 @@ h3 {
 }
 
 .map__empty-state {
+  grid-area: empty;
   margin-top: 14px;
   font-size: 14px;
   color: rgba(11, 59, 46, 0.85);
@@ -1533,7 +1560,7 @@ h3 {
 .map__tooltip {
   position: absolute;
   min-width: 200px;
-  max-width: min(300px, 78vw);
+  max-width: min(320px, 88vw);
   background: linear-gradient(180deg, rgba(15, 47, 35, 0.95) 0%, rgba(10, 34, 26, 0.94) 100%);
   color: #f4f6f2;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1681,7 +1708,7 @@ h3 {
   }
 
   .map__tooltip {
-    max-width: min(280px, 86vw);
+    max-width: min(300px, 90vw);
     padding: 12px 14px;
     gap: 5px;
   }
@@ -1700,6 +1727,51 @@ h3 {
 
   .map__tooltip-link {
     font-size: 13px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .map-page {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-areas:
+      "header header"
+      "live live"
+      "controls controls"
+      "canvas list"
+      "empty list";
+    align-items: start;
+    gap: 18px;
+  }
+
+  .map__controls {
+    align-items: center;
+  }
+
+  .map__filters {
+    gap: 12px;
+  }
+
+  .map__legend {
+    gap: 12px;
+  }
+
+  .map__canvas {
+    min-height: 500px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .map__empty-state {
+    grid-column: 1 / -1;
+  }
+
+  .map-list {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .map-page {
+    gap: 22px;
   }
 }
 
@@ -1881,6 +1953,26 @@ h3 {
   padding-bottom: 6px;
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cart-layout {
+    grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+    gap: 18px;
+  }
+
+  .cart-toolbar {
+    margin: 24px 0 30px 0;
+    gap: 16px;
+  }
+
+  .cart-item {
+    padding: 16px;
+  }
+
+  .cart-summary {
+    align-self: start;
+  }
+}
+
 /* Breakpoints globales */
 @media (min-width: 768px) {
   .page {
@@ -2057,21 +2149,47 @@ h3 {
   .profile__actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .profile__actions .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .profile__status {
+    width: 100%;
+    text-align: left;
+  }
+
+  .page--profile .content {
+    max-width: none;
   }
 
   .cart-layout {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .cart-toolbar {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
+    margin: 22px 0 26px 0;
   }
 
   .cart-toolbar__links {
     width: 100%;
     justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cart-toolbar__links .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
   .cart-list {
@@ -2111,6 +2229,11 @@ h3 {
   .cart-item__footer {
     align-items: flex-start;
     flex-direction: column;
+    gap: 8px;
+  }
+
+  .cart-summary {
+    width: 100%;
   }
 
   .page--list {
@@ -2299,6 +2422,7 @@ h3 {
 
 /* Mapa - lista accesible de experiencias */
 .map-list {
+  grid-area: list;
   margin-top: 2rem;
 }
 
@@ -2347,6 +2471,10 @@ h3 {
 .map-list__link:hover {
   text-decoration: underline;
   color: var(--color-primary);
+}
+
+.map-page #mapExperiencesLiveRegion {
+  grid-area: live;
 }
 
 .map-list__empty {
