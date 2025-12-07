@@ -1128,10 +1128,25 @@ h3 {
   font-size: 16px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 769px) {
   .detail {
     grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
-    align-items: center;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .detail__media {
+    min-height: 320px;
+  }
+
+  .info-keys {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .detail {
+    gap: 24px;
   }
 }
 
@@ -1158,6 +1173,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
   font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 12px;
@@ -1181,6 +1197,47 @@ h3 {
   background: var(--surface-alt);
   color: var(--color-muted);
   grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .detail {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .detail__body {
+    gap: 12px;
+  }
+
+  .detail__media {
+    min-height: 220px;
+    border-radius: 14px;
+  }
+
+  .detail__section {
+    margin-top: 12px;
+    padding: 12px 14px;
+  }
+
+  .info-keys {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .price-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .breadcrumbs {
+    font-size: 13px;
+    row-gap: 6px;
+  }
 }
 
 
