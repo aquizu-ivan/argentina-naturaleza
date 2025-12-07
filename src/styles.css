@@ -951,6 +951,21 @@ h3 {
   border: 1px solid rgba(35, 84, 57, 0.3);
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page--profile .content {
+    max-width: 760px;
+  }
+
+  .profile__fields {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 16px 18px;
+  }
+
+  .profile__actions {
+    gap: 12px;
+  }
+}
+
 .trails__grid .trail-card:nth-child(1) {
   transition-delay: 60ms;
 }
@@ -2077,6 +2092,22 @@ h3 {
   .profile__actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .profile__actions .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .profile__status {
+    width: 100%;
+    text-align: left;
+  }
+
+  .page--profile .content {
+    max-width: none;
   }
 
   .cart-layout {
