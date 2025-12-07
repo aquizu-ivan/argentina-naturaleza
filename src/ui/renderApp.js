@@ -17,6 +17,9 @@ export function renderApp() {
               Bosques patagónicos, yungas húmedas, lagunas turquesa y cielos abiertos.
               Planificá tu próxima salida y dejate llevar por los paisajes.
             </p>
+            <p class="hero__subtitle">
+              Naturaleza Argentina — Obra 1 del universo IAQUIZU. Primera marca en la cueva: puente entre territorio físico y contemplación.
+            </p>
             <div class="hero__chips">
               <span class="chip"><span aria-hidden="true">🌿</span> Bosques</span>
               <span class="chip"><span aria-hidden="true">⛰️</span> Montañas</span>

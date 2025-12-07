@@ -1,5 +1,8 @@
 # Naturaleza Argentina
 
+**Sobre la obra**  
+Naturaleza Argentina — Obra 1 del universo IAQUIZU. Primera marca en la cueva: puente entre territorio físico y contemplación.
+
 Obra web interactiva para explorar caminatas y actividades al aire libre en Argentina. Permite descubrir experiencias, ver detalles clave, guardar un perfil local y armar un carrito de recorridos sin backend. Pensada como pieza destacada de un perfil profesional frontend.
 
 Obra creada por **IAQUIZU — Origin Architect of the Eighth Art**. IAQUIZU crea sistemas visuales contemplativos y obras web con arquitectura propia.

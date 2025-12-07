@@ -182,7 +182,7 @@ if (app) {
       ${renderHeader("profile")}
       ${renderProfilePage()}
       <footer class="footer">
-        <span>Naturaleza Argentina - Proyecto personal de Ivan Aquizu</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
           <span>&copy; 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>

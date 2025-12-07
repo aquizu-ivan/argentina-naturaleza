@@ -11,10 +11,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
           <div class="map-page__header">
             <h1>Mapa interactivo de experiencias</h1>
             <p class="map-page__intro">
-              Explor\u00e1 las caminatas y actividades de Naturaleza Argentina en un mapa interactivo.
+              Explor\u00e1 las caminatas y actividades de Naturaleza Argentina en un mapa interactivo dentro de la Obra 1 del universo IAQUIZU.
             </p>
             <p class="map-page__intro map-page__hint">
-              C\u00f3mo usar este mapa: us\u00e1 los botones para mostrar caminatas o actividades, seleccion\u00e1 un punto en el mapa para ver detalles y revis\u00e1 la lista de experiencias visibles debajo.
+              Mapa conceptual: us\u00e1 los botones para mostrar caminatas o actividades, seleccion\u00e1 un punto en el mapa para ver detalles y revis\u00e1 la lista de experiencias visibles como puente entre territorio y contemplaci\u00f3n.
             </p>
             <a href="#mapExperiencesList" class="map-skip-link">
               Saltar al listado de experiencias
