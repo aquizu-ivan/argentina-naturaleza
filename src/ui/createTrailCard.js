@@ -29,7 +29,7 @@ export function createTrailCard(trail) {
   location.textContent = `${trail.province} - ${trail.region}`;
 
   const details = document.createElement("p");
-  details.textContent = `Dificultad: ${trail.difficulty} \u00b7 Duraci\u00f3n: ${trail.duration}`;
+  details.textContent = `Dificultad: ${trail.difficulty} \u00b7 Duración: ${trail.duration}`;
 
   const description = document.createElement("p");
   description.textContent = trail.description;
@@ -38,8 +38,8 @@ export function createTrailCard(trail) {
   meta.className = "card-meta";
   meta.innerHTML = `
     <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">\u26a1</span><span>Dificultad: ${trail.difficulty}</span></span>
-    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">\u23f1\ufe0f</span><span>Duraci\u00f3n: ${trail.duration}</span></span>
-    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">\ud83d\uddcd</span><span>Regi\u00f3n: ${trail.region}</span></span>
+    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">\u23f1\ufe0f</span><span>Duración: ${trail.duration}</span></span>
+    <span class="card-meta__item"><span class="card-meta__icon" aria-hidden="true">\ud83d\uddcd</span><span>Región: ${trail.region}</span></span>
   `;
 
   const weatherChip = createWeatherChip(trail.city);
@@ -54,7 +54,7 @@ export function createTrailCard(trail) {
   const addButton = document.createElement("button");
   addButton.type = "button";
   addButton.className = "button button--cart";
-  addButton.textContent = "A\u00f1adir al carrito";
+  addButton.textContent = "Añadir al carrito";
   addButton.addEventListener("click", function (event) {
     event.stopPropagation();
     addToCart({
@@ -70,14 +70,18 @@ export function createTrailCard(trail) {
     updateCartBadge();
     announceCartAddition(`Se añadió ${trail.name} al carrito.`);
     addButton.classList.add("button--added");
-    addButton.textContent = "A\u00f1adido \u2713";
+    addButton.textContent = "Añadido ✓";
     window.setTimeout(function () {
       addButton.classList.remove("button--added");
-      addButton.textContent = "A\u00f1adir al carrito";
+      addButton.textContent = "Añadir al carrito";
     }, 1400);
   });
 
-  link.append(image, title, location, details, description, meta, weatherChip);
+  if (weatherChip) {
+    link.append(image, title, location, details, description, meta, weatherChip);
+  } else {
+    link.append(image, title, location, details, description, meta);
+  }
   actions.append(price, addButton);
   card.append(link, actions);
 

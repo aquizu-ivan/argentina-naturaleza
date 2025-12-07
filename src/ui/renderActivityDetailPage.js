@@ -44,7 +44,7 @@ export function renderActivityDetailPage(activityId) {
   if (!activity) {
     upsertMeta(
       "Actividad no encontrada | Naturaleza Argentina",
-      "No encontramos la actividad que buscás. Volvé a la lista para seguir explorando.",
+      "No encontramos la actividad que busc\u00e1s. Volv\u00e9 a la lista para seguir explorando.",
       "/assets/og/og-hero.png"
     );
     app.innerHTML = `
@@ -53,7 +53,7 @@ export function renderActivityDetailPage(activityId) {
         <main>
           <section class="content fade-in">
             <h1>Actividad no encontrada</h1>
-            <p>No encontramos esta actividad. Volvé a la lista para seguir explorando.</p>
+            <p>No encontramos esta actividad. Volv\u00e9 a la lista para seguir explorando.</p>
             <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
           </section>
         </main>
@@ -61,7 +61,7 @@ export function renderActivityDetailPage(activityId) {
         <footer class="footer">
           <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
           <div class="footer__links">
-            <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
+            <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
           </div>
         </footer>
       </div>
@@ -77,7 +77,7 @@ export function renderActivityDetailPage(activityId) {
 
   upsertMeta(
     `${activity.name} | Actividad al aire libre | Naturaleza Argentina`,
-    `${activity.name} en ${activity.region}. Duración ${activity.duration}. Descubrí más detalles y beneficios.`,
+    `${activity.name} en ${activity.region}. Duraci\u00f3n ${activity.duration}. Descubr\u00ed m\u00e1s detalles y beneficios.`,
     activity.imageUrl
   );
 
@@ -109,16 +109,16 @@ export function renderActivityDetailPage(activityId) {
             <p>${activity.longDescription}</p>
             <h2>Información clave</h2>
             <div class="info-keys">
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⚡</span><span>Dificultad: ${activity.difficulty}</span></div>
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">⏱️</span><span>Duración: ${activity.duration}</span></div>
-              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">📍</span><span>Ubicación: ${activity.region} - ${activity.location}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">\u26a1</span><span>Dificultad: ${activity.difficulty}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">\u23f1\ufe0f</span><span>Duración: ${activity.duration}</span></div>
+              <div class="info-keys__item"><span class="info-keys__icon" aria-hidden="true">\ud83d\uddcd</span><span>Ubicación: ${activity.region} - ${activity.location}</span></div>
             </div>
             <div class="price-line">
               <span>Precio por persona</span>
               <strong>${formatPrice(activity.price)}</strong>
             </div>
             <div class="hero__actions">
-              <button class="button button--primary" type="button" data-add-cart aria-label="Añadir actividad al carrito">Añadir al carrito</button>
+              <button class="button button--primary" type="button" data-add-cart aria-label="A\u00f1adir actividad al carrito">A\u00f1adir al carrito</button>
               <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
             </div>
           </div>
@@ -129,7 +129,7 @@ export function renderActivityDetailPage(activityId) {
           <ul class="benefits">
             ${activity.benefits
               .map(function (benefit) {
-                return `<li><span class="benefits__icon" aria-hidden="true">🌿</span><span>${benefit}</span></li>`;
+                return `<li><span class="benefits__icon" aria-hidden="true">\ud83c\udf3f</span><span>${benefit}</span></li>`;
               })
               .join("")}
           </ul>
@@ -139,7 +139,7 @@ export function renderActivityDetailPage(activityId) {
       <footer class="footer">
         <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
+          <span>\u00a9 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
@@ -166,11 +166,11 @@ export function renderActivityDetailPage(activityId) {
         style: activity.style
       });
       updateCartBadge();
-      announceCartAddition(`Se añadió ${activity.name} al carrito.`);
-      addButton.textContent = "Añadido ✓";
+      announceCartAddition(`Se a\u00f1adi\u00f3 ${activity.name} al carrito.`);
+      addButton.textContent = "A\u00f1adido \u2713";
       addButton.classList.add("button--added");
       window.setTimeout(function () {
-        addButton.textContent = "Añadir al carrito";
+        addButton.textContent = "A\u00f1adir al carrito";
         addButton.classList.remove("button--added");
       }, 1600);
     });
