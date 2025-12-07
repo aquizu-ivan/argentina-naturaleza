@@ -11,10 +11,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
           <div class="map-page__header">
             <h1>Mapa interactivo de experiencias</h1>
             <p class="map-page__intro">
-              Explor\u00e1 las caminatas y actividades de Naturaleza Argentina en un mapa interactivo dentro de la Obra 1 del universo IAQUIZU.
+              Explorá las caminatas y actividades de Naturaleza Argentina en un mapa interactivo dentro de la Obra 1 del universo IAQUIZU.
             </p>
             <p class="map-page__intro map-page__hint">
-              Mapa conceptual: us\u00e1 los botones para mostrar caminatas o actividades, seleccion\u00e1 un punto en el mapa para ver detalles y revis\u00e1 la lista de experiencias visibles como puente entre territorio y contemplaci\u00f3n.
+              Mapa conceptual: usá los botones para mostrar caminatas o actividades, seleccioná un punto en el mapa para ver detalles y revisá la lista de experiencias visibles como puente entre territorio y contemplación.
             </p>
             <a href="#mapExperiencesList" class="map-skip-link">
               Saltar al listado de experiencias
@@ -66,10 +66,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
             aria-label="Mapa interactivo de experiencias en Argentina"
           >
             <h2 class="sr-only">Mapa de experiencias</h2>
-            <div class="map__canvas-placeholder">Ac\u00e1 va el mapa (Bloque C/D)</div>
+            <div class="map__canvas-placeholder">Mapa conceptual para imaginar recorridos en territorio.</div>
           </section>
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
-            No hay experiencias para los filtros seleccionados. Prob\u00e1 ajustar los filtros o volver a mostrar caminatas y actividades.
+            No hay experiencias para estos filtros. Podés ajustar el recorrido o volver a explorar el mapa.
           </p>
           <section
             class="map-list"
