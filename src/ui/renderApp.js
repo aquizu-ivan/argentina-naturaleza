@@ -19,8 +19,8 @@ export function renderApp() {
             </p>
             <div class="hero__chips">
               <span class="chip"><span aria-hidden="true">🌿</span> Bosques</span>
-              <span class="chip"><span aria-hidden="true">🌿</span> Montañas</span>
-              <span class="chip"><span aria-hidden="true">🌿</span> Lagunas</span>
+              <span class="chip"><span aria-hidden="true">⛰️</span> Montañas</span>
+              <span class="chip"><span aria-hidden="true">💧</span> Lagunas</span>
             </div>
             <div class="hero__actions">
               <a class="button button--primary" href="/caminatas.html">Ver caminatas</a>

@@ -72,9 +72,9 @@ export function renderTrailsPage() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina – Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
