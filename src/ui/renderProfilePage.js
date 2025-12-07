@@ -1,4 +1,5 @@
 import { getProfile } from "../profile/profileStorage.js";
+import { isStorageInFallbackMode } from "../utils/storageUtils.js";
 
 export function renderProfilePage() {
   const profile = getProfile();
@@ -6,6 +7,9 @@ export function renderProfilePage() {
   const greeting = hasProfile
     ? `Hola, ${profile.fullName}`
     : "Completá tus datos en este dispositivo para empezar";
+  const fallbackHint = isStorageInFallbackMode()
+    ? " Tus datos se mantienen mientras tengas esta página abierta."
+    : "";
 
   return `
     <main class="page page--profile fade-in">
@@ -54,7 +58,7 @@ export function renderProfilePage() {
             <a class="button button--ghost" href="/index.html">Volver a explorar</a>
             ${hasProfile ? `<button class="button button--ghost" type="button" data-profile-clear aria-label="Borrar los datos guardados de este dispositivo">Borrar datos guardados</button>` : ""}
           </div>
-          <div class="profile__note">Tus datos se guardan solo en este navegador. No se crea ninguna cuenta y podés borrarlos en cualquier momento.</div>
+          <div class="profile__note">Tus datos se guardan solo en este navegador. No se crea ninguna cuenta y podés borrarlos en cualquier momento.${fallbackHint}</div>
           <div class="profile__status${hasProfile ? " profile__status--success" : ""}" id="profileStatus" role="status" aria-live="polite" tabindex="-1">
             ${hasProfile ? "Datos guardados en este dispositivo." : "Todavía no guardaste datos en este dispositivo."}
           </div>
