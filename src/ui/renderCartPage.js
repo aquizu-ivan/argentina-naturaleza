@@ -1,4 +1,5 @@
 import { getProfile } from "../profile/profileStorage.js";
+import { isStorageInFallbackMode } from "../utils/storageUtils.js";
 import { renderHeader } from "./header.js";
 
 export function renderCartPage() {
@@ -6,6 +7,7 @@ export function renderCartPage() {
   if (!app) return;
 
   const user = getProfile();
+  const isFallback = isStorageInFallbackMode();
 
   app.innerHTML = `
     <div class="page">
@@ -52,6 +54,11 @@ export function renderCartPage() {
                 <p class="cart-summary__value" id="cartTotalText">$0</p>
               </div>
               <p class="cart-summary__note">Los valores son referenciales, sin proceso de pago real.</p>
+              ${
+                isFallback
+                  ? `<p class="cart-summary__note">Tu selección se mantiene mientras tengas esta página abierta.</p>`
+                  : ""
+              }
             </aside>
           </div>
         </section>
