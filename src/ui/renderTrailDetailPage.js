@@ -162,11 +162,11 @@ export function renderTrailDetailPage(trailId) {
         province: trail.province,
         region: trail.region,
         difficulty: trail.difficulty,
-      duration: trail.duration
-    });
-    updateCartBadge();
-    announceCartAddition(`Se añadió ${trail.name} al carrito.`);
-    addButton.textContent = "Añadido ✓";
+        duration: trail.duration
+      });
+      updateCartBadge();
+      announceCartAddition(`Se añadió ${trail.name} al carrito.`);
+      addButton.textContent = "Añadido ✓";
       addButton.classList.add("button--added");
       window.setTimeout(function () {
         addButton.textContent = "Añadir al carrito";
