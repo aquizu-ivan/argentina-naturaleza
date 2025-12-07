@@ -9,12 +9,12 @@ export function renderMapPage(root = document.querySelector("#app")) {
       <main>
         <section class="content content--light map-page fade-in">
           <div class="map-page__header">
-            <h1>Mapa interactivo de experiencias</h1>
+            <h1>Mapa conceptual de experiencias</h1>
             <p class="map-page__intro">
-              Explorá las caminatas y actividades de Naturaleza Argentina en un mapa interactivo dentro de la Obra 1 del universo IAQUIZU.
+              Explor\u00E1 las caminatas y actividades de Naturaleza Argentina en un mapa conceptual dentro de la Obra 1 del universo IAQUIZU.
             </p>
             <p class="map-page__intro map-page__hint">
-              Mapa conceptual: usá los botones para mostrar caminatas o actividades, seleccioná un punto en el mapa para ver detalles y revisá la lista de experiencias visibles como puente entre territorio y contemplación.
+              Mapa conceptual: us\u00E1 los botones para mostrar caminatas o actividades, eleg\u00ED un punto en el mapa para ver detalles y recorr\u00E9 la lista de experiencias visibles como puente entre territorio y contemplaci\u00F3n.
             </p>
             <a href="#mapExperiencesList" class="map-skip-link">
               Saltar al listado de experiencias
@@ -69,7 +69,7 @@ export function renderMapPage(root = document.querySelector("#app")) {
             <div class="map__canvas-placeholder">Mapa conceptual para imaginar recorridos en territorio.</div>
           </section>
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
-            No hay experiencias para estos filtros. Podés ajustar el recorrido o volver a explorar el mapa.
+            No hay experiencias para estos filtros. Pod\u00E9s ajustar el recorrido o volver a explorar el mapa.
           </p>
           <section
             class="map-list"
@@ -86,9 +86,9 @@ export function renderMapPage(root = document.querySelector("#app")) {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU \u2014 Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
+          <span>\u00A9 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>
