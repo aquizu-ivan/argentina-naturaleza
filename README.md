@@ -54,6 +54,14 @@ Comandos:
 
 Páginas de entrada (multipágina): `index.html` (home), `caminatas.html`, `activities.html`, `caminata-detalle.html`, `actividad-detalle.html`, `carrito.html`, `perfil.html`, `mapa.html`.
 
+## Live URL
+
+Obra Naturaleza Argentina (v1 habitable):
+
+https://aquizu-ivan.github.io/argentina-naturaleza/
+
+Deploy publicado con GitHub Pages usando GitHub Actions y el workflow `deploy-naturaleza-argentina.yml`.
+
 ## Recorrido sugerido
 1. Entrar a la home (`index.html`).
 2. Explorar caminatas y actividades con sus filtros.
