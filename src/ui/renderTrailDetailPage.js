@@ -5,6 +5,12 @@ import { formatPrice } from "../utils/formatters.js";
 import { renderHeader } from "./header.js";
 import { announceCartAddition } from "../utils/ariaLive.js";
 
+function resolveImagePath(path) {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  return new URL(normalized, window.location.origin + base).href;
+}
+
 function upsertMeta(title, description, image) {
   if (title) {
     document.title = title;
@@ -75,10 +81,12 @@ export function renderTrailDetailPage(trailId) {
     return;
   }
 
+  const heroImage = resolveImagePath(trail.imageUrl);
+
   upsertMeta(
     `${trail.name} | Caminata en ${trail.region} | Naturaleza Argentina`,
     `${trail.name} en ${trail.region}. Dificultad ${trail.difficulty}, ${trail.duration}. Descubr\u00ed m\u00e1s detalles y beneficios.`,
-    trail.imageUrl
+    heroImage
   );
 
   app.innerHTML = `
@@ -96,7 +104,7 @@ export function renderTrailDetailPage(trailId) {
             </nav>
           </div>
           <div class="detail__media">
-            <img src="${trail.imageUrl}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" decoding="async" width="1200" height="720" />
+            <img src="${heroImage}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" decoding="async" width="1200" height="720" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">

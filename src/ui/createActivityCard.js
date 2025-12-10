@@ -3,6 +3,12 @@ import { updateCartBadge } from "../cart/cartBadge.js";
 import { formatPrice } from "../utils/formatters.js";
 import { announceCartAddition } from "../utils/ariaLive.js";
 
+function resolveImagePath(path) {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  return new URL(normalized, window.location.origin + base).href;
+}
+
 export function createActivityCard(activity) {
   const card = document.createElement("article");
   card.className = "trail-card fade-in";
@@ -13,7 +19,7 @@ export function createActivityCard(activity) {
   link.setAttribute("aria-label", `${activity.name}, ${activity.style}`);
 
   const image = document.createElement("img");
-  image.src = activity.imageUrl;
+  image.src = resolveImagePath(activity.imageUrl);
   image.alt = activity.name;
   image.loading = "lazy";
   image.decoding = "async";

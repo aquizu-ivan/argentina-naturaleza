@@ -5,6 +5,12 @@ import { formatPrice } from "../utils/formatters.js";
 import { renderHeader } from "./header.js";
 import { announceCartAddition } from "../utils/ariaLive.js";
 
+function resolveImagePath(path) {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  return new URL(normalized, window.location.origin + base).href;
+}
+
 function upsertMeta(title, description, image) {
   if (title) {
     document.title = title;
@@ -75,10 +81,12 @@ export function renderActivityDetailPage(activityId) {
     return;
   }
 
+  const heroImage = resolveImagePath(activity.imageUrl);
+
   upsertMeta(
     `${activity.name} | Actividad al aire libre | Naturaleza Argentina`,
     `${activity.name} en ${activity.region}. Duraci\u00f3n ${activity.duration}. Descubr\u00ed m\u00e1s detalles y beneficios.`,
-    activity.imageUrl
+    heroImage
   );
 
   app.innerHTML = `
@@ -96,7 +104,7 @@ export function renderActivityDetailPage(activityId) {
             </nav>
           </div>
           <div class="detail__media">
-            <img src="${activity.imageUrl}" alt="${activity.name} en ${activity.region}, imagen destacada de la actividad" loading="lazy" decoding="async" width="1200" height="720" />
+            <img src="${heroImage}" alt="${activity.name} en ${activity.region}, imagen destacada de la actividad" loading="lazy" decoding="async" width="1200" height="720" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">

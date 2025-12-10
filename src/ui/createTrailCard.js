@@ -4,6 +4,12 @@ import { formatPrice } from "../utils/formatters.js";
 import { createWeatherChip } from "./createWeatherChip.js";
 import { announceCartAddition } from "../utils/ariaLive.js";
 
+function resolveImagePath(path) {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  return new URL(normalized, window.location.origin + base).href;
+}
+
 export function createTrailCard(trail) {
   const card = document.createElement("article");
   card.className = "trail-card fade-in";
@@ -14,7 +20,7 @@ export function createTrailCard(trail) {
   link.setAttribute("aria-label", `${trail.name}, dificultad ${trail.difficulty}`);
 
   const image = document.createElement("img");
-  image.src = trail.imageUrl;
+  image.src = resolveImagePath(trail.imageUrl);
   image.alt = trail.name;
   image.loading = "lazy";
   image.decoding = "async";
