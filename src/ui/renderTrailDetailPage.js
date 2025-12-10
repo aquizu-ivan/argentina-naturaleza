@@ -5,6 +5,12 @@ import { formatPrice } from "../utils/formatters.js";
 import { renderHeader } from "./header.js";
 import { announceCartAddition } from "../utils/ariaLive.js";
 
+function resolveImagePath(path) {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  return new URL(normalized, window.location.origin + base).href;
+}
+
 function upsertMeta(title, description, image) {
   if (title) {
     document.title = title;
@@ -55,7 +61,7 @@ export function renderTrailDetailPage(trailId) {
           <section class="content fade-in">
             <h1>Caminata no encontrada</h1>
             <p>No encontramos esta caminata. Volv\u00e9 a la lista para seguir explorando.</p>
-            <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
+            <a class="button button--ghost" href="caminatas.html">Volver a caminatas</a>
           </section>
         </main>
         <footer class="footer">
@@ -75,10 +81,12 @@ export function renderTrailDetailPage(trailId) {
     return;
   }
 
+  const heroImage = resolveImagePath(trail.imageUrl);
+
   upsertMeta(
     `${trail.name} | Caminata en ${trail.region} | Naturaleza Argentina`,
     `${trail.name} en ${trail.region}. Dificultad ${trail.difficulty}, ${trail.duration}. Descubr\u00ed m\u00e1s detalles y beneficios.`,
-    trail.imageUrl
+    heroImage
   );
 
   app.innerHTML = `
@@ -89,14 +97,14 @@ export function renderTrailDetailPage(trailId) {
           <div class="detail__body" style="grid-column: 1 / -1;">
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/caminatas.html">Caminatas</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="caminatas.html">Caminatas</a></li>
                 <li aria-current="page">${trail.name}</li>
               </ol>
             </nav>
           </div>
           <div class="detail__media">
-            <img src="${trail.imageUrl}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" decoding="async" width="1200" height="720" />
+            <img src="${heroImage}" alt="${trail.name} en ${trail.region}, imagen destacada de la caminata" loading="lazy" decoding="async" width="1200" height="720" />
           </div>
           <div class="detail__body">
             <div class="detail__meta">
@@ -119,7 +127,7 @@ export function renderTrailDetailPage(trailId) {
             </div>
             <div class="hero__actions">
               <button class="button button--primary" type="button" data-add-cart>A\u00f1adir al carrito</button>
-              <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
+              <a class="button button--ghost" href="caminatas.html">Volver a caminatas</a>
             </div>
           </div>
         </section>

@@ -94,7 +94,7 @@ function setupProfileForm() {
   if (clearButton) {
     clearButton.addEventListener("click", function () {
       clearProfile();
-      window.location.href = "/index.html";
+      window.location.href = "index.html";
     });
   }
 

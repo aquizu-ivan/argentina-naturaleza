@@ -55,7 +55,7 @@ export function renderProfilePage() {
           </div>
           <div class="profile__actions">
             <button class="button button--primary" type="submit">Guardar datos en este dispositivo</button>
-            <a class="button button--ghost" href="/index.html">Volver a explorar</a>
+            <a class="button button--ghost" href="index.html">Volver a explorar</a>
             ${hasProfile ? `<button class="button button--ghost" type="button" data-profile-clear aria-label="Borrar los datos guardados de este dispositivo">Borrar datos guardados</button>` : ""}
           </div>
           <div class="profile__note">Tus datos se guardan solo en este navegador. No se crea ninguna cuenta y podés borrarlos en cualquier momento.${fallbackHint}</div>

@@ -26,8 +26,8 @@ export function renderApp() {
               <span class="chip"><span aria-hidden="true">💧</span> Lagunas</span>
             </div>
             <div class="hero__actions">
-              <a class="button button--primary" href="/caminatas.html">Ver caminatas</a>
-              <a class="button button--primary" href="/activities.html">Ver actividades</a>
+              <a class="button button--primary" href="caminatas.html">Ver caminatas</a>
+              <a class="button button--primary" href="activities.html">Ver actividades</a>
             </div>
           </div>
         </section>
