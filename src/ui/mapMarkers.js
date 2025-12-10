@@ -22,7 +22,7 @@ function buildMarkerFromTrail(trail, offset) {
     title: trail.name,
     region: trail.region,
     difficulty: trail.difficulty,
-    href: `/caminata-detalle.html?id=${trail.id}`,
+    href: `caminata-detalle.html?id=${trail.id}`,
     x: Math.max(0, Math.min(100, base.x + offset.x)),
     y: Math.max(0, Math.min(100, base.y + offset.y))
   };
@@ -38,7 +38,7 @@ function buildMarkerFromActivity(activity, offset) {
     title: activity.name,
     region: activity.region,
     difficulty: activity.difficulty,
-    href: `/actividad-detalle.html?id=${activity.id}`,
+    href: `actividad-detalle.html?id=${activity.id}`,
     x: Math.max(0, Math.min(100, base.x + offset.x)),
     y: Math.max(0, Math.min(100, base.y + offset.y))
   };

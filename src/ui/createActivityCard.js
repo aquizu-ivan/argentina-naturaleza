@@ -9,7 +9,7 @@ export function createActivityCard(activity) {
 
   const link = document.createElement("a");
   link.className = "card-link";
-  link.href = `/actividad-detalle.html?id=${encodeURIComponent(activity.id)}`;
+  link.href = `actividad-detalle.html?id=${encodeURIComponent(activity.id)}`;
   link.setAttribute("aria-label", `${activity.name}, ${activity.style}`);
 
   const image = document.createElement("img");

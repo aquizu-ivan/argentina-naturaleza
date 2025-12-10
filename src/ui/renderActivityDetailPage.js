@@ -54,7 +54,7 @@ export function renderActivityDetailPage(activityId) {
           <section class="content fade-in">
             <h1>Actividad no encontrada</h1>
             <p>No encontramos esta actividad. Volv\u00e9 a la lista para seguir explorando.</p>
-            <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
+            <a class="button button--ghost" href="activities.html">Volver a actividades</a>
           </section>
         </main>
 
@@ -89,8 +89,8 @@ export function renderActivityDetailPage(activityId) {
           <div class="detail__body" style="grid-column: 1 / -1;">
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/activities.html">Actividades</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="activities.html">Actividades</a></li>
                 <li aria-current="page">${activity.name}</li>
               </ol>
             </nav>
@@ -119,7 +119,7 @@ export function renderActivityDetailPage(activityId) {
             </div>
             <div class="hero__actions">
               <button class="button button--primary" type="button" data-add-cart aria-label="A\u00f1adir actividad al carrito">A\u00f1adir al carrito</button>
-              <a class="button button--ghost" href="/activities.html">Volver a actividades</a>
+              <a class="button button--ghost" href="activities.html">Volver a actividades</a>
             </div>
           </div>
         </section>

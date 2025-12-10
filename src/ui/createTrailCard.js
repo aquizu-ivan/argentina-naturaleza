@@ -10,7 +10,7 @@ export function createTrailCard(trail) {
 
   const link = document.createElement("a");
   link.className = "card-link";
-  link.href = `/caminata-detalle.html?id=${encodeURIComponent(trail.id)}`;
+  link.href = `caminata-detalle.html?id=${encodeURIComponent(trail.id)}`;
   link.setAttribute("aria-label", `${trail.name}, dificultad ${trail.difficulty}`);
 
   const image = document.createElement("img");

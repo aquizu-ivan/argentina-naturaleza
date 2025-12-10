@@ -55,7 +55,7 @@ export function renderTrailDetailPage(trailId) {
           <section class="content fade-in">
             <h1>Caminata no encontrada</h1>
             <p>No encontramos esta caminata. Volv\u00e9 a la lista para seguir explorando.</p>
-            <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
+            <a class="button button--ghost" href="caminatas.html">Volver a caminatas</a>
           </section>
         </main>
         <footer class="footer">
@@ -89,8 +89,8 @@ export function renderTrailDetailPage(trailId) {
           <div class="detail__body" style="grid-column: 1 / -1;">
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <ol>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/caminatas.html">Caminatas</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="caminatas.html">Caminatas</a></li>
                 <li aria-current="page">${trail.name}</li>
               </ol>
             </nav>
@@ -119,7 +119,7 @@ export function renderTrailDetailPage(trailId) {
             </div>
             <div class="hero__actions">
               <button class="button button--primary" type="button" data-add-cart>A\u00f1adir al carrito</button>
-              <a class="button button--ghost" href="/caminatas.html">Volver a caminatas</a>
+              <a class="button button--ghost" href="caminatas.html">Volver a caminatas</a>
             </div>
           </div>
         </section>

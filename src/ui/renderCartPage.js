@@ -18,8 +18,8 @@ export function renderCartPage() {
           <p>Revisá lo que añadiste y ajustá cantidades antes de seguir explorando.</p>
           <div class="cart-toolbar">
             <div class="cart-toolbar__links">
-              <a class="button button--ghost" href="/caminatas.html">Seguir explorando caminatas</a>
-              <a class="button button--ghost" href="/activities.html">Seguir explorando actividades</a>
+              <a class="button button--ghost" href="caminatas.html">Seguir explorando caminatas</a>
+              <a class="button button--ghost" href="activities.html">Seguir explorando actividades</a>
             </div>
             <button class="button button--secondary" type="button" id="clearCartButton">Vaciar carrito</button>
           </div>
@@ -41,7 +41,7 @@ export function renderCartPage() {
                     `
                     : `
                       <p class="cart-summary__detail">Aún no cargaste tus datos.</p>
-                      <a class="button button--ghost button--small" href="/perfil.html">Completar mis datos</a>
+                      <a class="button button--ghost button--small" href="perfil.html">Completar mis datos</a>
                     `
                 }
               </div>
