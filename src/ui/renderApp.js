@@ -12,9 +12,9 @@ export function renderApp() {
           <div class="hero__image-layer"></div>
           <div class="hero__content">
             <span class="hero__eyebrow">Portal IAQUIZU</span>
-            <h1 class="hero__title">Naturaleza Argentina - Territorio habitable</h1>
+            <h1 class="hero__title">Naturaleza Argentina — Territorio habitable</h1>
             <p class="hero__subtitle">
-              Caminatas, clima y territorio reunidos en una obra digital que podes habitar a tu ritmo.
+              Caminatas, clima y territorio reunidos en una obra digital que podés habitar a tu ritmo.
               Un entorno vivo para quedarte, no solo para mirar.
             </p>
             <div class="hero__chips">
@@ -30,18 +30,18 @@ export function renderApp() {
         </section>
 
         <section id="inspiracion" class="content content--light fade-in">
-          <h2>Respira aire libre</h2>
+          <h2>Respirá aire libre</h2>
           <p>
             Inspirate con la diversidad de ecosistemas: estepa, selva, sierras y glaciares.
-            Prepara tu equipo, elegi el sendero y sali a descubrir el pais caminando.
+            Prepará tu equipo, elegí el sendero y salí a descubrir el país caminando.
           </p>
         </section>
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina - Obra creada por IAQUIZU - Origin Architect of the Eighth Art</span>
+        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>(c) 2025 - Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

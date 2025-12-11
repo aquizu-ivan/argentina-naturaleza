@@ -1,9 +1,9 @@
-import "./styles.css";
+﻿import "./styles.css";
 import { updateCartBadge } from "./cart/cartBadge.js";
 import { activitiesData } from "./data/activitiesData.js";
 import { renderActivitiesPage } from "./ui/renderActivitiesPage.js";
 import { renderActivityCards } from "./ui/renderActivityCards.js";
-import { filterTrails } from "./ui/filterTrails.js";
+import { filterActivities } from "./ui/filterActivities.js";
 import { setupListFilters } from "./ui/listFilters.js";
 import { updateHeaderUserState } from "./ui/header.js";
 
@@ -49,9 +49,18 @@ const regionSelect = document.getElementById("activityRegionFilter");
 const difficultySelect = document.getElementById("activityDifficultyFilter");
 const resultsInfo = document.getElementById("activitiesResultsInfo");
 const clearFiltersButton = document.getElementById("activitiesClearFiltersButton");
+const activitiesGrid = document.getElementById("activitiesGrid");
+
+function showActivitiesLoading(message) {
+  if (!activitiesGrid) return;
+  activitiesGrid.classList.add("is-loading");
+  activitiesGrid.innerHTML = `<div class="list-loader" role="status" aria-live="polite">${message}</div>`;
+}
 
 function renderFilteredActivities(activities) {
+  showActivitiesLoading("Actualizando actividades...");
   renderActivityCards(activities);
+  activitiesGrid?.classList.remove("is-loading");
   updateCartBadge();
   observeFadeIn();
 }
@@ -65,7 +74,7 @@ const { update } = setupListFilters({
     return activitiesData;
   },
   applyFilterLogic: function (items, filters) {
-    return filterTrails(items, filters);
+    return filterActivities(items, filters);
   },
   onResultsChange: renderFilteredActivities,
   labels: {

@@ -51,27 +51,13 @@ function initMapPage() {
   const activityToggleElement = mapPage ? mapPage.activityToggleElement : null;
   const emptyStateElement = mapPage ? mapPage.emptyStateElement : null;
   const listContentElement = mapPage ? mapPage.listContentElement : null;
+  const loaderElement = document.querySelector(".map__loader");
+  const placeholderElement = document.querySelector(".map__canvas-placeholder");
+  const pulseElement = document.querySelector(".map__pulse");
   const liveRegionElement = document.getElementById("mapExperiencesLiveRegion");
+
   const setLiveRegionMessage = function (message) {
     if (!liveRegionElement) return;
-    liveRegionElement.textContent = message;
-  };
-
-  const updateMapExperiencesLiveRegion = function ({ total, hikesCount, activitiesCount }) {
-    if (!liveRegionElement) return;
-    let message = "";
-
-    if (total === 0) {
-      message =
-        "No hay experiencias visibles en el mapa. Ajust\u00e1 los filtros para ver resultados.";
-    } else if (hikesCount > 0 && activitiesCount > 0) {
-      message = `Se muestran ${total} experiencias en el mapa: ${hikesCount} caminatas y ${activitiesCount} actividades.`;
-    } else if (hikesCount > 0) {
-      message = `Se muestran ${hikesCount} caminatas en el mapa.`;
-    } else if (activitiesCount > 0) {
-      message = `Se muestran ${activitiesCount} actividades en el mapa.`;
-    }
-
     liveRegionElement.textContent = message;
   };
 
@@ -84,10 +70,10 @@ function initMapPage() {
       empty.className = "empty-state map-list__empty fade-in";
 
       const title = document.createElement("p");
-      title.textContent = "No hay experiencias visibles en el mapa con esta combinaci\u00f3n de filtros.";
+      title.textContent = "No hay experiencias visibles con este filtro.";
 
       const hint = document.createElement("p");
-      hint.textContent = "Prob\u00e1 activar caminatas, actividades o ajustar los filtros.";
+      hint.textContent = "Probá activar caminatas o actividades, o ajustar los filtros.";
 
       empty.append(title, hint);
       listContentElement.appendChild(empty);
@@ -106,8 +92,8 @@ function initMapPage() {
       title.textContent = `${typeLabel}: ${experience.name}`;
 
       const details = document.createElement("div");
-      const difficultyText = experience.difficulty ? ` \u00b7 Dificultad: ${experience.difficulty}` : "";
-      details.textContent = `Regi\u00f3n: ${experience.region || "Argentina"}${difficultyText}`;
+      const difficultyText = experience.difficulty ? ` · Dificultad: ${experience.difficulty}` : "";
+      details.textContent = `Región: ${experience.region || "Argentina"}${difficultyText}`;
 
       const link = document.createElement("a");
       link.className = "map-list__link";
@@ -121,119 +107,135 @@ function initMapPage() {
     listContentElement.appendChild(list);
   };
 
+  const showMapLoader = function (message) {
+    if (!loaderElement) return;
+    loaderElement.textContent = message;
+    loaderElement.hidden = false;
+  };
+
+  const hideMapLoader = function () {
+    if (loaderElement) loaderElement.hidden = true;
+    if (pulseElement) pulseElement.classList.add("is-active");
+    if (placeholderElement) placeholderElement.hidden = true;
+  };
+
   if (canvasElement) {
-    renderArgentinaMap(canvasElement);
-
-    const markers = buildMapMarkers();
-    let lastActiveMarker = null;
-    const clearActiveMarker = function () {
-      if (lastActiveMarker) {
-        lastActiveMarker.classList.remove("map__marker--active");
-        lastActiveMarker = null;
-      }
-    };
-    const setActiveMarker = function (element) {
-      if (!element) return;
-      if (lastActiveMarker && lastActiveMarker !== element) {
-        lastActiveMarker.classList.remove("map__marker--active");
-      }
-      lastActiveMarker = element;
-      lastActiveMarker.classList.add("map__marker--active");
-    };
-    const { showTooltip, hideTooltip } = createMapTooltip(canvasElement, {
-      onClose() {
-        clearActiveMarker();
-      }
-    });
-
-    const { markerElements } = renderMapMarkers(canvasElement, markers, {
-      onMarkerClick(marker, element, options = {}) {
-        if (options.focusTooltip) {
-          setActiveMarker(element);
-          const typeLabel = marker.type === "trail" ? "caminata" : "actividad";
-          const regionLabel = marker.region || "Argentina";
-          setLiveRegionMessage(`Se seleccionó ${marker.title}, ${typeLabel}, región ${regionLabel}.`);
+    try {
+      renderArgentinaMap(canvasElement);
+      showMapLoader("Preparando el territorio…");
+      const markers = buildMapMarkers();
+      let lastActiveMarker = null;
+      const clearActiveMarker = function () {
+        if (lastActiveMarker) {
+          lastActiveMarker.classList.remove("map__marker--active");
+          lastActiveMarker = null;
         }
-        showTooltip(marker, element, { focus: Boolean(options.focusTooltip) });
-      }
-    });
-
-    function applyTypeFilters() {
-      const showTrails =
-        trailToggleElement?.getAttribute("aria-pressed") === "true" || trailToggleElement === null;
-      const showActivities =
-        activityToggleElement?.getAttribute("aria-pressed") === "true" ||
-        activityToggleElement === null;
-
-      updateMarkersVisibility(markerElements, { showTrails, showActivities });
-      hideTooltip({ restoreFocus: false });
-      clearActiveMarker();
-      setLiveRegionMessage(
-        "Selección de marcador limpiada. Mostrando experiencias según filtros actuales."
-      );
-
-      const visibleExperiences = getVisibleExperiences(markerElements);
-      renderVisibleExperiencesList(visibleExperiences);
-
-      const hasVisibleMarkers = visibleExperiences.length > 0;
-      const hikesCount = visibleExperiences.filter(function (item) {
-        return item.type === "caminata";
-      }).length;
-      const activitiesCount = visibleExperiences.filter(function (item) {
-        return item.type === "actividad";
-      }).length;
-
-      if (emptyStateElement) {
-        emptyStateElement.hidden = hasVisibleMarkers;
-      }
-
-      updateMapExperiencesLiveRegion({
-        total: visibleExperiences.length,
-        hikesCount,
-        activitiesCount
+      };
+      const setActiveMarker = function (element) {
+        if (!element) return;
+        if (lastActiveMarker && lastActiveMarker !== element) {
+          lastActiveMarker.classList.remove("map__marker--active");
+        }
+        lastActiveMarker = element;
+        lastActiveMarker.classList.add("map__marker--active");
+      };
+      const { showTooltip, hideTooltip } = createMapTooltip(canvasElement, {
+        onClose() {
+          clearActiveMarker();
+        }
       });
-    }
 
-    const setToggleState = function (button, isPressed) {
-      if (!button) return;
-      button.setAttribute("aria-pressed", String(isPressed));
-      button.classList.toggle("map__toggle--active", isPressed);
-    };
-
-    if (trailToggleElement) {
-      trailToggleElement.addEventListener("click", function () {
-        const nextState = trailToggleElement.getAttribute("aria-pressed") !== "true";
-        setToggleState(trailToggleElement, nextState);
-        applyTypeFilters();
+      const { markerElements } = renderMapMarkers(canvasElement, markers, {
+        onMarkerClick(marker, element, options = {}) {
+          if (options.focusTooltip) {
+            setActiveMarker(element);
+            const typeLabel = marker.type === "trail" ? "caminata" : "actividad";
+            const regionLabel = marker.region || "Argentina";
+            setLiveRegionMessage(`Se seleccionó ${marker.title}, ${typeLabel}, región ${regionLabel}.`);
+          }
+          showTooltip(marker, element, { focus: Boolean(options.focusTooltip) });
+        }
       });
-    }
 
-    if (activityToggleElement) {
-      activityToggleElement.addEventListener("click", function () {
-        const nextState = activityToggleElement.getAttribute("aria-pressed") !== "true";
-        setToggleState(activityToggleElement, nextState);
-        applyTypeFilters();
+      function applyTypeFilters() {
+        const showTrails =
+          trailToggleElement?.getAttribute("aria-pressed") === "true" || trailToggleElement === null;
+        const showActivities =
+          activityToggleElement?.getAttribute("aria-pressed") === "true" || activityToggleElement === null;
+
+        updateMarkersVisibility(markerElements, { showTrails, showActivities });
+        hideTooltip({ restoreFocus: false });
+        clearActiveMarker();
+        setLiveRegionMessage("Selección de marcador limpiada. Mostrando experiencias según filtros actuales.");
+
+        const visibleExperiences = getVisibleExperiences(markerElements);
+        renderVisibleExperiencesList(visibleExperiences);
+
+        const hasVisibleMarkers = visibleExperiences.length > 0;
+        const hikesCount = visibleExperiences.filter(function (item) {
+          return item.type === "caminata";
+        }).length;
+        const activitiesCount = visibleExperiences.filter(function (item) {
+          return item.type === "actividad";
+        }).length;
+
+        if (emptyStateElement) {
+          emptyStateElement.hidden = hasVisibleMarkers;
+        }
+
+        updateMapExperiencesLiveRegion({
+          total: visibleExperiences.length,
+          hikesCount,
+          activitiesCount
+        });
+      }
+
+      const setToggleState = function (button, isPressed) {
+        if (!button) return;
+        button.setAttribute("aria-pressed", String(isPressed));
+        button.classList.toggle("map__toggle--active", isPressed);
+      };
+
+      if (trailToggleElement) {
+        trailToggleElement.addEventListener("click", function () {
+          const nextState = trailToggleElement.getAttribute("aria-pressed") !== "true";
+          setToggleState(trailToggleElement, nextState);
+          applyTypeFilters();
+        });
+      }
+
+      if (activityToggleElement) {
+        activityToggleElement.addEventListener("click", function () {
+          const nextState = activityToggleElement.getAttribute("aria-pressed") !== "true";
+          setToggleState(activityToggleElement, nextState);
+          applyTypeFilters();
+        });
+      }
+
+      applyTypeFilters();
+      hideMapLoader();
+
+      canvasElement.addEventListener("click", function (event) {
+        const isMarker = event.target.closest(".map__marker");
+        const isTooltip = event.target.closest(".map__tooltip");
+        if (!isMarker && !isTooltip) {
+          hideTooltip();
+        }
       });
+
+      document.addEventListener("click", function (event) {
+        const clickedInsideCanvas = canvasElement.contains(event.target);
+        const isMarker = event.target.closest(".map__marker");
+        const isTooltip = event.target.closest(".map__tooltip");
+        if (!clickedInsideCanvas && !isMarker && !isTooltip) {
+          hideTooltip();
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      showMapLoader("Algo no respondió como esperábamos. Podés recargar el territorio.");
+      setLiveRegionMessage("No pudimos cargar el mapa. Probá recargar la página.");
     }
-
-    applyTypeFilters();
-
-    canvasElement.addEventListener("click", function (event) {
-      const isMarker = event.target.closest(".map__marker");
-      const isTooltip = event.target.closest(".map__tooltip");
-      if (!isMarker && !isTooltip) {
-        hideTooltip();
-      }
-    });
-
-    document.addEventListener("click", function (event) {
-      const clickedInsideCanvas = canvasElement.contains(event.target);
-      const isMarker = event.target.closest(".map__marker");
-      const isTooltip = event.target.closest(".map__tooltip");
-      if (!clickedInsideCanvas && !isMarker && !isTooltip) {
-        hideTooltip();
-      }
-    });
   }
   updateHeaderUserState();
   updateCartBadge();

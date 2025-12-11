@@ -15,7 +15,7 @@ export function renderActivityCards(activities) {
 
     const hint = document.createElement("p");
     hint.textContent =
-      "Proba otra direccion del territorio o volve a la lista completa para seguir explorando.";
+      "Probá otra manera de habitar el territorio o volvé a la lista completa para seguir explorando.";
 
     empty.append(title, hint);
     grid.appendChild(empty);
