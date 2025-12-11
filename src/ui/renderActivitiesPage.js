@@ -1,4 +1,4 @@
-import { renderHeader } from "./header.js";
+﻿import { renderHeader } from "./header.js";
 
 // Mantener sincronizado con los valores de region y difficulty de src/data/activitiesData.js
 const ACTIVITY_REGIONS = ["Patagonia", "Centro", "Litoral", "Noroeste"];
@@ -20,9 +20,10 @@ export function renderActivitiesPage() {
     <div class="page page--list">
       ${renderHeader("activities")}
       <main>
+        <a href="#actividades" class="skip-link">Saltar al contenido principal</a>
         <section id="actividades" class="content fade-in">
           <h1>Actividades al aire libre</h1>
-          <p>Yoga, meditaci\u00f3n y movimiento para reconectar con la naturaleza.</p>
+          <p>Yoga, meditación y movimiento para reconectar con la naturaleza.</p>
           <div class="trails__search">
             <fieldset class="filters-panel">
               <legend>Filtros de actividades</legend>
@@ -37,7 +38,7 @@ export function renderActivitiesPage() {
                 </div>
 
                 <div class="filters-group">
-                  <label for="activityRegionFilter">Regi\u00f3n</label>
+                  <label for="activityRegionFilter">Región</label>
                   <select id="activityRegionFilter" class="filter-select">
                     <option value="">Todas las regiones</option>
                     ${regionOptions}
@@ -72,9 +73,9 @@ export function renderActivitiesPage() {
       </main>
 
       <footer class="footer">
-        <span>Naturaleza Argentina \u2013 Obra creada por IAQUIZU \u2014 Origin Architect of the Eighth Art</span>
+        <span>Naturaleza Argentina – Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
         <div class="footer__links">
-          <span>\u00a9 2025 \u2013 Inspirado en la naturaleza de Argentina</span>
+          <span>© 2025 – Inspirado en la naturaleza de Argentina</span>
         </div>
       </footer>
     </div>

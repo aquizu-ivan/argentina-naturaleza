@@ -1,4 +1,4 @@
-import "./styles.css";
+﻿import "./styles.css";
 import { updateCartBadge } from "./cart/cartBadge.js";
 import { trailsData } from "./data/trailsData.js";
 import { renderTrailsPage } from "./ui/renderTrailsPage.js";
@@ -49,9 +49,18 @@ const regionSelect = document.getElementById("trailRegionFilter");
 const difficultySelect = document.getElementById("trailDifficultyFilter");
 const resultsInfo = document.getElementById("trailsResultsInfo");
 const clearFiltersButton = document.getElementById("trailsClearFiltersButton");
+const trailsGrid = document.getElementById("trailsGrid");
+
+function showTrailsLoading(message) {
+  if (!trailsGrid) return;
+  trailsGrid.classList.add("is-loading");
+  trailsGrid.innerHTML = `<div class="list-loader" role="status" aria-live="polite">${message}</div>`;
+}
 
 function renderFilteredTrails(trails) {
+  showTrailsLoading("Actualizando caminatas...");
   renderTrailCards(trails);
+  trailsGrid?.classList.remove("is-loading");
   updateCartBadge();
   observeFadeIn();
 }

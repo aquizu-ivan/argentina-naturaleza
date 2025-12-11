@@ -1,4 +1,4 @@
-import { renderHeader } from "./header.js";
+﻿import { renderHeader } from "./header.js";
 
 // Mantener sincronizado con los valores de region y difficulty de src/data/trailsData.js
 const TRAIL_REGIONS = ["Patagonia", "Noroeste", "Sierras Centrales"];
@@ -20,6 +20,7 @@ export function renderTrailsPage() {
     <div class="page page--list">
       ${renderHeader("trails")}
       <main>
+        <a href="#caminatas" class="skip-link">Saltar al contenido principal</a>
         <section id="caminatas" class="content fade-in">
           <h1>Caminatas destacadas</h1>
           <p>Buscá y explorá senderos para planear tu próxima salida.</p>

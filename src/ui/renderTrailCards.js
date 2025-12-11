@@ -15,7 +15,7 @@ export function renderTrailCards(trails) {
 
     const hint = document.createElement("p");
     hint.textContent =
-      "Proba otra direccion del territorio o volve a la lista completa para seguir el recorrido.";
+      "Probá otra dirección del territorio o volvé a la lista completa para seguir el recorrido.";
 
     empty.append(title, hint);
     grid.appendChild(empty);

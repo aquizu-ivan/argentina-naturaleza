@@ -32,14 +32,14 @@ export function renderHeader(activePage) {
         <span class="brand__dot"></span>
         <span class="brand__text">Naturaleza Argentina</span>
       </div>
-      <nav class="nav" aria-label="Navegacion principal">
+      <nav class="nav" aria-label="Navegación principal">
         <a class="nav__link ${isHome ? "nav__link--active" : ""}" href="index.html" ${isHome ? 'aria-current="page"' : ""}>Inicio</a>
         <a class="nav__link ${isTrails ? "nav__link--active" : ""}" href="caminatas.html" ${isTrails ? 'aria-current="page"' : ""}>Caminatas</a>
         <a class="nav__link ${isActivities ? "nav__link--active" : ""}" href="activities.html" ${isActivities ? 'aria-current="page"' : ""}>Actividades</a>
         <a class="nav__link ${isMap ? "nav__link--active" : ""}" href="mapa.html" ${isMap ? 'aria-current="page"' : ""}>Mapa</a>
         <a class="nav__link nav__link--cart ${isCart ? "nav__link--active" : ""}" href="carrito.html" data-cart-link ${isCart ? 'aria-current="page"' : ""}>
           <span class="nav__icon" aria-hidden="true">&#128722;</span>
-          <span>Coleccion</span>
+          <span>Colección</span>
           <span class="cart-badge" data-cart-badge></span>
         </a>
       </nav>
