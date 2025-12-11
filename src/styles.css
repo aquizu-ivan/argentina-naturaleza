@@ -261,10 +261,10 @@ h3 {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: linear-gradient(180deg, rgba(11, 20, 16, 0.92) 0%, rgba(14, 25, 20, 0.94) 60%, rgba(8, 14, 12, 0.96) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(244, 246, 245, 0.98) 0%, rgba(232, 236, 234, 0.96) 100%);
+  border: 1px solid var(--color-border-soft);
   border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   width: 100%;
@@ -276,7 +276,7 @@ h3 {
   gap: 15px;
   font-weight: 700;
   letter-spacing: 0.4px;
-  color: var(--color-text-on-dark);
+  color: var(--color-text-main);
 }
 
 .brand__dot {
@@ -314,7 +314,7 @@ h3 {
   padding: 9px 14px;
   border-radius: 12px;
   font-weight: 600;
-  color: var(--color-text-on-dark);
+  color: var(--color-text-main);
   background: transparent;
   transition: background-color 200ms ease, color 200ms ease, transform 160ms ease, box-shadow 200ms ease;
 }
@@ -490,7 +490,7 @@ h3 {
   border: 1px solid transparent;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease, filter 200ms ease;
+  transition: all 200ms ease-out;
 }
 
 .button--primary {
@@ -501,9 +501,9 @@ h3 {
 }
 
 .button--primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   background: var(--color-accent-2);
-  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.14);
 }
 
 .button--ghost {
@@ -513,9 +513,9 @@ h3 {
 }
 
 .button--ghost:hover {
-  background: rgba(19, 71, 54, 0.08);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  background: rgba(19, 71, 54, 0.06);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
 .button--secondary {
@@ -536,9 +536,9 @@ h3 {
 
 .button--cart:hover,
 .button--secondary:hover {
-  transform: translateY(-2px);
-  background: rgba(19, 71, 54, 0.08);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+  transform: translateY(-1px);
+  background: rgba(19, 71, 54, 0.06);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
 }
 
 .button--small {
@@ -787,7 +787,7 @@ h3 {
   gap: 10px;
   height: 100%;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 12px 26px rgba(0, 0, 0, 0.08);
-  transition: transform 160ms ease, box-shadow 200ms ease, background-color 200ms ease;
+  transition: all 200ms ease-out;
 }
 
 .trail-card p {
@@ -801,19 +801,16 @@ h3 {
 }
 
 .trail-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  background: linear-gradient(
-    180deg,
-    rgba(19, 71, 54, 0.06) 0%,
-    rgba(11, 47, 35, 0.08) 100%
-  );
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  background: var(--color-surface);
+  border-color: rgba(11, 47, 35, 0.16);
 }
 
 .trail-card:hover h3,
 .trail-card:hover p,
 .trail-card:hover .card-meta__item {
-  color: var(--color-text-main);
+  color: var(--color-accent-1);
 }
 
 .card__image {
@@ -1037,15 +1034,10 @@ h3 {
   gap: 12px;
   padding: 18px 18px;
   border-radius: 16px;
-  background: linear-gradient(
-    180deg,
-    rgba(11, 20, 16, 0.9) 0%,
-    rgba(14, 25, 20, 0.94) 50%,
-    rgba(8, 14, 12, 0.96) 100%
-  );
-  color: var(--color-text-on-dark);
+  background: linear-gradient(180deg, rgba(227, 231, 229, 0.98) 0%, rgba(223, 227, 225, 0.96) 100%);
+  color: var(--color-text-main);
   font-size: 14px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
