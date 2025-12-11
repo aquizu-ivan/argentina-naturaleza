@@ -6,17 +6,17 @@
 /* Paleta y base tipográfica */
 :root {
   /* IAQUIZU: tokens base */
-  --color-bg-main: #eef3ed;
-  --color-bg-alt: #f2ede3;
-  --color-surface: #ffffff;
-  --color-text-main: #0e3a2b;
-  --color-text-muted: #5f7268;
+  --color-bg-main: #e3ebe7;
+  --color-bg-alt: #d7e2dc;
+  --color-surface: #f5f8f6;
+  --color-text-main: #0e3024;
+  --color-text-muted: #5c6f66;
   --color-text-on-dark: #e8f3eb;
-  --color-accent-1: #c98a55;
-  --color-accent-2: #3f7a5a;
-  --color-accent-3: #6faac6;
-  --color-border-soft: #d5e0d7;
-  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.06);
+  --color-accent-1: #145c3b;
+  --color-accent-2: #0f3f2b;
+  --color-accent-3: #7da9ba;
+  --color-border-soft: #cad7d0;
+  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.05);
 
   /* Aliases para compatibilidad interna */
   --color-bg: var(--color-bg-main);
@@ -2325,18 +2325,18 @@ h3 {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg-main: #0f1f17;
-    --color-bg-alt: #133025;
-    --color-surface: #1b2d23;
+    --color-bg-main: #0b1812;
+    --color-bg-alt: #102319;
+    --color-surface: #14231b;
     --color-text-main: #e8f3eb;
-    --color-text-muted: #a0b3a8;
+    --color-text-muted: #95a9a0;
     --color-text-on-dark: #e8f3eb;
-    --color-accent-1: #d6b383;
-    --color-accent-2: #6bc38d;
-    --color-accent-3: #6faac6;
+    --color-accent-1: #4fa37e;
+    --color-accent-2: #2f5b45;
+    --color-accent-3: #7da9ba;
     --color-border-soft: #2f4438;
-    --shadow-soft: 0 14px 36px rgba(0, 0, 0, 0.3);
-    --shadow-hover: 0 16px 32px rgba(0, 0, 0, 0.35);
+    --shadow-soft: 0 14px 36px rgba(0, 0, 0, 0.28);
+    --shadow-hover: 0 16px 32px rgba(0, 0, 0, 0.32);
 
     --color-bg: var(--color-bg-main);
     --color-primary: var(--color-accent-2);
@@ -2344,7 +2344,7 @@ h3 {
     --color-accent: var(--color-accent-1);
     --color-muted: var(--color-text-muted);
     --color-brown-light: var(--color-bg-alt);
-    --color-brown-soft: #2d251b;
+    --color-brown-soft: #14231b;
     --color-brown-accent: var(--color-accent-1);
     --surface: var(--color-surface);
     --surface-alt: rgba(27, 45, 35, 0.9);
@@ -2567,5 +2567,3 @@ h3 {
   white-space: nowrap;
   border: 0;
 }
-
-
