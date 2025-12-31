@@ -1,4 +1,4 @@
-﻿import { renderHeader } from "./header.js";
+import { renderHeader } from "./header.js";
 
 export function renderMapPage(root = document.querySelector("#app")) {
   if (!root) return null;
@@ -12,10 +12,10 @@ export function renderMapPage(root = document.querySelector("#app")) {
           <div class="map-page__header">
             <h1>Mapa conceptual de experiencias</h1>
             <p class="map-page__intro">
-              Explorá las caminatas y actividades de Naturaleza Argentina en un mapa conceptual dentro de la Obra 1 del universo IAQUIZU.
+              Explor\u00e1 las caminatas y actividades de Naturaleza Argentina en un mapa conceptual dentro de la Obra 1 del universo IAQUIZU.
             </p>
             <p class="map-page__intro map-page__hint">
-              Mapa conceptual: usá los botones para mostrar caminatas o actividades, elegí un punto en el mapa para ver detalles y recorré la lista de experiencias visibles como puente entre territorio y contemplación.
+              Mapa conceptual: us\u00e1 los botones para mostrar caminatas o actividades, eleg\u00ed un punto en el mapa para ver detalles y recorr\u00e9 la lista de experiencias visibles como puente entre territorio y contemplaci\u00f3n.
             </p>
             <a href="#mapExperiencesList" class="map-skip-link">
               Saltar al listado de experiencias
@@ -67,12 +67,12 @@ export function renderMapPage(root = document.querySelector("#app")) {
             aria-label="Mapa interactivo de experiencias en Argentina"
           >
             <h2 class="sr-only">Mapa de experiencias</h2>
-            <div class="map__loader" role="status" aria-live="polite">Preparando el territorio…</div>
+            <div class="map__loader" role="status" aria-live="polite">Preparando el territorio\u2026</div>
             <div class="map__canvas-placeholder">Mapa conceptual para imaginar recorridos en territorio.</div>
             <div class="map__pulse" aria-hidden="true"></div>
           </section>
           <p class="map__empty-state" role="status" aria-live="polite" hidden>
-            No hay experiencias para estos filtros. Podés ajustar el recorrido o volver a explorar el mapa.
+            No hay experiencias para estos filtros. Pod\u00e9s ajustar el recorrido o volver a explorar el mapa.
           </p>
           <section
             class="map-list"
@@ -88,11 +88,8 @@ export function renderMapPage(root = document.querySelector("#app")) {
         </section>
       </main>
 
-      <footer class="footer">
-        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
-        <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
-        </div>
+                  <footer class="footer footer--editorial">
+        <p class="footer__line">Naturaleza Argentina &mdash; Obra creada por IAQUIZU &mdash; &copy; 2025 IAQUIZU &mdash; Todos los derechos reservados.</p>
       </footer>
     </div>
   `;

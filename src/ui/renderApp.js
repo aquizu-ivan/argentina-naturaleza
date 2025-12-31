@@ -1,4 +1,4 @@
-﻿import { renderHeader } from "./header.js";
+import { renderHeader } from "./header.js";
 
 export function renderApp() {
   const app = document.querySelector("#app");
@@ -29,6 +29,37 @@ export function renderApp() {
           </div>
         </section>
 
+        <section
+          id="sobre-naturaleza-argentina"
+          class="content content--light fade-in about"
+          aria-labelledby="sobre-naturaleza-argentina-title"
+        >
+          <div class="about__inner">
+            <span class="hero__eyebrow about__kicker">ORIGEN</span>
+            <h2 id="sobre-naturaleza-argentina-title">Sobre Naturaleza Argentina</h2>
+            <p class="about__lead">
+              Naturaleza Argentina no naci&oacute; para mostrar lugares.<br />
+              Naci&oacute; para ayudarte a elegir cu&aacute;ndo salir, hacia d&oacute;nde ir y qu&eacute; paisaje
+              habitar, sin apuro.
+            </p>
+            <p>
+              Esta obra re&uacute;ne caminatas, clima y territorio en un mismo espacio. No funciona como un
+              cat&aacute;logo ni como una gu&iacute;a cerrada: funciona como un entorno vivo donde pod&eacute;s
+              explorar senderos, ver las condiciones reales del d&iacute;a y armar tu propio recorrido
+              seg&uacute;n tu ritmo.
+            </p>
+            <p>
+              Ac&aacute; no hay urgencia ni exceso de informaci&oacute;n. Hay se&ntilde;ales claras, datos
+              justos y espacio para decidir con calma. Porque caminar tambi&eacute;n es una forma de estar
+              presente, y elegir bien el momento es parte del viaje.
+            </p>
+            <p class="about__outro">
+              Si quer&eacute;s empezar, entr&aacute; por el territorio y dej&aacute; que el d&iacute;a decida
+              con vos.
+            </p>
+          </div>
+        </section>
+
         <section id="inspiracion" class="content content--light fade-in">
           <h2>Respirá aire libre</h2>
           <p>
@@ -38,11 +69,8 @@ export function renderApp() {
         </section>
       </main>
 
-      <footer class="footer">
-        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
-        <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
-        </div>
+            <footer class="footer footer--editorial">
+        <p class="footer__line">Naturaleza Argentina &mdash; Obra creada por IAQUIZU &mdash; &copy; 2025 IAQUIZU &mdash; Todos los derechos reservados.</p>
       </footer>
     </div>
   `;
