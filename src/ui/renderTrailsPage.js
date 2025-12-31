@@ -1,4 +1,4 @@
-﻿import { renderHeader } from "./header.js";
+import { renderHeader } from "./header.js";
 
 // Mantener sincronizado con los valores de region y difficulty de src/data/trailsData.js
 const TRAIL_REGIONS = ["Patagonia", "Noroeste", "Sierras Centrales"];
@@ -23,7 +23,7 @@ export function renderTrailsPage() {
         <a href="#caminatas" class="skip-link">Saltar al contenido principal</a>
         <section id="caminatas" class="content fade-in">
           <h1>Caminatas destacadas</h1>
-          <p>Buscá y explorá senderos para planear tu próxima salida.</p>
+          <p>Busc\u00e1 y explor\u00e1 senderos para planear tu pr\u00f3xima salida.</p>
           <div class="trails__search">
             <fieldset class="filters-panel">
               <legend>Filtros de caminatas</legend>
@@ -38,7 +38,7 @@ export function renderTrailsPage() {
                 </div>
 
                 <div class="filters-group">
-                  <label for="trailRegionFilter">Región</label>
+                  <label for="trailRegionFilter">Regi\u00f3n</label>
                   <select id="trailRegionFilter" class="filter-select">
                     <option value="">Todas las regiones</option>
                     ${regionOptions}
@@ -72,11 +72,8 @@ export function renderTrailsPage() {
         </section>
       </main>
 
-      <footer class="footer">
-        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
-        <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
-        </div>
+                  <footer class="footer footer--editorial">
+        <p class="footer__line">Naturaleza Argentina &mdash; Obra creada por IAQUIZU &mdash; &copy; 2025 IAQUIZU &mdash; Todos los derechos reservados.</p>
       </footer>
     </div>
   `;

@@ -64,11 +64,8 @@ export function renderCartPage() {
         </section>
       </main>
 
-      <footer class="footer">
-        <span>Naturaleza Argentina - Obra creada por IAQUIZU — Origin Architect of the Eighth Art</span>
-        <div class="footer__links">
-          <span>© 2025 - Inspirado en la naturaleza de Argentina</span>
-        </div>
+                  <footer class="footer footer--editorial">
+        <p class="footer__line">Naturaleza Argentina &mdash; Obra creada por IAQUIZU &mdash; &copy; 2025 IAQUIZU &mdash; Todos los derechos reservados.</p>
       </footer>
     </div>
   `;
